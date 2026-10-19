@@ -20,7 +20,7 @@ const raviler = defineCollection({
   schema: z.object({
     isim: z.string(),
     tam_isim: z.string().optional(),
-    arapca: z.string().optional(), // Arapça yazılışı (ödev PDF'inde başlıkta kullanılır)
+    arapca: z.string().optional(), // Arapça yazılışı
     tabaka: z.enum(['sahabe', 'tabiin', 'etbau-t-tabiin', 'tebe-i-etbai-t-tabiin', 'sonraki']),
     dogum: tarih.optional(),
     vefat: tarih.optional(),
