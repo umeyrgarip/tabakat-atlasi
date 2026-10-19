@@ -39,8 +39,7 @@ Bütün kayıtlar ve hoca-talebe bağları kaynaklardan kontrol edilmiştir. Ba�
 - **el-Mektebetü'ş-Şâmile** üzerinden İbn Hacer, *Takrîbü't-Tehzîb*; Mizzî, *Tehzîbü'l-Kemâl*; Zehebî, *Siyeru a'lâmi'n-nübelâ*
 
 Sitede her bağın yanında kaynağı gösterilir. Kaynaklarda tartışmalı olan bağlar (ör. bir tâbiînin belirli bir
-sahâbîden bizzat işitip işitmediği) "ihtilaflı" olarak işaretlenmiş ve notuyla verilmiştir. Doğrulama sırasında
-tutulan ayrıntılı notlar [`dogrulama/`](dogrulama/) klasöründedir.
+sahâbîden bizzat işitip işitmediği) "ihtilaflı" olarak işaretlenmiş ve notuyla verilmiştir.
 
 ---
 
