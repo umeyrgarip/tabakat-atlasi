@@ -1,0 +1,26 @@
+isim: Hasan el-Basrî
+tam_isim: Ebû Saîd el-Hasen b. Ebi'l-Hasen Yesâr el-Basrî
+arapca: الحسن البصري
+cerh_tadil: Sika, fakih, fâzıl, meşhur; çok irsâl ve tedlîs yapardı (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 21, miladi: 642 }
+vefat: { hicri: 110, miladi: 728 }
+bolge: basra
+imam: { mezheb: Hasan el-Basrî, yasayan: false }
+ozet: Basra'nın zühd, vaaz ve fıkıh önderi; "Basralıların imamı" diye anılan tâbiî.
+biyografi: |
+  Medine'de doğdu; annesi Resûlullah'ın hanımı Ümmü Seleme'nin azatlısıydı. Yetmişi Bedir gazisi olmak üzere yüz yirmi kadar sahâbîyle görüştü; bunların başında Enes b. Mâlik gelir. Ali b. Ebî Tâlib'in halifeliğinden sonra ailesiyle Basra'ya yerleşti.
+
+  Bir yıl kadılık yaptıktan sonra ilim ve vaazla meşgul oldu. Zalim yöneticileri cesaretle eleştirmekle birlikte fitneye yol açar endişesiyle isyanlara katılmadı. Fıkhî görüşleri talebeleri aracılığıyla sonraki fıkıh kitaplarına girmiş, kısmen sûfîler kısmen fakihler tarafından benimsenmiştir.
+hocalari:
+  - kisi: enes-b-malik
+    not: istifade ettiği sahâbîlerin başındadır
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Hasan-ı Basrî\"", url: "https://islamansiklopedisi.org.tr/hasan-i-basri" }
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/1389" }
+dogrulandi: true

@@ -1,0 +1,32 @@
+isim: Esved b. Yezîd
+tam_isim: Ebû Abdirrahmân el-Esved b. Yezîd b. Kays en-Nehaî
+arapca: الأسود بن يزيد النخعي
+cerh_tadil: Muhadram, sika, çok rivayeti olan (müksir) bir fakih (İbn Hacer, Takrîb; 2. tabaka)
+tabaka: tabiin
+vefat: { hicri: 75, miladi: 694, not: "74 de denmiştir" }
+bolge: kufe
+ozet: Alkame'nin yeğeni, İbrâhim en-Nehaî'nin dayısı; İbn Mes'ûd'un önde gelen talebelerinden.
+biyografi: |
+  Kûfe'ye gelmeden önce Yemen'de Muâz b. Cebel'den hadis dinledi. Kûfe'de İbn Mes'ûd'dan fıkıh, tefsir ve hadis öğrenerek bu mektebin önde gelen âlimleri arasına girdi.
+
+  Zühd ve ibadetiyle tanınır; pek çok defa hac ve umre yaptığı nakledilir.
+hocalari:
+  - kisi: abdullah-b-mesud
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Esved b. Yezîd\"", url: "https://islamansiklopedisi.org.tr/esved-b-yezid" }
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: omer
+    kaynak: *tdv
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: muaz-b-cebel
+    not: Yemen'de iken
+    kaynak: *tdv
+  - kisi: alkame-b-kays
+    tur: akrabalik
+    not: amcasıdır; ondan ilim aldığı kaynaklarda geçmiyor
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi sayfası", url: "https://shamela.ws/narrator/710" }
+dogrulandi: true

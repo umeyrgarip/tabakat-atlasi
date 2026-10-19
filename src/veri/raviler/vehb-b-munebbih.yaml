@@ -1,0 +1,32 @@
+isim: Vehb b. Münebbih
+tam_isim: Ebû Abdillâh Vehb b. Münebbih es-San'ânî
+arapca: وهب بن منبه
+cerh_tadil: Sika (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 34, miladi: 654 }
+vefat: { hicri: 114, miladi: 732, not: "110, 113 ve 116 da denmiştir" }
+bolge: yemen
+ozet: Önceki ümmetlerin kıssalarına dair bilgisiyle tanınan San'alı tâbiî.
+biyografi: |
+  San'a yakınlarındaki Zimâr'da doğdu; babası Horasan'ın Herat şehrinden gelen Fars asıllı bir aileye mensuptur. İbn Abbâs, Câbir ve Enes gibi sahâbîlerden, Tâvûs ve Amr b. Dînâr gibi tâbiîlerden rivayette bulundu.
+
+  Peygamberler tarihi ve İsrâilî haberler uzmanlık alanıdır; İsrâiliyatın en önemli kaynaklarından sayılır. Ömer b. Abdülazîz döneminde San'a kadılığı yaptı; hayatının sonunda vali tarafından hapsedilip işkenceye uğradı ve San'a'da vefat etti.
+hocalari:
+  - kisi: ibn-abbas
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Vehb b. Münebbih\"", url: "https://islamansiklopedisi.org.tr/vehb-b-munebbih" }
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: enes-b-malik
+    kaynak: *tdv
+  - kisi: tavus-b-keysan
+    kaynak: *tdv
+  - kisi: amr-b-dinar
+    not: aynı zamanda talebesidir
+    kaynak: *tdv
+  - kisi: hemmam-b-munebbih
+    not: kardeşidir
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Hemmâm b. Münebbih\"", url: "https://islamansiklopedisi.org.tr/hemmam-b-munebbih" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/6856" }
+dogrulandi: true

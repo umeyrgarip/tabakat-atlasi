@@ -1,0 +1,21 @@
+isim: Şâfiî
+tam_isim: Ebû Abdillâh Muhammed b. İdrîs eş-Şâfiî
+tabaka: tebe-i-etbai-t-tabiin
+dogum: { hicri: 150, miladi: 767 }
+vefat: { hicri: 204, miladi: 820 }
+bolge: misir
+diger_bolgeler: [mekke, medine, bagdat]
+imam: { mezheb: Şâfiî, yasayan: true }
+ozet: Şâfiî mezhebinin imamı; er-Risâle'nin müellifi.
+hocalari:
+  - kisi: malik-b-enes
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Şâfiî\"", url: "https://islamansiklopedisi.org.tr/safii" }
+  - kisi: sufyan-b-uyeyne
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Şâfiî\"", url: "https://islamansiklopedisi.org.tr/safii" }
+  - kisi: ebu-hanife
+    araci: Muhammed b. el-Hasen eş-Şeybânî
+    not: Şeybânî Ebû Hanîfe'nin talebesidir (TDV, "Ebû Hanîfe"); Şâfiî onun derslerine devam etti
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Şâfiî\"", url: "https://islamansiklopedisi.org.tr/safii" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Şâfiî\"", url: "https://islamansiklopedisi.org.tr/safii" }
+dogrulandi: true

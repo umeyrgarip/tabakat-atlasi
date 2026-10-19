@@ -1,0 +1,24 @@
+isim: Hemmâm b. Münebbih
+tam_isim: Ebû Ukbe Hemmâm b. Münebbih b. Kâmil es-San'ânî
+arapca: همام بن منبه
+cerh_tadil: Sika (İbn Hacer, Takrîb; 4. tabaka)
+tabaka: tabiin
+dogum: { hicri: 40, miladi: 660, not: "tahminî" }
+vefat: { hicri: 132, miladi: 750, not: "101, 102 ve 131 de denmiştir" }
+bolge: yemen
+diger_bolgeler: [medine]
+ozet: Ebû Hüreyre'den derlediği es-Sahîfetü's-sahîha ile ilk yazılı hadis metinlerinden birini bugüne ulaştıran San'alı tâbiî.
+biyografi: |
+  Yemen'de doğdu; Fars kökenli ebnâdan bir aileye mensuptur ve Vehb b. Münebbih'in kardeşidir. Gençliğinde Medine'ye giderek Ebû Hüreyre'den hadis öğrendi; Muâviye, İbn Abbâs, İbn Zübeyr ve İbn Ömer'den de rivayette bulundu. San'a'da vefat etti.
+
+  Ebû Hüreyre'den öğrendiği hadisleri es-Sahîfetü's-sahîha adlı mecmuada topladı. Allah'ın sıfatlarından ibadet ve ahlâka uzanan konularda 139 kadar hadis içeren sahîfe, Hemmâm'dan Ma'mer b. Râşid'e, ondan Abdürrezzâk es-San'ânî'ye, ondan da Ahmed b. Hanbel, Buhârî ve Müslim gibi muhaddislere ulaştı. Eseri ilk defa Muhammed Hamîdullah yayımladı (1953); bu neşir, hadislerin erken dönemde yazıya da geçirildiğini gösteren önemli bir belge sayılır.
+hocalari:
+  - kisi: ebu-hureyre
+    not: sahîfesindeki hadisleri ondan aldı
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Hemmâm b. Münebbih\"", url: "https://islamansiklopedisi.org.tr/hemmam-b-munebbih" }
+  - kisi: ibn-abbas
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/6737" }
+dogrulandi: true

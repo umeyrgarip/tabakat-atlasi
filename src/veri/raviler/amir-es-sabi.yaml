@@ -1,0 +1,45 @@
+isim: Âmir eş-Şa'bî
+tam_isim: Ebû Amr Âmir b. Şerâhîl eş-Şa'bî el-Hemdânî
+arapca: عامر بن شراحيل الشعبي
+cerh_tadil: Sika, meşhur, fakih, fâzıl (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 19, miladi: 640, not: "17 ile 31 arasında farklı tarihler verilmiştir" }
+vefat: { hicri: 104, miladi: 722, not: "103 ile 110 arasında farklı tarihler verilmiştir" }
+bolge: kufe
+ozet: Çok sayıda sahâbîye yetişen Kûfeli muhaddis; Kûfe'de rivayete dayanan yaklaşımın temsilcisi.
+biyografi: |
+  Kûfe'de doğdu; kendi ifadesine göre beş yüz sahâbî gördü ve yetmişten fazlasından hadis öğrendi. Hadis, megâzî ve ferâizde otorite kabul edildi; Ömer b. Abdülazîz'in isteğiyle bir yıl Kûfe kadılığı yaptı.
+
+  Aynı dönemde Kûfe'de Nehaî re'y ekolünü, Şa'bî ise rivayete dayanan yaklaşımı temsil ediyordu.
+hocalari:
+  - kisi: ebu-bekr-b-abdirrahman
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebû Bekir b. Abdurrahman\"", url: "https://islamansiklopedisi.org.tr/ebu-bekir-b-abdurrahman" }
+  - kisi: ali
+    ihtilafli: true
+    not: Ali b. Ebî Tâlib'i gördüğü kesin; ondan rivayet edip etmediği ihtilaflıdır
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Şa'bî\"", url: "https://islamansiklopedisi.org.tr/sabi" }
+  - kisi: mesruk-b-el-ecda
+    kaynak: *tdv
+  - kisi: kadi-sureyh
+    kaynak: *tdv
+  - kisi: alkame-b-kays
+    kaynak: *tdv
+  - kisi: esved-b-yezid
+    kaynak: *tdv
+  - kisi: ikrime
+    kaynak: *tdv
+  - kisi: kasim-b-muhammed
+    kaynak: *tdv
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: enes-b-malik
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+dogrulandi: true

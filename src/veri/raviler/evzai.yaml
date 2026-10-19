@@ -1,0 +1,22 @@
+isim: Evzâî
+tam_isim: Ebû Amr Abdurrahmân b. Amr el-Evzâî
+tabaka: etbau-t-tabiin
+dogum: { hicri: 88, miladi: 707 }
+vefat: { hicri: 157, miladi: 774 }
+bolge: sam
+imam: { mezheb: Evzâî, yasayan: false }
+ozet: Şam ve Endülüs'te bir dönem yaygın olan Evzâî mezhebinin imamı.
+hocalari:
+  - kisi: muhammed-b-sirin
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Evzâî\"", url: "https://islamansiklopedisi.org.tr/evzai" }
+    ihtilafli: true
+    not: Evzâî 110'da Basra'ya gittiğinde İbn Sîrîn hastaydı ve ders okutamıyordu (TDV, "Evzâî"); TDV, "İbn Sîrîn" ise Evzâî'yi ondan faydalananlar arasında sayar
+  - kisi: katade-b-diame
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Evzâî\"", url: "https://islamansiklopedisi.org.tr/evzai" }
+  - kisi: ata-b-ebi-rebah
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Evzâî\"", url: "https://islamansiklopedisi.org.tr/evzai" }
+  - kisi: mekhul
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Evzâî\"", url: "https://islamansiklopedisi.org.tr/evzai" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Evzâî\"", url: "https://islamansiklopedisi.org.tr/evzai" }
+dogrulandi: true

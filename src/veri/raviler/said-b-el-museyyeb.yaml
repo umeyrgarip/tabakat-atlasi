@@ -1,0 +1,35 @@
+isim: Saîd b. el-Müseyyeb
+tam_isim: Ebû Muhammed Saîd b. el-Müseyyeb b. Hazn el-Mahzûmî
+arapca: سعيد بن المسيب
+cerh_tadil: Sebt âlimlerden ve büyük fakihlerden biri (İbn Hacer, Takrîb; 2. tabakanın büyüklerinden)
+tabaka: tabiin
+dogum: { hicri: 15, miladi: 636 }
+vefat: { hicri: 94, miladi: 713, not: "89 ile 105 arasında farklı tarihler verilmiştir" }
+bolge: medine
+ozet: Medine'nin yedi fakihinin önde geleni; Ömer b. el-Hattâb'ın hükümlerini en iyi bilen tâbiî.
+biyografi: |
+  Ömer b. el-Hattâb'ın hilâfetinin ilk yıllarında Medine'de doğdu. Babası ve dedesi de sahâbîdir. Daha çok kayınpederi Ebû Hüreyre'den hadis öğrendi; Ömer'in hükümlerini en iyi bilen kişi olduğu için "râviyetü Ömer" diye anıldı.
+
+  Emevî yönetimine karşı bağımsız tavrıyla tanınır; Abdülmelik'in oğulları için istenen biate karşı çıktığı için hapsedilip kırbaçlandı. Ömer b. Abdülazîz Medine valiliğinde ona danışmadan hüküm vermezdi.
+hocalari:
+  - kisi: ebu-hureyre
+    not: kayınpederidir
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Saîd b. Müseyyeb\"", url: "https://islamansiklopedisi.org.tr/said-b-museyyeb" }
+  - kisi: omer
+    ihtilafli: true
+    not: Ömer b. el-Hattâb'ı gördüğü kesin; ondan doğrudan rivayeti tartışmalıdır
+    kaynak: *tdv
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: abdullah-b-amr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/2436" }
+dogrulandi: true

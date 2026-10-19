@@ -1,0 +1,19 @@
+isim: Taberî
+tam_isim: Ebû Ca'fer Muhammed b. Cerîr et-Taberî
+tabaka: sonraki
+dogum: { hicri: 224, miladi: 839 }
+vefat: { hicri: 310, miladi: 923 }
+bolge: bagdat
+imam: { mezheb: Cerîrî, yasayan: false }
+ozet: Cerîrî mezhebinin imamı; tefsir ve tarih eserleriyle tanınır.
+hocalari:
+  - kisi: davud-ez-zahiri
+    not: derslerine devam edip ondan hadis aldı
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Taberî, Muhammed b. Cerîr\"", url: "https://islamansiklopedisi.org.tr/taberi-muhammed-b-cerir" }
+  - kisi: safii
+    araci: Rebî' b. Süleymân el-Murâdî
+    not: Mısır'da Şâfiî fıkhını Rebî' b. Süleymân'dan öğrendi
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Taberî, Muhammed b. Cerîr\"", url: "https://islamansiklopedisi.org.tr/taberi-muhammed-b-cerir" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Taberî, Muhammed b. Cerîr\"", url: "https://islamansiklopedisi.org.tr/taberi-muhammed-b-cerir" }
+dogrulandi: true

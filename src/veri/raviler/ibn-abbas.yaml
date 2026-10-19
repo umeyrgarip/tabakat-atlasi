@@ -1,0 +1,11 @@
+isim: Abdullah b. Abbâs
+tam_isim: Ebü'l-Abbâs Abdullah b. Abbâs b. Abdilmuttalib
+tabaka: sahabe
+vefat: { hicri: 68, miladi: 687, not: "mîlâdî 687-88" }
+bolge: mekke
+diger_bolgeler: [medine]
+ozet: "\"Tercümânü'l-Kur'ân\"; Mekke tefsir ve fıkıh ekolünün kaynağı."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Abdullah b. Abbas\"", url: "https://islamansiklopedisi.org.tr/abdullah-b-abbas" }
+dogrulandi: true

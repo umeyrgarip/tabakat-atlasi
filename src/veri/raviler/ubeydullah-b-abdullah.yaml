@@ -1,0 +1,26 @@
+isim: Ubeydullah b. Abdullah b. Utbe
+tam_isim: Ebû Abdillâh Ubeydullah b. Abdillâh b. Utbe b. Mes'ûd el-Hüzelî
+arapca: عبيد الله بن عبد الله بن عتبة
+cerh_tadil: Sika, fakih, sebt (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+vefat: { hicri: 98, miladi: 716, not: "94 ile 102 arasında farklı tarihler verilmiştir" }
+bolge: medine
+ozet: Ömer b. Abdülazîz'in hocası; "şairlerin en fakihi" diye anılan Medine fakihi.
+biyografi: |
+  Dedesi Utbe, Abdullah b. Mes'ûd'un kardeşidir. Uzun süre yanında bulunduğu İbn Abbâs başta olmak üzere sahâbeden ilim aldı; İbn Mes'ûd'un vefatında çocuk olduğu için ondan doğrudan rivayeti yoktur.
+
+  Ömer b. Abdülazîz ile Zeynelâbidîn onun talebesidir. Âmâ idi; şiirdeki ustalığı sebebiyle "şairlerin en fakihi, fakihlerin en şairi" diye anılmıştır.
+hocalari:
+  - kisi: ibn-abbas
+    not: uzun süre yanında bulundu
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Ubeydullah b. Abdullah\"", url: "https://islamansiklopedisi.org.tr/ubeydullah-b-abdullah" }
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: urve-b-ez-zubeyr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/4184" }
+dogrulandi: true

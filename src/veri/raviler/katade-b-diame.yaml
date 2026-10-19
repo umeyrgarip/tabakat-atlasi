@@ -1,0 +1,38 @@
+isim: Katâde b. Diâme
+tam_isim: Ebü'l-Hattâb Katâde b. Diâme es-Sedûsî el-Basrî
+arapca: قتادة بن دعامة
+cerh_tadil: Sika, sebt (İbn Hacer, Takrîb; 4. tabaka)
+tabaka: tabiin
+dogum: { hicri: 60, miladi: 680, not: "61 de denmiştir" }
+vefat: { hicri: 117, miladi: 735, not: "118 de denmiştir" }
+bolge: basra
+ozet: Güçlü hafızasıyla darbımesel olan âmâ müfessir ve muhaddis.
+biyografi: |
+  Âmâ olarak doğdu; Sedûs kabilesine mensup bedevî bir ailedendir. Hasan el-Basrî'nin yanında on iki yıl kalarak kıraat, tefsir ve hadis öğrendi. Sahâbeden yalnızca Enes b. Mâlik'ten hadis aldı.
+
+  Güçlü hafızası darbımesel olmuştur; Saîd b. el-Müseyyeb'in yanında sekiz gün kaldıktan sonra Saîd'in "Bende ne varsa aldın" dediği nakledilir. Tefsirde dördüncü tabakanın başı kabul edilir. Vâsıt'taki veba salgınında vefat etti.
+hocalari:
+  - kisi: enes-b-malik
+    not: sahâbeden yalnız ondan hadis aldı
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Katâde b. Diâme\"", url: "https://islamansiklopedisi.org.tr/katade-b-diame" }
+  - kisi: hasan-el-basri
+    not: on iki yıl yanında kaldı
+    kaynak: *tdv
+  - kisi: muhammed-b-sirin
+    kaynak: *tdv
+  - kisi: ebul-aliye
+    kaynak: *tdv
+  - kisi: ata-b-ebi-rebah
+    kaynak: *tdv
+  - kisi: mucahid-b-cebr
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mücâhid b. Cebr\"", url: "https://islamansiklopedisi.org.tr/mucahid-b-cebr" }
+  - kisi: amir-es-sabi
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Şa'bî\"", url: "https://islamansiklopedisi.org.tr/sabi" }
+  - kisi: said-b-el-museyyeb
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Saîd b. Müseyyeb\"", url: "https://islamansiklopedisi.org.tr/said-b-museyyeb" }
+  - kisi: ikrime
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"İkrime el-Berberî\"", url: "https://islamansiklopedisi.org.tr/ikrime-el-berberi" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/5183" }
+dogrulandi: true

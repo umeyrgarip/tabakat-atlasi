@@ -1,0 +1,27 @@
+isim: Yezîd b. Ebî Habîb
+tam_isim: Ebû Recâ Yezîd b. Ebî Habîb Süveyd el-Mısrî
+arapca: يزيد بن أبي حبيب
+cerh_tadil: Sika, fakih; irsâl yapardı (İbn Hacer, Takrîb; 5. tabaka)
+tabaka: tabiin
+dogum: { hicri: 53, miladi: 673, not: "50 ile 53 arasında doğduğu tahmin edilir" }
+vefat: { hicri: 128, miladi: 745 }
+bolge: misir
+ozet: Mısır'da fıkıh eğitimini ilk başlatan âlim; Leys b. Sa'd'ın en önemli hocası.
+biyografi: |
+  Babası Sudan Nûbesi'ndeki Dongola'dan esir alınıp Mısır'a getirilmişti; kendisi köle olarak doğdu, sonra azat edildi. Fustat'ta yetişti; İskenderiye kadısı Ebü'l-Hayr Mersed, İkrime ve Atâ gibi tâbiîlerden ilim aldı.
+
+  Mısır'da helal ve haramı öğreten, fetva veren ilk âlim olarak tanınır. Ömer b. Abdülazîz'in Mısır'da fetva vermekle görevlendirdiği üç kişiden biridir. En önemli talebesi Leys b. Sa'd'dır.
+hocalari:
+  - kisi: mersed-ebul-hayr
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Yezîd b. Ebû Habîb\"", url: "https://islamansiklopedisi.org.tr/yezid-b-ebu-habib" }
+  - kisi: ikrime
+    kaynak: *tdv
+  - kisi: ata-b-ebi-rebah
+    kaynak: *tdv
+  - kisi: cafer-b-rebia
+    not: akranıdır
+    kaynak: { ad: "Mizzî, Tehzîbü'l-Kemâl, 5/29-30 (Ca'fer b. Rebîa)", url: "https://shamela.ws/book/3722/2109" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/7035" }
+dogrulandi: true

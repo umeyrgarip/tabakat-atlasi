@@ -1,0 +1,24 @@
+isim: Recâ b. Hayve
+tam_isim: Ebü'l-Mikdâm Recâ b. Hayve el-Kindî
+arapca: رجاء بن حيوة
+cerh_tadil: Sika, fakih (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+vefat: { hicri: 112, miladi: 730 }
+bolge: sam
+ozet: Ömer b. Abdülazîz'in veziri; Şamlıların "efendisi" sayılan fakih.
+biyografi: |
+  Filistin'in Beysân bölgesindendir; Kinde kabilesinin mevlâsıdır. Ömer b. Abdülazîz'in veziri oldu.
+
+  Muâz b. Cebel ve Ebü'd-Derdâ'dan rivayetleri mürseldir. Matar el-Verrâk, Şam'da ondan daha fakih birini görmediğini söyler; Mekhûl de ona "şeyhimiz ve efendimiz" diyerek kendisine sorulan meseleleri ona yönlendirirdi. Hadisleri lafzıyla rivayet etmeye özen gösterenlerdendir.
+hocalari:
+  - kisi: muaz-b-cebel
+    ihtilafli: true
+    not: rivayeti mürseldir
+    kaynak: &sh { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/1986" }
+  - kisi: ebud-derda
+    ihtilafli: true
+    not: rivayeti mürseldir
+    kaynak: *sh
+kaynaklar:
+  - *sh
+dogrulandi: true

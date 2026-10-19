@@ -1,0 +1,33 @@
+isim: Muhammed b. Sîrîn
+tam_isim: Ebû Bekr Muhammed b. Sîrîn el-Basrî
+arapca: محمد بن سيرين
+cerh_tadil: Sika, sebt, âbid, kadri büyük; hadisin mana ile rivayetini caiz görmezdi (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 34, miladi: 654, not: "31 ve 33 de denmiştir" }
+vefat: { hicri: 110, miladi: 729 }
+bolge: basra
+ozet: Rivayetteki titizliğiyle tanınan Basralı muhaddis ve fakih; sonraki asırlarda rüya tabiriyle meşhur oldu.
+biyografi: |
+  Basra'da doğdu. Babası Sîrîn, Enes b. Mâlik'in azat ettiği bir esir; annesi Safiyye ise Ebû Bekir'in azatlısıdır. Otuz kadar sahâbîyle görüştü; Zeyd b. Sâbit ve Ebû Hüreyre'den, tâbiîlerden de Kadı Şüreyh ve Abîde es-Selmânî'den ilim aldı.
+
+  Geçimini ticaretle sağladı. Hadisçiliği ve fıkhı ağır basan bir âlimdir; hadisleri lafzıyla aktarmaya özen gösterirdi. Rüya tabirine dair kendisine nisbet edilen eserlerin ona ait olmadığı kabul edilir.
+hocalari:
+  - kisi: ebu-hureyre
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"İbn Sîrîn\"", url: "https://islamansiklopedisi.org.tr/ibn-sirin" }
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: kadi-sureyh
+    kaynak: *tdv
+  - kisi: ebul-aliye
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebü’l-Âliye er-Riyâhî\"", url: "https://islamansiklopedisi.org.tr/ebul-aliye-er-riyahi" }
+  - kisi: alkame-b-kays
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Alkame b. Kays\"", url: "https://islamansiklopedisi.org.tr/alkame-b-kays" }
+  - kisi: amir-es-sabi
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Şa'bî\"", url: "https://islamansiklopedisi.org.tr/sabi" }
+  - kisi: enes-b-malik
+    not: Fars'ta onun kâtibiydi; Ahmed b. Hanbel'e göre ondan hadis işitti
+    kaynak: { ad: "Mizzî, Tehzîbü'l-Kemâl, 25/344 (Muhammed b. Sîrîn)", url: "https://shamela.ws/narrator/5657" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/5657" }
+dogrulandi: true

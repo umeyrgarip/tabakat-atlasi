@@ -1,0 +1,31 @@
+isim: İbrâhim en-Nehaî
+tam_isim: Ebû İmrân İbrâhim b. Yezîd en-Nehaî
+arapca: إبراهيم بن يزيد النخعي
+tabaka: tabiin
+cerh_tadil: Sika, ancak çok irsâl eder (İbn Hacer, Takrîb; 5. tabaka)
+dogum: { hicri: 46, miladi: 666, not: "38 ve 50 de denmiştir" }
+vefat: { hicri: 96, miladi: 714, not: "95 de denmiştir" }
+bolge: kufe
+ozet: Kûfe fıkhının tâbiîn dönemindeki en büyük temsilcisi; "fakîhü'l-Irâk" diye anılan re'y ekolü öncüsü.
+biyografi: |
+  Kûfe'de doğdu. Annesinin amcası Alkame b. Kays, dayısı Esved b. Yezîd ve Mesrûk başta olmak üzere İbn Mes'ûd'un talebelerinden ilim aldı; bir süre Kadı Şüreyh'in yanında çalışarak yargı pratiğini de tanıdı.
+
+  Sahâbeden doğrudan hadis dinlediği tespit edilemediği için sahâbeye dayanan rivayetleri mürsel sayılır. Fıkhî görüşleri talebesi Hammâd b. Ebî Süleymân aracılığıyla Ebû Hanîfe'ye ulaştı.
+hocalari:
+  - kisi: alkame-b-kays
+    not: annesinin amcasıdır (bir rivayete göre dayısı)
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Nehaî\"", url: "https://islamansiklopedisi.org.tr/nehai" }
+  - kisi: esved-b-yezid
+    not: dayısıdır
+    kaynak: *tdv
+  - kisi: mesruk-b-el-ecda
+    kaynak: *tdv
+  - kisi: kadi-sureyh
+    not: bir süre yanında mübâşir olarak çalıştı
+    kaynak: *tdv
+  - kisi: ikrime
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"İkrime el-Berberî\"", url: "https://islamansiklopedisi.org.tr/ikrime-el-berberi" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi sayfası", url: "https://shamela.ws/narrator/128" }
+dogrulandi: true

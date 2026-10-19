@@ -1,0 +1,1378 @@
+---
+import { yol, type GrafVerisi } from '../lib/veri';
+
+interface Props {
+  veri: GrafVerisi;
+  mod?: 'tam' | 'mini';
+  merkez?: string;
+  /** Küçük ağda sade görünüm: sahâbî hocalar ayrı satırda en üstte */
+  sade?: boolean;
+}
+const { veri, mod = 'tam', merkez, sade = false } = Astro.props;
+const kisiler = [...veri.dugumler].sort((a, b) => a.isim.localeCompare(b.isim, 'tr'));
+// Kişi seçme listesi için gruplar (Hasan el-Basrî hem tâbiî hem imam: tâbiîler arasında)
+const kisiGruplari = [
+  { ad: 'Tâbiîn âlimleri', kisiler: kisiler.filter((k) => k.tabaka === 'tabiin') },
+  { ad: 'Sahâbe', kisiler: kisiler.filter((k) => k.tabaka === 'sahabe') },
+  { ad: 'İmamlar', kisiler: kisiler.filter((k) => k.tabaka !== 'tabiin' && k.tabaka !== 'sahabe') },
+];
+---
+
+<div class:list={['ag', mod]} data-ag data-mod={mod} data-merkez={merkez} data-sade={sade ? '' : undefined} data-kok={yol()}>
+  <script type="application/json" set:html={JSON.stringify(veri)} />
+
+  {
+    mod === 'tam' && (
+      <div class="arac sans">
+        <div class="bolum">
+          <span class="bolum-baslik">Odaklan</span>
+          <div class="grup">
+            <select data-bolge-odak data-acilir aria-label="Bölge seç">
+              <option value="">Bölge seç…</option>
+              {veri.bolgeler.map((b) => <option value={b.id} data-renk={b.renk} data-renk-koyu={b.renkKoyu}>{b.isim}</option>)}
+            </select>
+            <span class="soluk kucuk">ya da</span>
+            <select data-odak data-acilir data-ara aria-label="Kişi seç">
+              <option value="">Kişi seç…</option>
+              {kisiGruplari.map((g) => (
+                <optgroup label={g.ad}>
+                  {g.kisiler.map((k) => <option value={k.id}>{k.isim}</option>)}
+                </optgroup>
+              ))}
+            </select>
+            <div class="segment" role="group" aria-label="Gösterilecek bağlar" data-kapsam-grup hidden>
+              <button class="dugme" data-kapsam="komsu" aria-pressed="true" title="Yalnızca doğrudan hocalar ve talebeler">Doğrudan bağlar</button>
+              <button class="dugme" data-kapsam="zincir" aria-pressed="false" title="Sahâbeden imamlara kadar bütün zincir">Tüm zincir</button>
+            </div>
+            <button class="dugme sade" data-odak-kaldir hidden title="Seçimi kaldır, bütün ağı göster">× Tüm ağ</button>
+          </div>
+        </div>
+
+        <div class="bolum">
+          <span class="bolum-baslik">Göster / gizle</span>
+          <div class="filtre-kap">
+            <button class="dugme" data-filtre-ac aria-expanded="false" aria-haspopup="true" title="Sahâbe, aracılı ve ihtilaflı bağlantıları göster/gizle">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+              Filtreler
+              <span class="filtre-sayi" data-filtre-sayi hidden></span>
+              <span class="ok" aria-hidden="true">▾</span>
+            </button>
+            <div class="filtre-panel kart" data-filtre-panel hidden>
+              <button class="secenek" data-sahabe-filtre aria-pressed="true">
+                <span class="anahtar" aria-hidden="true" />
+                <span class="secenek-metin"><b>◆ Sahâbe</b><small>Sahâbîler ve onlardan gelen bağlar</small></span>
+              </button>
+              <button class="secenek" data-araci-filtre aria-pressed="true">
+                <span class="anahtar" aria-hidden="true" />
+                <span class="secenek-metin"><b>- - - Aracılı bağlantılar</b><small>Listede olmayan bir aracı üzerinden</small></span>
+              </button>
+              <button class="secenek ihtilaf" data-ihtilaf-filtre aria-pressed="true">
+                <span class="anahtar" aria-hidden="true" />
+                <span class="secenek-metin"><b>╌ İhtilaflı bağlantılar</b><small>Kaynaklarda tartışmalı olanlar</small></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bolum">
+          <span class="bolum-baslik">Görünüm</span>
+          <div class="grup">
+            <div class="segment" role="group" aria-label="Yerleşim">
+              <button class="dugme" data-yerlesim="zaman" aria-pressed="true" title="Sütunlar bölge, dikey eksen vefat yılı">Zaman × Bölge</button>
+              <button class="dugme" data-yerlesim="serbest" aria-pressed="false" title="Bağlantılara göre serbest yerleşim">Serbest</button>
+            </div>
+            <button class="dugme ikon" data-sigdir title="Görünen her şeyi ekrana sığdır" aria-label="Ekrana sığdır">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5M9 9l-5-5M15 9l5-5M9 15l-5 5M15 15l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+            </button>
+            <button class="dugme ikon" data-tam-ekran aria-pressed="false" title="Tam ekran (çıkmak için Esc)" aria-label="Tam ekran">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+              <span class="gizli-metin">Tam ekran</span>
+            </button>
+            <button class="dugme sade" data-yol-ac aria-expanded="false" title="İki kişi arasındaki en kısa bağlantıyı bul">⇄ Yol bul</button>
+            <button class="dugme sade sifirla" data-sifirla title="Seçimleri, filtreleri ve görünümü başa döndürür" aria-label="Ağı sıfırla">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              Sıfırla
+            </button>
+          </div>
+        </div>
+
+        <div class="yolbul" data-yol-panel hidden>
+          <select data-yol="bas" data-acilir data-ara aria-label="Başlangıç">
+            <option value="">Başlangıç…</option>
+            {kisiler.map((k) => <option value={k.id}>{k.isim}</option>)}
+          </select>
+          <span class="soluk">→</span>
+          <select data-yol="hedef" data-acilir data-ara aria-label="Hedef">
+            <option value="">Hedef…</option>
+            {kisiler.map((k) => <option value={k.id}>{k.isim}</option>)}
+          </select>
+          <button class="dugme ana" data-yol-bul>Yolu göster</button>
+          <button class="dugme sade" data-temizle>Temizle</button>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="tuval-kap">
+    <div class="tuval" data-tuval></div>
+    {mod === 'tam' && <div class="bilgi kart sans" data-bilgi hidden />}
+  </div>
+
+  {
+    mod === 'tam' && (
+      <>
+        <div class="lejant sans">
+          <div class="satir">
+            <span class="bolum-baslik">İşaretler</span>
+            <span class="etiket imam">◉ Dört mezheb imamı</span>
+            <span class="etiket imam kesik">◌ Günümüze ulaşmayan mezheb imamı</span>
+            <span class="etiket kesik">- - - aracılı bağlantı</span>
+            <span class="etiket ihtilaf-lejant">╌ ihtilaflı bağlantı</span>
+            <span class="etiket">··· akrabalık</span>
+            <span class="soluk kucuk">Bir kişiye tıklayın: bağlantıları vurgulanır · çift tıklayın: sayfası açılır</span>
+          </div>
+        </div>
+      </>
+    )
+  }
+</div>
+
+<script>
+  import cytoscape from 'cytoscape';
+  import type { GrafVerisi } from '../lib/veri';
+
+  const SUTUN = 180; // bölge sütunlarının genişliği
+  const ALT_SUTUN = 44; // aynı dilimdeki kişiler için sütun içindeki sağ/sol kayma
+  const SATIR = 62; // aynı dilimde alt alta gelenler arası mesafe
+  const DILIM = 10; // yıllar 10'ar yıllık dilimlere ayrılır
+
+  function renkler() {
+    const s = getComputedStyle(document.documentElement);
+    const v = (n: string) => s.getPropertyValue(n).trim();
+    return {
+      koyu: s.colorScheme === 'dark',
+      kagit: v('--kagit'),
+      murekkep: v('--murekkep'),
+      soluk: v('--murekkep-2'),
+      cizgi: v('--cizgi'),
+      vurgu: v('--vurgu'),
+      altin: v('--altin'),
+      uyari: v('--uyari'),
+      ihtilaf: v('--ihtilaf'),
+    };
+  }
+
+  function stil(veri: GrafVerisi) {
+    const r = renkler();
+    const bolgeRenk = new Map(veri.bolgeler.map((b) => [b.id, r.koyu ? b.renkKoyu : b.renk]));
+    return [
+      {
+        selector: 'node.ravi',
+        style: {
+          'background-color': (n: any) => bolgeRenk.get(n.data('bolge')) ?? r.soluk,
+          width: 22, height: 22,
+          label: 'data(isim)',
+          color: r.murekkep,
+          'font-family': 'Inter Variable, system-ui, sans-serif',
+          'font-size': 11,
+          'text-valign': 'bottom', 'text-margin-y': 5,
+          'text-wrap': 'wrap', 'text-max-width': '86px',
+          'text-background-color': r.kagit, 'text-background-opacity': 0.85, 'text-background-padding': '2px',
+          'text-background-shape': 'roundrectangle',
+          'border-width': 2, 'border-color': r.kagit,
+        },
+      },
+      {
+        selector: 'node.ravi[imam = "yasayan"]',
+        style: { width: 34, height: 34, 'border-width': 4, 'border-color': r.altin, 'font-weight': 700, 'font-size': 12.5 },
+      },
+      {
+        selector: 'node.ravi[imam = "diger"]',
+        style: { width: 28, height: 28, 'border-width': 3, 'border-style': 'dashed', 'border-color': r.altin, 'font-weight': 600 },
+      },
+      { selector: 'node.ravi[tabaka = "sahabe"]', style: { shape: 'diamond', width: 26, height: 26 } },
+      { selector: 'node.merkez', style: { width: 40, height: 40, 'border-width': 4, 'border-color': r.vurgu, 'font-size': 13, 'font-weight': 700 } },
+      {
+        selector: 'edge',
+        style: {
+          width: 1.6, 'line-color': r.soluk, 'target-arrow-color': r.soluk, 'target-arrow-shape': 'triangle',
+          'arrow-scale': 0.9, 'curve-style': 'bezier', opacity: 0.55,
+        },
+      },
+      { selector: 'edge[araci]', style: { 'line-style': 'dashed', 'line-dash-pattern': [6, 4] } },
+      // İhtilaflı: kırmızı, aracılı bağlantılardan (6-4) daha seyrek kesik çizgi
+      {
+        selector: 'edge[?ihtilafli]',
+        style: { 'line-color': r.ihtilaf, 'target-arrow-color': r.ihtilaf, opacity: 0.6, 'line-style': 'dashed', 'line-dash-pattern': [14, 8] },
+      },
+      {
+        selector: 'edge[tur = "akrabalik"]',
+        style: { 'line-style': 'dotted', 'target-arrow-shape': 'none', opacity: 0.45, width: 1.4 },
+      },
+      {
+        selector: 'node.baslik',
+        style: {
+          label: 'data(isim)', 'background-opacity': 0, 'border-width': 0, width: 1, height: 1,
+          color: (n: any) => bolgeRenk.get(n.data('id').slice(2)) ?? r.soluk,
+          'font-family': 'Inter Variable, system-ui, sans-serif', 'font-size': 16, 'font-weight': 600,
+          events: 'no',
+        },
+      },
+      { selector: 'node.mini-baslik', style: { 'font-size': 13 } },
+      { selector: 'node.ayrac-uc', style: { width: 1, height: 1, 'background-opacity': 0, 'border-width': 0, label: '', events: 'no' } },
+      {
+        selector: 'edge.ayrac',
+        style: {
+          width: 1, 'line-color': r.soluk, opacity: 0.35, 'line-style': 'dashed', 'line-dash-pattern': [6, 14],
+          'target-arrow-shape': 'none', 'curve-style': 'straight', events: 'no',
+        },
+      },
+      {
+        selector: 'node.satir-etiket',
+        style: {
+          label: 'data(isim)', 'background-opacity': 0, 'border-width': 0, width: 1, height: 1,
+          color: r.soluk, 'font-family': 'Inter Variable, system-ui, sans-serif', 'font-size': 11, 'font-style': 'italic',
+          'text-halign': 'right', 'text-valign': 'center', events: 'no',
+        },
+      },
+      {
+        selector: 'node.yil',
+        style: {
+          label: 'data(isim)', 'background-opacity': 0, 'border-width': 0, width: 1, height: 1,
+          color: r.soluk, 'font-family': 'Inter Variable, system-ui, sans-serif', 'font-size': 10, events: 'no',
+          'text-halign': 'left',
+        },
+      },
+      { selector: '.gizli, .sahabe-gizli, .odak-disi, .araci-gizli, .ihtilaf-gizli', style: { display: 'none' } },
+      { selector: '.soluk', style: { opacity: 0.12 } },
+      { selector: 'edge.odakta', style: { width: 2.8, opacity: 1 } },
+      { selector: 'edge.sinir', style: { width: 2.6, opacity: 0.85 } },
+      { selector: 'node.secili', style: { 'border-color': r.vurgu, 'border-width': 4 } },
+      { selector: 'edge.yol', style: { 'line-color': r.vurgu, 'target-arrow-color': r.vurgu, width: 3.5, opacity: 1, 'line-style': 'solid' } },
+      { selector: 'node.yol', style: { 'border-color': r.vurgu, 'border-width': 4 } },
+    ] as any;
+  }
+
+  /**
+   * Zaman × bölge yerleşimi: her bölge bir sütun; yukarıdan aşağı vefat yılının 10 yıllık dilimleri.
+   * Boş dilimler atlanır, bir dilimdeki kişiler sütun içinde ikişerli sıralanır.
+   * Böylece dikey eksen sırayı korur ama kalabalık dönemlerde gereksiz boşluk oluşmaz.
+   */
+  function zamanYerlesimi(veri: GrafVerisi) {
+    const sira = new Map(veri.bolgeler.map((b) => [b.id, b.sira]));
+    const dilimOf = (v: number | null) => Math.floor((v ?? 999) / DILIM);
+    const gruplar = new Map<number, Map<string, typeof veri.dugumler>>();
+    for (const d of veri.dugumler) {
+      const dl = dilimOf(d.vefat);
+      if (!gruplar.has(dl)) gruplar.set(dl, new Map());
+      const g = gruplar.get(dl)!;
+      if (!g.has(d.bolge)) g.set(d.bolge, []);
+      g.get(d.bolge)!.push(d);
+    }
+    const konum: Record<string, { x: number; y: number }> = {};
+    const dilimler: { yil: number; y: number }[] = [];
+    let y = 0;
+    for (const dl of [...gruplar.keys()].sort((a, b) => a - b)) {
+      let enCokSatir = 1;
+      for (const [bolge, kisiler] of gruplar.get(dl)!) {
+        const x0 = ((sira.get(bolge) ?? 1) - 1) * SUTUN;
+        kisiler.sort((a, b) => (a.vefat ?? 999) - (b.vefat ?? 999));
+        kisiler.forEach((d, i) => {
+          const x = kisiler.length === 1 ? x0 : x0 + (i % 2 ? ALT_SUTUN : -ALT_SUTUN);
+          // Sağdakiler biraz aşağıda dursun ki isimler çakışmasın
+          konum[d.id] = { x, y: y + Math.floor(i / 2) * SATIR + (i % 2 ? SATIR / 2 : 0) };
+        });
+        enCokSatir = Math.max(enCokSatir, Math.ceil(kisiler.length / 2) + (kisiler.length > 1 ? 0.5 : 0));
+      }
+      dilimler.push({ yil: dl * DILIM, y });
+      y += enCokSatir * SATIR + 18;
+    }
+    return { konum, dilimler };
+  }
+
+  const zamanKonumlari = (veri: GrafVerisi) => zamanYerlesimi(veri).konum;
+
+  function yardimciDugumler(veri: GrafVerisi) {
+    const { dilimler } = zamanYerlesimi(veri);
+    const els: any[] = veri.bolgeler.map((b) => ({
+      group: 'nodes', classes: 'baslik yardimci',
+      data: { id: 'b-' + b.id, isim: b.isim }, position: { x: (b.sira - 1) * SUTUN, y: -70 },
+      locked: true, grabbable: false, selectable: false,
+    }));
+    for (const d of dilimler) {
+      els.push({
+        group: 'nodes', classes: 'yil yardimci',
+        data: { id: 'y-' + d.yil, isim: d.yil >= 9990 ? '?' : `${d.yil} H` }, position: { x: -SUTUN * 0.55, y: d.y },
+        locked: true, grabbable: false, selectable: false,
+      });
+    }
+    return els;
+  }
+
+  function miniKonumlari(veri: GrafVerisi, merkez: string, sahabeAyri = false) {
+    const tumHocalar = veri.kenarlar.filter((k) => k.talebe === merkez).map((k) => k.hoca);
+    const tumTalebeler = veri.kenarlar.filter((k) => k.hoca === merkez).map((k) => k.talebe);
+    // Hem hoca hem talebe olanlar (ör. Vehb, Amr b. Dînâr'ın) merkezle aynı satırda, sağına ve soluna sırayla yerleşir
+    const ikiYonlu = tumHocalar.filter((id) => tumTalebeler.includes(id));
+    const hocalar = tumHocalar.filter((id) => !ikiYonlu.includes(id));
+    const talebeler = tumTalebeler.filter((id) => !ikiYonlu.includes(id));
+    const konum: Record<string, { x: number; y: number }> = { [merkez]: { x: 0, y: 0 } };
+    const basliklar: { id: string; isim: string; x: number; y: number }[] = [];
+    const etiketler: { id: string; isim: string; x: number; y: number; satirY: number }[] = [];
+    const ayraclar: number[] = []; // kuşak bantları arasındaki ayraç çizgilerinin yükseklikleri
+    ikiYonlu.forEach((id, i) => (konum[id] = { x: (i % 2 ? 1 : -1) * (170 + Math.floor(i / 2) * 130), y: 0 }));
+    // Kalabalıksa satırlara böl (hocalar yukarı, talebeler aşağı doğru); ilkSatir: merkezden kaçıncı satırdan başlanacağı.
+    // Sade görünümde bir satıra 8 kişi sığar, eski görünümde 5.
+    const enFazla = sahabeAyri ? 8 : 5;
+    const sirala = (ids: string[], yon: number, ilkSatir = 0) =>
+      ids.forEach((id, i) => {
+        const satir = Math.floor(i / enFazla);
+        const buSatirda = Math.min(enFazla, ids.length - satir * enFazla);
+        konum[id] = { x: ((i % enFazla) - (buSatirda - 1) / 2) * 120, y: yon * (120 + (ilkSatir + satir) * 80) };
+      });
+    if (sahabeAyri) {
+      // Sade görünüm: her bölge bir sütun. Hocalar kuşaklarına göre bantlara ayrılır: en eski kuşak (sahâbe) en üstte,
+      // en yeni kuşak merkeze en yakın. Altta merkez satırı (merkez + hem hoca hem talebe olanlar), en altta talebeler.
+      // Ortadaki kişi kendi bölgesinin sütunundadır.
+      const tabaka = new Map(veri.dugumler.map((d) => [d.id, d.tabaka]));
+      const bolgeSirasi = new Map(veri.bolgeler.map((b) => [b.id, b.sira]));
+      const bolgeAdi = new Map(veri.bolgeler.map((b) => [b.id, b.isim]));
+      const dugum = new Map(veri.dugumler.map((d) => [d.id, d]));
+      const bolgeOf = (id: string) => dugum.get(id)!.bolge;
+      const siraOf = (b: string) => bolgeSirasi.get(b) ?? 99;
+      // Bölge sırasıyla, aynı bölgede vefat tarihine göre
+      const bolgeyeGore = (a: string, b: string) =>
+        siraOf(bolgeOf(a)) - siraOf(bolgeOf(b)) || (dugum.get(a)!.vefat ?? 999) - (dugum.get(b)!.vefat ?? 999);
+      const KUSAKLAR: [string, string][] = [
+        ['sahabe', 'Sahâbe'],
+        ['tabiin', 'Tâbiîn'],
+        ['etbau-t-tabiin', "Etbâu't-tâbiîn"],
+        ['tebe-i-etbai-t-tabiin', "Tebe-i etbâ"],
+        ['sonraki', 'Sonraki dönem'],
+      ];
+      // Yalnızca hocası bulunan kuşaklar; dizi sırası en eskiden en yeniye
+      const bantlar = KUSAKLAR.map(([t, ad]) => ({ t, ad, ids: hocalar.filter((id) => tabaka.get(id) === t).sort(bolgeyeGore) }))
+        .filter((bt) => bt.ids.length);
+      const yanlar = [...ikiYonlu].sort(bolgeyeGore);
+      const ogrenciler = [...talebeler].sort(bolgeyeGore);
+
+      // Kişiler arası yatay mesafe; isimler 86 pikselde alt satıra geçtiği için yan yana iki isim birbirine değmez
+      const ARA = 95, SATIR = 80, SUTUNDA_EN_FAZLA = 4, AYRAC_PAYI = 14;
+      // Bölgeler arasında ek boşluk yok: komşu bölgelerin en yakın kişileri de ARA kadar aralıklı.
+      // Hocası olmayan kişide (ör. sahâbîler) talebeler bir sütunda en fazla 3 satıra yayılır (7 kişi: 3+3+1,
+      // 6 kişi: 2+2+2); hocası olanlarda talebeler bir satırda en fazla 3 kişi.
+      const hocasiz = !bantlar.length && !yanlar.length;
+      const SUTUN_ARASI = 0;
+      const talebeSatirBasi = (n: number) => (hocasiz ? Math.max(Math.ceil(n / 3), Math.min(n, 2)) : 3);
+      const satirSayisi = (n: number) => Math.ceil(n / SUTUNDA_EN_FAZLA);
+      const kendiBolgesi = bolgeOf(merkez);
+      const tumSutunlar = [...new Set([kendiBolgesi, ...[...hocalar, ...yanlar, ...ogrenciler].map(bolgeOf)])]
+        .sort((a, b) => siraOf(a) - siraOf(b))
+        .map((b) => {
+          const bant = bantlar.map((bt) => bt.ids.filter((id) => bolgeOf(id) === b));
+          const yan = yanlar.filter((id) => bolgeOf(id) === b);
+          const talebe = ogrenciler.filter((id) => bolgeOf(id) === b);
+          const enKalabalik = Math.max(0, ...bant.map((l) => l.length));
+          const enGenis = Math.max(1, Math.min(SUTUNDA_EN_FAZLA, enKalabalik), Math.min(talebeSatirBasi(talebe.length), talebe.length), yan.length);
+          return { b, bant, yan, talebe, genislik: enGenis * ARA };
+        });
+      // Diğer bölgeler her zaman aynı (ağdaki) sırada kalır; kişinin kendi bölgesinin sütunu bu sıranın içinde
+      // iki yanın genişliği en dengeli olacak noktaya yerleşir, böylece ortadaki kişi ağın ortasında durur
+      const kendiSutunu = tumSutunlar.find((c) => c.b === kendiBolgesi)!;
+      const obur = tumSutunlar.filter((c) => c !== kendiSutunu);
+      const yer = (c: { genislik: number }) => c.genislik + SUTUN_ARASI;
+      const toplam = obur.reduce((t, c) => t + yer(c), 0);
+      let bolme = 0, solGenislik = 0, enIyi = Infinity;
+      for (let k = 0, sol = 0; k <= obur.length; sol += k < obur.length ? yer(obur[k]) : 0, k++) {
+        const fark = Math.abs(sol - (toplam - sol));
+        if (fark < enIyi) (enIyi = fark), (bolme = k), (solGenislik = sol);
+      }
+      const sutunlar = [...obur.slice(0, bolme), kendiSutunu, ...obur.slice(bolme)];
+      // Her bant en kalabalık sütunu kadar satır kaplar. Bantlar merkezden yukarı doğru, en yeniden en eskiye dizilir;
+      // aralarında ayraç çizgisi için ek boşluk bırakılır. y(k): bandın k. satırı (k = 0 merkeze en yakın)
+      const bantY: ((k: number) => number)[] = [];
+      const bantSatir: number[] = [];
+      let taban = 120;
+      for (let i = bantlar.length - 1; i >= 0; i--) {
+        const satir = Math.max(1, ...sutunlar.map((c) => satirSayisi(c.bant[i].length)));
+        const bas = taban;
+        bantY[i] = (k: number) => -(bas + k * SATIR);
+        bantSatir[i] = satir;
+        taban += satir * SATIR + AYRAC_PAYI;
+      }
+      const ustSatirY = (i: number) => bantY[i](bantSatir[i] - 1);
+      const talebeY = (k: number) => 120 + k * SATIR;
+      const enUstY = bantlar.length ? ustSatirY(0) : 0;
+
+      const diz = (ids: string[], orta: number, y: (k: number) => number, enFazla = SUTUNDA_EN_FAZLA) =>
+        ids.forEach((id, i) => {
+          const satir = Math.floor(i / enFazla);
+          const buSatirda = Math.min(enFazla, ids.length - satir * enFazla);
+          konum[id] = { x: orta + ((i % enFazla) - (buSatirda - 1) / 2) * ARA, y: y(satir) };
+        });
+      // Kendi bölgesinin sütunu x = 0'da
+      let x = -(solGenislik + kendiSutunu.genislik / 2);
+      let merkezX = 0;
+      for (const c of sutunlar) {
+        const orta = x + c.genislik / 2;
+        c.bant.forEach((ids, i) => diz(ids, orta, bantY[i]));
+        diz(c.talebe, orta, talebeY, talebeSatirBasi(c.talebe.length));
+        c.yan.forEach((id, i) => (konum[id] = { x: orta + (i - (c.yan.length - 1) / 2) * ARA, y: 0 }));
+        if (c.b === kendiBolgesi) merkezX = orta;
+        basliklar.push({ id: `b-${c.b}`, isim: bolgeAdi.get(c.b) ?? c.b, x: orta, y: enUstY - 42 });
+        x += c.genislik + SUTUN_ARASI;
+      }
+      konum[merkez] = { x: merkezX, y: 0 };
+      // Merkez satırındakiler merkezle çakışmasın
+      for (const id of yanlar)
+        if (Math.abs(konum[id].x - merkezX) < ARA * 0.85) konum[id].x = merkezX + (konum[id].x <= merkezX ? -1 : 1) * ARA * 1.1;
+
+      // Bant etiketleri ayrı sütun kaplamaz (yeri çizimden sonra ayarlanır); bantlar arasında ayraç çizgisi:
+      // üstteki bandın isimlerinin alt ucu (~45 aşağı) ile alttaki bandın üst ucu (~14 yukarı) arasının ortası
+      const solX = Math.min(...Object.values(konum).map((k) => k.x)) - 12;
+      bantlar.forEach((bt, i) => {
+        etiketler.push({ id: `e-${bt.t}`, isim: bt.ad, x: solX, y: ustSatirY(i), satirY: ustSatirY(i) });
+        if (i < bantlar.length - 1) ayraclar.push((bantY[i](0) + 45 + ustSatirY(i + 1) - 14) / 2);
+      });
+      // Hocası olmayan kişide (ör. sahâbîler) merkez satırı ile talebeler kuşaklarıyla etiketlenir ve aralarına
+      // ek boşluk açmadan ayraç çizilir: merkezin isminin alt ucu (~55 aşağı) ile talebe satırının üst ucu arası
+      if (!bantlar.length && ogrenciler.length) {
+        const kusakAdi = new Map(KUSAKLAR);
+        const merkezKusagi = kusakAdi.get(tabaka.get(merkez) ?? '');
+        if (merkezKusagi) etiketler.push({ id: 'e-merkez', isim: merkezKusagi, x: solX, y: 0, satirY: 0 });
+        const talebeKusaklari = new Set(ogrenciler.map((id) => tabaka.get(id)));
+        const talebeAdi = talebeKusaklari.size === 1 ? kusakAdi.get([...talebeKusaklari][0] ?? '') : undefined;
+        etiketler.push({ id: 'e-talebe', isim: talebeAdi ?? 'Talebeler', x: solX, y: talebeY(0), satirY: talebeY(0) });
+        ayraclar.push((55 + talebeY(0) - 14) / 2);
+      }
+    } else {
+      sirala(hocalar, -1);
+      sirala(talebeler, 1);
+    }
+    return { konum, basliklar, etiketler, ayraclar };
+  }
+
+  /**
+   * Yerel <select> yerine filtre paneliyle aynı tasarımda açılır liste.
+   * Asıl <select> gizli olarak yerinde kalır: değer ve 'change' olayı onun üzerinden yürür,
+   * böylece seçimi okuyan/değiştiren mevcut kod aynen çalışır.
+   */
+  const yerelDeger = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value')!;
+  const sadele = (t: string) =>
+    t.toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/[‘’'`]/g, '');
+
+  function acilirListeKur(sel: HTMLSelectElement, hepsiniKapat: () => void) {
+    const kap = document.createElement('div');
+    kap.className = 'acilir';
+    const dugme = document.createElement('button');
+    dugme.type = 'button';
+    dugme.className = 'dugme acilir-dugme';
+    dugme.setAttribute('aria-haspopup', 'listbox');
+    dugme.setAttribute('aria-expanded', 'false');
+    if (sel.getAttribute('aria-label')) dugme.setAttribute('aria-label', sel.getAttribute('aria-label')!);
+    const etiket = document.createElement('span');
+    etiket.className = 'acilir-etiket';
+    const ok = document.createElement('span');
+    ok.className = 'ok';
+    ok.textContent = '▾';
+    ok.setAttribute('aria-hidden', 'true');
+    dugme.append(etiket, ok);
+
+    const panel = document.createElement('div');
+    panel.className = 'acilir-panel kart';
+    panel.hidden = true;
+    let ara: HTMLInputElement | null = null;
+    if (sel.dataset.ara !== undefined) {
+      ara = document.createElement('input');
+      ara.type = 'search';
+      ara.placeholder = 'İsim ara…';
+      ara.className = 'acilir-ara';
+      ara.setAttribute('aria-label', 'İsim ara');
+      panel.append(ara);
+    }
+    const liste = document.createElement('div');
+    liste.className = 'acilir-liste';
+    liste.setAttribute('role', 'listbox');
+    panel.append(liste);
+    const bos = document.createElement('p');
+    bos.className = 'acilir-bos';
+    bos.textContent = 'Eşleşen isim yok.';
+    bos.hidden = true;
+    panel.append(bos);
+
+    type Oge = { el: HTMLButtonElement; deger: string; aranan: string; grup?: HTMLElement };
+    const ogeler: Oge[] = [];
+    const ogeYap = (deger: string, metin: string, renk?: string, renkKoyu?: string) => {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'acilir-oge';
+      el.setAttribute('role', 'option');
+      if (renk) {
+        const n = document.createElement('span');
+        n.className = 'nokta';
+        n.style.setProperty('--renk', renk);
+        if (renkKoyu) n.style.setProperty('--renk-koyu', renkKoyu);
+        el.append(n);
+      }
+      el.append(document.createTextNode(metin));
+      el.addEventListener('click', () => sec(deger));
+      return el;
+    };
+    const temizleOge = ogeYap('', '× Seçimi kaldır');
+    temizleOge.classList.add('temizle');
+    liste.append(temizleOge);
+    const secenekEkle = (o: HTMLOptionElement, grup?: HTMLElement) => {
+      if (!o.value) return;
+      const el = ogeYap(o.value, o.text, o.dataset.renk, o.dataset.renkKoyu);
+      liste.append(el);
+      ogeler.push({ el, deger: o.value, aranan: sadele(o.text), grup });
+    };
+    for (const c of Array.from(sel.children)) {
+      if (c instanceof HTMLOptGroupElement) {
+        const baslik = document.createElement('div');
+        baslik.className = 'acilir-grup';
+        baslik.textContent = c.label;
+        liste.append(baslik);
+        Array.from(c.children).forEach((o) => secenekEkle(o as HTMLOptionElement, baslik));
+      } else secenekEkle(c as HTMLOptionElement);
+    }
+
+    const yenile = () => {
+      const d = yerelDeger.get!.call(sel) as string;
+      const secili = Array.from(sel.options).find((o) => o.value === d && d);
+      etiket.textContent = secili ? secili.text : sel.options[0]?.text ?? '';
+      dugme.classList.toggle('dolu', !!secili);
+      ogeler.forEach((o) => o.el.setAttribute('aria-selected', String(o.deger === d)));
+      temizleOge.hidden = !secili;
+    };
+    const filtrele = (q: string) => {
+      const a = sadele(q.trim());
+      const gorunenGruplar = new Set<HTMLElement>();
+      let sayi = 0;
+      for (const o of ogeler) {
+        const goster = !a || o.aranan.includes(a);
+        o.el.hidden = !goster;
+        if (goster) {
+          sayi++;
+          if (o.grup) gorunenGruplar.add(o.grup);
+        }
+      }
+      liste.querySelectorAll<HTMLElement>('.acilir-grup').forEach((g) => (g.hidden = !gorunenGruplar.has(g)));
+      temizleOge.hidden = !!a || !yerelDeger.get!.call(sel);
+      bos.hidden = sayi > 0;
+    };
+    const gorunenOgeler = () => [temizleOge, ...ogeler.map((o) => o.el)].filter((el) => !el.hidden);
+    const kapat = () => {
+      panel.hidden = true;
+      dugme.setAttribute('aria-expanded', 'false');
+    };
+    const ac = () => {
+      hepsiniKapat();
+      panel.hidden = false;
+      dugme.setAttribute('aria-expanded', 'true');
+      if (ara) {
+        ara.value = '';
+        filtrele('');
+        ara.focus();
+      }
+      liste.querySelector<HTMLElement>('[aria-selected="true"]')?.scrollIntoView({ block: 'nearest' });
+    };
+    function sec(deger: string) {
+      sel.value = deger;
+      sel.dispatchEvent(new Event('change'));
+      kapat();
+      dugme.focus();
+    }
+
+    dugme.addEventListener('click', () => (panel.hidden ? ac() : kapat()));
+    kap.addEventListener('click', (e) => e.stopPropagation());
+    ara?.addEventListener('input', () => filtrele(ara!.value));
+    panel.addEventListener('keydown', (e) => {
+      const els = gorunenOgeler();
+      const i = els.indexOf(document.activeElement as HTMLButtonElement);
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        els[Math.min(i + 1, els.length - 1)]?.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (i <= 0) (ara ?? els[0])?.focus();
+        else els[i - 1].focus();
+      } else if (e.key === 'Enter' && document.activeElement === ara) {
+        e.preventDefault();
+        ogeler.find((o) => !o.el.hidden)?.el.click();
+      } else if (e.key === 'Escape') {
+        kapat();
+        dugme.focus();
+      }
+    });
+
+    // Asıl <select> gizlenir; koddan değer atanınca görünüm de güncellenir
+    sel.hidden = true;
+    sel.tabIndex = -1;
+    Object.defineProperty(sel, 'value', {
+      configurable: true,
+      get: () => yerelDeger.get!.call(sel),
+      set: (v: string) => {
+        yerelDeger.set!.call(sel, v);
+        yenile();
+      },
+    });
+    sel.after(kap);
+    kap.append(sel, dugme, panel);
+    yenile();
+    return kapat;
+  }
+
+  function kur(kap: HTMLElement) {
+    const veri: GrafVerisi = JSON.parse(kap.querySelector('script[type="application/json"]')!.textContent!);
+    const mod = kap.dataset.mod;
+    const merkez = kap.dataset.merkez;
+    const kok = kap.dataset.kok!;
+    const sayfa = (id: string) => `${kok}raviler/${id}/`;
+
+    const mini = mod === 'mini' && merkez ? miniKonumlari(veri, merkez, kap.dataset.sade !== undefined) : null;
+    const konum = mini ? mini.konum : zamanKonumlari(veri);
+    const elemanlar: any[] = [
+      ...veri.dugumler.map((d) => ({
+        group: 'nodes', classes: d.id === merkez ? 'ravi merkez' : 'ravi',
+        data: { ...d, imam: d.imam ?? undefined, mezheb: d.mezheb ?? undefined }, position: konum[d.id],
+      })),
+      ...veri.kenarlar.map((k) => ({
+        group: 'edges', data: {
+          id: `${k.hoca}>${k.talebe}`,
+          source: k.hoca,
+          target: k.talebe,
+          araci: k.araci ?? undefined,
+          tur: k.tur,
+          ihtilafli: k.ihtilafli,
+          not: k.not ?? undefined,
+        },
+      })),
+    ];
+    if (mod === 'tam') elemanlar.push(...yardimciDugumler(veri));
+    // Küçük ağda hoca sütunlarının üstündeki bölge adları
+    for (const b of mini?.basliklar ?? [])
+      elemanlar.push({
+        group: 'nodes', classes: 'baslik mini-baslik yardimci', data: { id: b.id, isim: b.isim },
+        position: { x: b.x, y: b.y }, locked: true, grabbable: false, selectable: false,
+      });
+    // Sahâbe ile tâbiîn satırları arasındaki soluk kesikli ayraç (uçların yatay konumu çizimden sonra ayarlanır)
+    (mini?.ayraclar ?? []).forEach((y, i) => {
+      const xs = Object.values(mini!.konum).map((k) => k.x);
+      for (const [uc, x] of [['sol', Math.min(...xs)], ['sag', Math.max(...xs)]] as const)
+        elemanlar.push({
+          group: 'nodes', classes: `ayrac-uc ayrac-${uc} yardimci`, data: { id: `ayrac-${i}-${uc}` },
+          position: { x, y }, locked: true, grabbable: false, selectable: false,
+        });
+      elemanlar.push({ group: 'edges', classes: 'ayrac', data: { id: `ayrac-${i}`, source: `ayrac-${i}-sol`, target: `ayrac-${i}-sag` } });
+    });
+    // Soldaki satır etiketleri (Sahâbe, Tâbiîn, Talebeler)
+    for (const e of mini?.etiketler ?? [])
+      elemanlar.push({
+        group: 'nodes', classes: 'satir-etiket yardimci', data: { id: e.id, isim: e.isim, satirY: e.satirY, satirY0: e.satirY },
+        position: { x: e.x, y: e.y }, locked: true, grabbable: false, selectable: false,
+      });
+
+    // Sade küçük ağda etiketler kutunun kenarına yakın dursun
+    const dolgu = mod === 'mini' && kap.dataset.sade !== undefined ? 10 : 30;
+    const cy = cytoscape({
+      container: kap.querySelector<HTMLElement>('[data-tuval]'),
+      elements: elemanlar,
+      style: stil(veri),
+      layout: { name: 'preset', fit: mod === 'mini', padding: dolgu },
+      wheelSensitivity: 0.3,
+      minZoom: 0.2,
+      maxZoom: 3,
+      userPanningEnabled: mod === 'tam',
+      userZoomingEnabled: mod === 'tam',
+      boxSelectionEnabled: false,
+    });
+
+    window.addEventListener('tema-degisti', () => cy.style(stil(veri)));
+    // Etiketler Inter yüklenmeden ölçülürse çok satırlı isimlerin son satırı kesilir; yazı tipi gelince yeniden ölçülür
+    // Küçük ağ yeni etiket ölçülerine göre yeniden sığdırılır
+    // Sade küçük ağda kutu yüksekliği içeriğe göre ayarlanır: geniş ve basık ağlarda üstte/altta boşluk kalmaz
+    // Sade küçük ağın çizimden sonraki son ayarları (yazı tipi yüklenince yeniden çalışır, bu yüzden ilk konumlardan başlar)
+    const ilkKonum = new Map(cy.nodes().map((n: any) => [n.id(), { ...n.position() }]));
+    const tasi = (n: any, p: { x: number; y: number }) => {
+      const kilitli = n.locked();
+      n.unlock();
+      n.position(p);
+      if (kilitli) n.lock();
+    };
+    const yukseklikAyarla = () => {
+      if (mod !== 'mini' || kap.dataset.sade === undefined) return;
+      cy.nodes().forEach((n: any) => ilkKonum.has(n.id()) && tasi(n, { ...ilkKonum.get(n.id())! }));
+      cy.nodes('.satir-etiket').forEach((n: any) => n.data('satirY', n.data('satirY0')));
+      const tuval = kap.querySelector<HTMLElement>('[data-tuval]')!;
+      tuval.style.height = '';
+      cy.resize();
+      const icerik = () => cy.nodes('.ravi, .mini-baslik');
+      cy.fit(icerik(), dolgu);
+
+      // 1. Yükseklik yüzünden genişlikte boş yer kalıyorsa kişiler ve bölge başlıkları yatayda kutuya yayılır
+      const W = cy.width() - 2 * dolgu;
+      const rb = icerik().renderedBoundingBox({ includeLabels: true });
+      const xs = icerik().map((n: any) => n.position('x'));
+      const minX = Math.min(...xs), maxX = Math.max(...xs);
+      const aciklik = (maxX - minX) * cy.zoom();
+      if (aciklik > 0 && rb.w < W - 2) {
+        const tasma = rb.w - aciklik; // en dıştaki isimlerin noktadan taşan kısmı (germeyle değişmez)
+        const f = Math.min(2.5, (W - tasma) / aciklik);
+        const orta = (minX + maxX) / 2;
+        cy.nodes().forEach((n: any) => tasi(n, { x: orta + (n.position('x') - orta) * f, y: n.position('y') }));
+        cy.fit(icerik(), dolgu);
+      }
+
+      // 1b. Genişlik yüzünden yükseklikte boş yer kalıyorsa satırlar dikeyde açılır (kutular her sayfada aynı boyutta)
+      const H = cy.height() - 2 * dolgu;
+      const rbd = icerik().renderedBoundingBox({ includeLabels: true });
+      const ys = icerik().map((n: any) => n.position('y'));
+      const minY = Math.min(...ys), maxY = Math.max(...ys);
+      const dikey = (maxY - minY) * cy.zoom();
+      if (dikey > 0 && rbd.h < H - 2) {
+        const fy = Math.min(1.8, (H - (rbd.h - dikey)) / dikey);
+        const ortaY = (minY + maxY) / 2;
+        const ac = (y: number) => ortaY + (y - ortaY) * fy;
+        cy.nodes().forEach((n: any) => tasi(n, { x: n.position('x'), y: ac(n.position('y')) }));
+        cy.nodes('.satir-etiket').forEach((n: any) => n.data('satirY', ac(n.data('satirY0'))));
+        cy.fit(icerik(), dolgu);
+      }
+
+      // 2. Sığdırma (kutu yüksekliği her sayfada aynı). Az kişili ağlar aşırı büyümesin diye yakınlaştırma en fazla 1,15;
+      //    bu durumda ağ kutunun ortasında kalır
+      cy.fit(icerik(), dolgu);
+      const EN_BUYUK = 1.15;
+      if (cy.zoom() > EN_BUYUK) {
+        cy.zoom({ level: EN_BUYUK, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+        cy.center(icerik());
+      }
+
+      // 3. Tanım etiketleri her zaman kutunun sol kenarında, aynı hizada; satırın solunda yer varsa kişilerle aynı
+      //    hizada, yoksa satırdaki en soldaki kişinin isminin hemen altında
+      const solKenar = cy.extent().x1 + dolgu / cy.zoom();
+      const engeller = cy.nodes('.ravi, .mini-baslik').map((r: any) => r.boundingBox({ includeLabels: true }));
+      const ayracYler = cy.nodes('.ayrac-sol').map((u: any) => u.position('y'));
+      cy.nodes('.satir-etiket').forEach((n: any) => {
+        tasi(n, { x: solKenar, y: n.position('y') });
+        const satirY = n.data('satirY');
+        const satirdakiler = cy.nodes('.ravi').filter((r: any) => Math.abs(r.position('y') - satirY) < 1);
+        const etiket = n.boundingBox({ includeLabels: true });
+        const enSoldaki = satirdakiler.min((r: any) => r.position('x')).ele;
+        const kb = enSoldaki?.boundingBox({ includeLabels: true });
+        // Adaylar sırayla: satırla aynı hiza, en soldaki kişinin isminin altı, satırın üstü
+        const adaylar = [satirY, ...(kb ? [kb.y2 + 7 + etiket.h / 2, kb.y1 - 7 - etiket.h / 2] : [])];
+        const bos = (y: number) => {
+          const x1 = solKenar - 2, x2 = solKenar + etiket.w + 8, y1 = y - etiket.h / 2 - 2, y2 = y + etiket.h / 2 + 2;
+          return (
+            engeller.every((e: any) => e.x2 < x1 || e.x1 > x2 || e.y2 < y1 || e.y1 > y2) &&
+            ayracYler.every((ay: number) => ay < y1 || ay > y2)
+          );
+        };
+        tasi(n, { x: solKenar, y: adaylar.find(bos) ?? adaylar[1] ?? satirY });
+      });
+      // Hiçbir yere sığmayıp ayraç çizgisine denk gelen etiket için yer açılır: ayraç ve altındaki her şey,
+      // ayraç etiketin altında kalacak kadar aşağı kaydırılır
+      let kaydirildi = false;
+      cy.nodes('.satir-etiket').forEach((e: any) => {
+        const eb = e.boundingBox({ includeLabels: true });
+        cy.nodes('.ayrac-sol').forEach((u: any) => {
+          const ay = u.position('y');
+          if (ay <= eb.y1 - 4 || ay >= eb.y2 + 4) return;
+          const fark = eb.y2 + 8 - ay;
+          cy.nodes().forEach((n: any) => {
+            if (n !== e && n.position('y') >= ay - 0.5) tasi(n, { x: n.position('x'), y: n.position('y') + fark });
+          });
+          kaydirildi = true;
+        });
+      });
+      // Etiket kutunun dışına taşarsa ya da yer açıldıysa her şey yeniden sığdırılır; etiketler yine sol kenarda kalır
+      const gorunen = cy.nodes('.ravi, .mini-baslik, .satir-etiket');
+      const gb = gorunen.renderedBoundingBox({ includeLabels: true });
+      if (kaydirildi || gb.x1 < 0 || gb.y1 < 0 || gb.x2 > cy.width() || gb.y2 > cy.height()) {
+        cy.fit(gorunen, dolgu);
+        const yeniSol = cy.extent().x1 + dolgu / cy.zoom();
+        cy.nodes('.satir-etiket').forEach((n: any) => tasi(n, { x: yeniSol, y: n.position('y') }));
+      }
+
+      // 4. Kuşak ayraçları kutunun sol kenarından sağ kenarına uzanır
+      const ekran = cy.extent();
+      const pay = 6 / cy.zoom();
+      cy.nodes('.ayrac-uc').forEach((u: any) =>
+        tasi(u, { x: u.hasClass('ayrac-sol') ? ekran.x1 + pay : ekran.x2 - pay, y: u.position('y') }),
+      );
+    };
+    const yenidenOlc = () => {
+      cy.style(stil(veri));
+      if (mod === 'mini' && kap.dataset.sade === undefined) cy.fit(undefined, dolgu);
+      yukseklikAyarla();
+    };
+    yukseklikAyarla();
+    document.fonts?.ready.then(yenidenOlc);
+    document.fonts?.addEventListener('loadingdone', yenidenOlc);
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => cy.style(stil(veri)));
+
+    if (mod === 'mini') {
+      cy.on('tap', 'node.ravi', (e) => {
+        if (e.target.id() !== merkez) location.href = sayfa(e.target.id());
+      });
+      cy.on('mouseover', 'node.ravi', (e) => {
+        kap.style.cursor = 'pointer';
+        // Sade görünümde üzerine gelinen kişinin bağı belirginleşir, diğerleri soluklaşır
+        if (kap.dataset.sade === undefined) return;
+        const komsu = e.target.closedNeighborhood();
+        cy.elements('.ravi, edge').not(komsu).addClass('soluk');
+        komsu.edges().addClass('odakta');
+      });
+      cy.on('mouseout', 'node.ravi', () => {
+        kap.style.cursor = '';
+        cy.elements().removeClass('soluk odakta');
+      });
+      return;
+    }
+
+    // --- Tam ağ etkileşimleri ---
+    // Açılır listeler (bölge, kişi, yol bul) ve filtre paneli: biri açılınca diğerleri kapanır
+    const kapaticilar: (() => void)[] = [];
+    const hepsiniKapat = () => kapaticilar.forEach((f) => f());
+    kap.querySelectorAll<HTMLSelectElement>('select[data-acilir]').forEach((sel) => kapaticilar.push(acilirListeKur(sel, hepsiniKapat)));
+    document.addEventListener('click', hepsiniKapat);
+    // Zaman × bölge görünümü uzun olduğu için genişliğe göre sığdırıp en üstten başlat
+    let odak: { tur: 'kisi' | 'bolge'; id: string } | null = null; // seçili kişi ya da bölge: yalnızca onun bağları görünür
+    let odakDugumleri: any = null;
+    const genisligeSigdir = () => {
+      if (odak && odakDugumleri) {
+        // Seçili kişinin bağlarını ortala; az kişi varken aşırı yakınlaşma
+        cy.fit(odakDugumleri, 60);
+        if (cy.zoom() > 1.3) cy.zoom({ level: 1.3, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+        return;
+      }
+      const bb = cy.elements(':visible').boundingBox();
+      const z = Math.min(1.1, (cy.width() - 40) / bb.w);
+      cy.zoom(z);
+      cy.pan({ x: (cy.width() - bb.w * z) / 2 - bb.x1 * z, y: 16 - bb.y1 * z });
+    };
+    genisligeSigdir();
+    kap.querySelector('[data-sigdir]')!.addEventListener('click', () => cy.animate({ fit: { eles: cy.elements(':visible'), padding: 30 }, duration: 300 }));
+
+    const bilgi = kap.querySelector<HTMLElement>('[data-bilgi]')!;
+    const temizle = () => {
+      cy.elements().removeClass('soluk yol secili');
+      bilgi.hidden = true;
+    };
+    const goster = (baslik: string, metin: string, link?: string, eylem?: { ad: string; fn: () => void }, linkAdi = 'Sayfasına git →') => {
+      bilgi.innerHTML = '';
+      const h = document.createElement('h3');
+      h.textContent = baslik;
+      const p = document.createElement('p');
+      p.textContent = metin;
+      bilgi.append(h, p);
+      const alt = document.createElement('div');
+      alt.className = 'bilgi-alt';
+      if (eylem) {
+        const b = document.createElement('button');
+        b.className = 'dugme';
+        b.textContent = eylem.ad;
+        b.addEventListener('click', eylem.fn);
+        alt.append(b);
+      }
+      if (link) {
+        const a = document.createElement('a');
+        a.href = link;
+        a.textContent = linkAdi;
+        alt.append(a);
+      }
+      if (alt.childElementCount) bilgi.append(alt);
+      bilgi.hidden = false;
+    };
+    const kenarMetni = (e: any) => {
+      const araci = e.data('araci');
+      return `${e.source().data('isim')} → ${araci ? araci + ' → ' : ''}${e.target().data('isim')}`;
+    };
+    const komsulukVurgula = (n: any) => {
+      temizle();
+      const komsu = n.closedNeighborhood();
+      cy.elements('.ravi, edge').not(komsu).addClass('soluk');
+      n.addClass('secili');
+      const d = n.data();
+      goster(d.isim, d.ozet, sayfa(d.id), { ad: 'Yalnızca bağlarını göster', fn: () => odakla(d.id) });
+    };
+    // Kişi veya bölge seçiliyken bir kişiye tıklamak seçimi o kişiye taşır
+    cy.on('tap', 'node.ravi', (e) => (odak ? odakla(e.target.id()) : komsulukVurgula(e.target)));
+    cy.on('tap', 'edge', (e) => {
+      temizle();
+      cy.elements('.ravi, edge').not(e.target.union(e.target.connectedNodes())).addClass('soluk');
+      e.target.addClass('yol');
+      const d = e.target.data();
+      const baslik =
+        d.tur === 'akrabalik' ? 'Akrabalık' : d.araci ? 'Aracılı bağlantı' : 'Doğrudan hoca-talebe';
+      const ekler = [d.ihtilafli ? 'Kaynaklarda ihtilaflı.' : '', d.not ? `Not: ${d.not}` : ''].filter(Boolean).join(' ');
+      goster(baslik + (d.ihtilafli ? ' (ihtilaflı)' : ''), `${kenarMetni(e.target)}${ekler ? '. ' + ekler : ''}`);
+    });
+    cy.on('dbltap', 'node.ravi', (e) => (location.href = sayfa(e.target.id())));
+    cy.on('tap', (e) => { if (e.target === cy) temizle(); });
+
+    // Sahâbe gizliyken zaman × bölge yerleşimi onlarsız yeniden hesaplanır; boş kalan üst satırlar kapanır
+    let sahabeGizli = false;
+    let aktifYerlesim: any = null;
+    // Yeni yerleşimden önce yarım kalan animasyon durdurulur; yoksa eski konumlar yenisinin üstüne yazılabilir
+    const oncekiniDurdur = () => {
+      aktifYerlesim?.stop();
+      cy.nodes().stop(true, false);
+    };
+    const zamanaYerlestir = (animasyon = true) => {
+      oncekiniDurdur();
+      const { konum: k, dilimler } = zamanYerlesimi({
+        ...veri,
+        // Kişi seçiliyse yalnızca onun bağları yerleştirilir; boş kalan yıl dilimleri kapanır
+        dugumler: veri.dugumler.filter(
+          (d) => !(sahabeGizli && d.tabaka === 'sahabe') && (!odakDugumleri || odakDugumleri.some((n: any) => n.id() === d.id)),
+        ),
+      });
+      cy.nodes('.yil').remove();
+      cy.add(
+        dilimler.map((d) => ({
+          group: 'nodes', classes: 'yil yardimci',
+          data: { id: 'y-' + d.yil, isim: d.yil >= 9990 ? '?' : `${d.yil} H` }, position: { x: -SUTUN * 0.55, y: d.y },
+          locked: true, grabbable: false, selectable: false,
+        })) as any,
+      );
+      const yerlesim = cy.nodes('.ravi').not('.sahabe-gizli').filter((n: any) => !!k[n.id()])
+        .layout({ name: 'preset', positions: (n: any) => k[n.id()], animate: animasyon, animationDuration: 500, fit: false } as any);
+      // Görünüm, kişiler yeni yerlerine oturduktan sonra ayarlanır
+      yerlesim.one('layoutstop', () => yerlesim === aktifYerlesim && genisligeSigdir());
+      aktifYerlesim = yerlesim;
+      yerlesim.run();
+    };
+    const serbesteYerlestir = () => {
+      oncekiniDurdur();
+      // Kişi seçiliyse yalnızca onun bağları yerleştirilir
+      const eles = odakDugumleri
+        ? odakDugumleri.union(odakDugumleri.edgesWith(odakDugumleri).not('.odak-disi, .gizli, .araci-gizli, .ihtilaf-gizli'))
+        : cy.elements(':visible');
+      aktifYerlesim = eles.layout({ name: 'cose', animate: true, animationDuration: 500, padding: 40, nodeRepulsion: () => 9000, idealEdgeLength: () => 90 } as any);
+      aktifYerlesim.run();
+    };
+
+    // Yerleşim değiştirme
+    const dugmeler = kap.querySelectorAll<HTMLButtonElement>('[data-yerlesim]');
+    dugmeler.forEach((b) =>
+      b.addEventListener('click', () => {
+        dugmeler.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        const yardimci = cy.nodes('.yardimci');
+        if (b.dataset.yerlesim === 'serbest') {
+          yardimci.addClass('gizli');
+          serbesteYerlestir();
+        } else {
+          yardimci.removeClass('gizli');
+          zamanaYerlestir();
+        }
+      }),
+    );
+
+    // Tam ekran: tarayıcı destekliyorsa Fullscreen API, desteklemiyorsa (ör. iPhone Safari) sayfayı kaplayan görünüm
+    const tamDugme = kap.querySelector<HTMLButtonElement>('[data-tam-ekran]')!;
+    const tamEkranAyarla = (acik: boolean) => {
+      kap.classList.toggle('tam-ekran', acik);
+      document.documentElement.classList.toggle('kaydirma-yok', acik);
+      tamDugme.setAttribute('aria-pressed', String(acik));
+      tamDugme.title = acik ? 'Tam ekrandan çık (Esc)' : 'Tam ekran (çıkmak için Esc)';
+      tamDugme.setAttribute('aria-label', acik ? 'Tam ekrandan çık' : 'Tam ekran');
+      // Kap boyutu değişti; çizimi yeni boyuta uydur
+      requestAnimationFrame(() => {
+        cy.resize();
+        genisligeSigdir();
+      });
+    };
+    tamDugme.addEventListener('click', () => {
+      const acik = kap.classList.contains('tam-ekran');
+      if (document.fullscreenElement === kap) {
+        document.exitFullscreen();
+      } else if (!acik && kap.requestFullscreen && document.fullscreenEnabled) {
+        // Tarayıcı izin vermezse pencereyi kaplayan görünüme düş
+        kap.requestFullscreen().catch(() => tamEkranAyarla(true));
+      } else {
+        tamEkranAyarla(!acik);
+      }
+    });
+    document.addEventListener('fullscreenchange', () => tamEkranAyarla(document.fullscreenElement === kap));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && kap.classList.contains('tam-ekran') && !document.fullscreenElement) tamEkranAyarla(false);
+    });
+
+    // Sahâbeyi aç/kapat
+    const sahabeDugme = kap.querySelector<HTMLButtonElement>('[data-sahabe-filtre]')!;
+    sahabeDugme.addEventListener('click', () => {
+      sahabeGizli = !sahabeGizli;
+      sahabeDugme.setAttribute('aria-pressed', String(!sahabeGizli));
+      temizle();
+      cy.nodes('.ravi[tabaka = "sahabe"]')[sahabeGizli ? 'addClass' : 'removeClass']('sahabe-gizli');
+      // Seçim varsa yenile() yerleşimi de yeniden yapar
+      if (odak) return yenile();
+      const zamanModu = kap.querySelector('[data-yerlesim="zaman"]')!.getAttribute('aria-pressed') === 'true';
+      if (zamanModu) zamanaYerlestir();
+      else serbesteYerlestir();
+    });
+
+    // Aracılı bağlantıları aç/kapat
+    const araciDugme = kap.querySelector<HTMLButtonElement>('[data-araci-filtre]')!;
+    araciDugme.addEventListener('click', () => {
+      const acik = araciDugme.getAttribute('aria-pressed') !== 'true';
+      araciDugme.setAttribute('aria-pressed', String(acik));
+      cy.edges('[araci]')[acik ? 'removeClass' : 'addClass']('araci-gizli');
+      yenile();
+    });
+    // İhtilaflı bağlantıları aç/kapat
+    const ihtilafDugme = kap.querySelector<HTMLButtonElement>('[data-ihtilaf-filtre]')!;
+    ihtilafDugme.addEventListener('click', () => {
+      const acik = ihtilafDugme.getAttribute('aria-pressed') !== 'true';
+      ihtilafDugme.setAttribute('aria-pressed', String(acik));
+      cy.edges('[?ihtilafli]')[acik ? 'removeClass' : 'addClass']('ihtilaf-gizli');
+      yenile();
+    });
+
+    // --- Kişi veya bölge seçimi: yalnızca seçilenin bağları görünür ---
+    const odakSecim = kap.querySelector<HTMLSelectElement>('[data-odak]')!;
+    const bolgeSecim = kap.querySelector<HTMLSelectElement>('[data-bolge-odak]')!;
+    const odakKaldirDugme = kap.querySelector<HTMLButtonElement>('[data-odak-kaldir]')!;
+    const kapsamDugmeleri = kap.querySelectorAll<HTMLButtonElement>('[data-kapsam]');
+    const kapsamGrubu = kap.querySelector<HTMLElement>('[data-kapsam-grup]')!;
+    let kapsam: 'komsu' | 'zincir' = 'komsu';
+    const serbestMi = () => kap.querySelector('[data-yerlesim="serbest"]')!.getAttribute('aria-pressed') === 'true';
+    const bolgeAdi = new Map(veri.bolgeler.map((b) => [b.id, b.isim]));
+
+    /** Seçimin başlangıç kişileri: bir kişi ya da bir bölgenin bütün kişileri */
+    // Bölge seçiliyken Sahâbe filtresi bölgenin kendi sahâbîlerine de uygulanır; tek kişi seçilince o kişi her zaman görünür
+    const bolgede = (d: any) =>
+      !!odak && odak.tur === 'bolge' && d.data('bolge') === odak.id && !(sahabeGizli && d.data('tabaka') === 'sahabe');
+    const odakBaslangici = () =>
+      !odak ? cy.collection() : odak.tur === 'kisi' ? cy.$id(odak.id) : cy.nodes('.ravi').filter(bolgede);
+    const odakta = (d: any) => !!odak && (odak.tur === 'kisi' ? d.id() === odak.id : bolgede(d));
+
+    // Bölge/sahâbe/aracı filtreleriyle gizlenmemiş kenar (seçilen kişi/bölge her zaman açık sayılır)
+    const filtredeAcik = (e: any) =>
+      !e.hasClass('gizli') && !e.hasClass('araci-gizli') && !e.hasClass('ihtilaf-gizli') &&
+      [e.source(), e.target()].every((d: any) => odakta(d) || (!d.hasClass('gizli') && !d.hasClass('sahabe-gizli')));
+
+    /** Doğrudan bağlar: başlangıç kişileri, hocaları ve talebeleri. Tüm zincir: yukarı ve aşağı doğru bütün ilim yolları. */
+    const odakKumesi = (n: any) => {
+      if (kapsam === 'komsu') return n.closedNeighborhood().not('.yardimci');
+      // Görünürlük yerine filtre durumuna bakılır (stil güncellemesi gecikmeli olabilir)
+      const ilimKenarlari = cy.edges().not('[tur = "akrabalik"]').filter((e: any) => filtredeAcik(e));
+      let kume = n;
+      for (const yon of ['yukari', 'asagi'] as const) {
+        let sinir = n;
+        while (sinir.length) {
+          const kenarlar = (yon === 'yukari' ? sinir.incomers('edge') : sinir.outgoers('edge')).intersection(ilimKenarlari);
+          const dugumler = yon === 'yukari' ? kenarlar.sources() : kenarlar.targets();
+          sinir = dugumler.not(kume);
+          kume = kume.union(kenarlar).union(dugumler);
+        }
+      }
+      return kume;
+    };
+
+    /** Bölgeye gelen ve bölgeden giden ilim bağlarının diğer bölgelere göre dökümü */
+    const bolgeOzeti = (bolge: string) => {
+      const kenarlar = cy.edges().not('[tur = "akrabalik"]').filter(filtredeAcik);
+      const say = (yon: 'gelen' | 'giden') => {
+        const m = new Map<string, number>();
+        kenarlar.forEach((e: any) => {
+          const [ic, dis] = yon === 'gelen' ? [e.target(), e.source()] : [e.source(), e.target()];
+          if (ic.data('bolge') === bolge && dis.data('bolge') !== bolge)
+            m.set(dis.data('bolge'), (m.get(dis.data('bolge')) ?? 0) + 1);
+        });
+        const toplam = [...m.values()].reduce((a, b) => a + b, 0);
+        const dokum = [...m].sort((a, b) => b[1] - a[1]).map(([b, n]) => `${bolgeAdi.get(b)} ${n}`).join(', ');
+        return toplam ? `${toplam} bağ (${dokum})` : 'yok';
+      };
+      const ic = kenarlar.filter((e: any) => e.source().data('bolge') === bolge && e.target().data('bolge') === bolge).length;
+      return `Gelen ilim: ${say('gelen')}. Giden ilim: ${say('giden')}. Bölge içi: ${ic} bağ.`;
+    };
+
+    function uygula(animasyon = true) {
+      const n = odakBaslangici();
+      if (!odak || !n.length) return;
+      temizle();
+      cy.elements('.ravi, edge').removeClass('odak-disi sinir');
+      // Seçilen kişi/bölge filtreyle gizlenmiş olsa da görünsün
+      n.removeClass(odak.tur === 'kisi' ? 'gizli sahabe-gizli' : 'gizli');
+      const kume = odakKumesi(n);
+      cy.elements('.ravi, edge').not(kume).addClass('odak-disi');
+      odakDugumleri = kume.nodes().filter((d: any) => odakta(d) || (!d.hasClass('gizli') && !d.hasClass('sahabe-gizli')));
+      n.addClass('secili');
+      odakSecim.value = odak.tur === 'kisi' ? odak.id : '';
+      bolgeSecim.value = odak.tur === 'bolge' ? odak.id : '';
+      odakKaldirDugme.hidden = false;
+      kapsamGrubu.hidden = false;
+      history.replaceState(null, '', `?${odak.tur}=${encodeURIComponent(odak.id)}`);
+
+      const ilim = (k: any) => k.not('[tur = "akrabalik"]').filter(filtredeAcik).length;
+      const digerleri = odakDugumleri.length - n.length; // yalnızca görünenler sayılır
+      if (odak.tur === 'kisi') {
+        const metin =
+          kapsam === 'komsu'
+            ? `${ilim(n.incomers('edge'))} hocası ve ${ilim(n.outgoers('edge'))} talebesi gösteriliyor.`
+            : `Sahâbeden imamlara kadar bu kişinin yer aldığı bütün zincir: ${digerleri} kişi.`;
+        goster(n.data('isim'), metin, sayfa(odak.id));
+      } else {
+        const ad = bolgeAdi.get(odak.id) ?? odak.id;
+        const kapsamMetni =
+          kapsam === 'komsu'
+            ? `Bölgenin ${n.length} kişisi ve onlara doğrudan bağlı ${digerleri} kişi gösteriliyor.`
+            : `Bölgenin ${n.length} kişisi ve bölgeye ilmin geldiği, bölgeden ilmin ulaştığı bütün zincir (${digerleri} kişi) gösteriliyor.`;
+        goster(ad, `${kapsamMetni} ${bolgeOzeti(odak.id)}`, `${kok}bolgeler/${odak.id}/`, undefined, 'Bölge sayfasına git →');
+        // Bölge sınırını geçen (gelen/giden) bağlar kalın çizilir
+        kume.edges().filter((e: any) => odakta(e.source()) !== odakta(e.target())).addClass('sinir');
+      }
+
+      if (serbestMi()) serbesteYerlestir();
+      else zamanaYerlestir(animasyon);
+    }
+    function odakla(id: string, animasyon = true) {
+      odak = { tur: 'kisi', id };
+      uygula(animasyon);
+    }
+    const bolgeyeOdakla = (id: string, animasyon = true) => {
+      odak = { tur: 'bolge', id };
+      uygula(animasyon);
+    };
+    function yenile() {
+      if (odak) uygula();
+    }
+
+    const odakKaldir = () => {
+      odak = null;
+      odakDugumleri = null;
+      temizle();
+      cy.elements().removeClass('odak-disi sinir');
+      // Sahâbe filtresi tekrar uygulanır
+      if (sahabeGizli) cy.nodes('.ravi[tabaka = "sahabe"]').addClass('sahabe-gizli');
+      odakSecim.value = bolgeSecim.value = '';
+      odakKaldirDugme.hidden = true;
+      kapsamGrubu.hidden = true;
+      history.replaceState(null, '', location.pathname);
+      if (serbestMi()) serbesteYerlestir();
+      else zamanaYerlestir();
+    };
+
+    odakSecim.addEventListener('change', () => (odakSecim.value ? odakla(odakSecim.value) : odakKaldir()));
+    bolgeSecim.addEventListener('change', () => (bolgeSecim.value ? bolgeyeOdakla(bolgeSecim.value) : odakKaldir()));
+    odakKaldirDugme.addEventListener('click', odakKaldir);
+    kapsamDugmeleri.forEach((b) =>
+      b.addEventListener('click', () => {
+        kapsam = b.dataset.kapsam as typeof kapsam;
+        kapsamDugmeleri.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        yenile();
+      }),
+    );
+    // Adres çubuğunda ?kisi=… veya ?bolge=… varsa onunla açılır (kişi ve bölge sayfalarındaki bağlantılar için)
+    const adres = new URLSearchParams(location.search);
+    if (adres.get('kisi')) odakla(adres.get('kisi')!, false);
+    else if (adres.get('bolge')) bolgeyeOdakla(adres.get('bolge')!, false);
+
+    // İki ravi arasındaki yol (yönsüz en kısa yol; sadece görünen kişi ve bağlantılar üzerinden)
+    // Filtreler: tek düğme, açılır panel
+    const filtreAc = kap.querySelector<HTMLButtonElement>('[data-filtre-ac]')!;
+    const filtrePanel = kap.querySelector<HTMLElement>('[data-filtre-panel]')!;
+    const filtreSayi = kap.querySelector<HTMLElement>('[data-filtre-sayi]')!;
+    const filtrePaneli = (acik: boolean) => {
+      filtrePanel.hidden = !acik;
+      filtreAc.setAttribute('aria-expanded', String(acik));
+    };
+    kapaticilar.push(() => filtrePaneli(false));
+    filtreAc.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const acilacak = filtrePanel.hidden;
+      hepsiniKapat();
+      filtrePaneli(acilacak);
+    });
+    // Panel içindeki tıklamalar paneli kapatmaz; filtre düğmesinin kendi işi bittikten sonra sayaç güncellenir
+    filtrePanel.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const gizli = filtrePanel.querySelectorAll('[aria-pressed="false"]').length;
+      filtreSayi.hidden = !gizli;
+      filtreSayi.textContent = `${gizli} gizli`;
+    });
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && hepsiniKapat());
+
+    // Yol bulma paneli ihtiyaç olunca açılır
+    const yolAc = kap.querySelector<HTMLButtonElement>('[data-yol-ac]')!;
+    const yolPanel = kap.querySelector<HTMLElement>('[data-yol-panel]')!;
+    yolAc.addEventListener('click', () => {
+      yolPanel.hidden = !yolPanel.hidden;
+      yolAc.setAttribute('aria-expanded', String(!yolPanel.hidden));
+      yolAc.setAttribute('aria-pressed', String(!yolPanel.hidden));
+    });
+    const bas = kap.querySelector<HTMLSelectElement>('[data-yol="bas"]')!;
+    const hedef = kap.querySelector<HTMLSelectElement>('[data-yol="hedef"]')!;
+    kap.querySelector('[data-yol-bul]')!.addEventListener('click', () => {
+      if (!bas.value || !hedef.value) return;
+      temizle();
+      const sonuc = cy.elements('.ravi:visible, edge:visible').not('[tur = "akrabalik"]').aStar({ root: '#' + bas.value, goal: '#' + hedef.value, directed: false });
+      if (!sonuc.found) {
+        goster('Bağlantı yok', 'Bu iki kişi arasında mevcut veride bir bağlantı bulunamadı.');
+        return;
+      }
+      cy.elements('.ravi, edge').not(sonuc.path).addClass('soluk');
+      sonuc.path.addClass('yol');
+      // Yol üzerindeki isimler; aracılı kenarlarda aracının adı araya yazılır
+      const parcalar: string[] = [sonuc.path[0].data('isim')];
+      for (let i = 1; i < sonuc.path.length; i += 2) {
+        const kenar = sonuc.path[i];
+        if (kenar.data('araci')) parcalar.push(`(${kenar.data('araci')})`);
+        parcalar.push(sonuc.path[i + 1].data('isim'));
+      }
+      goster(`${sonuc.path.nodes().length - 1} adımlık bağlantı`, parcalar.join(' — '));
+      cy.animate({ fit: { eles: sonuc.path, padding: 80 }, duration: 400 });
+    });
+    kap.querySelector('[data-temizle]')!.addEventListener('click', () => {
+      temizle();
+      bas.value = hedef.value = '';
+    });
+
+    // Sıfırla: seçim, filtreler, yol bulma ve yerleşim ilk açılış hâline döner
+    kap.querySelector('[data-sifirla]')!.addEventListener('click', () => {
+      hepsiniKapat();
+      temizle();
+      bas.value = hedef.value = '';
+      yolPanel.hidden = true;
+      yolAc.setAttribute('aria-expanded', 'false');
+      yolAc.setAttribute('aria-pressed', 'false');
+      // Filtreler hepsi açık
+      sahabeGizli = false;
+      [sahabeDugme, araciDugme, ihtilafDugme].forEach((b) => b.setAttribute('aria-pressed', 'true'));
+      filtreSayi.hidden = true;
+      cy.elements().removeClass('gizli sahabe-gizli araci-gizli ihtilaf-gizli');
+      // Kapsam ve yerleşim varsayılana
+      kapsam = 'komsu';
+      kapsamDugmeleri.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kapsam === 'komsu')));
+      dugmeler.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.yerlesim === 'zaman')));
+      // Seçimi kaldırır ve bütün ağı zaman × bölge yerleşimiyle yeniden çizer
+      odakKaldir();
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-ag]').forEach(kur);
+</script>
+
+<style>
+  .ag { position: relative; }
+  .ag.tam-ekran {
+    position: fixed; inset: 0; z-index: 50;
+    display: flex; flex-direction: column;
+    padding: 14px 16px; background: var(--kagit);
+  }
+  .ag.tam-ekran .tuval-kap { flex: 1; min-height: 0; display: flex; }
+  .ag.tam-ekran .tuval { flex: 1; min-height: 0; height: auto; }
+  :global(html.kaydirma-yok) { overflow: hidden; }
+  .tuval { width: 100%; background: var(--kart); border: 1px solid var(--cizgi); border-radius: 12px; }
+  .tam .tuval { height: min(78vh, 760px); }
+  .mini .tuval { height: 340px; }
+  .arac {
+    display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-end;
+    gap: 12px 28px; margin-bottom: 12px;
+  }
+  .bolum { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .bolum-baslik {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--murekkep-2);
+  }
+  .grup { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .kucuk { font-size: 0.78rem; }
+  .odak select, .bolum select { max-width: 210px; }
+  /* Birbirini dışlayan seçenekler tek bir hap içinde */
+  .segment {
+    display: inline-flex; padding: 2px; gap: 2px; border: 1px solid var(--cizgi); border-radius: 10px; background: var(--kart);
+  }
+  .segment[hidden] { display: none; }
+  .segment .dugme { border: 0; border-radius: 8px; padding: 6px 11px; background: transparent; }
+  .segment .dugme[aria-pressed='true'] { background: var(--vurgu-acik); color: var(--vurgu); }
+  .dugme.ikon { padding: 7px 9px; }
+  .filtre-kap { position: relative; }
+  /* Açılır listeler: betikle oluşturuldukları için :global */
+  .ag :global(.acilir) { position: relative; }
+  .ag :global(.acilir-dugme) { min-width: 170px; justify-content: space-between; }
+  .ag :global(.acilir-etiket) { max-width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ag :global(.acilir-dugme:not(.dolu) .acilir-etiket) { color: var(--murekkep-2); }
+  .ag :global(.acilir-dugme.dolu) { border-color: var(--vurgu); }
+  .ag :global(.acilir-dugme .ok) { font-size: 0.7rem; color: var(--murekkep-2); }
+  .ag :global(.acilir-panel) {
+    position: absolute; top: calc(100% + 6px); left: 0; z-index: 25;
+    width: min(300px, calc(100vw - 32px)); padding: 6px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .ag :global(.acilir-panel[hidden]) { display: none; }
+  .ag :global(.acilir-ara) { width: 100%; box-sizing: border-box; }
+  .ag :global(.acilir-liste) { max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 1px; }
+  .ag :global(.acilir-grup) {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--murekkep-2); padding: 8px 10px 3px;
+  }
+  .ag :global(.acilir-oge) {
+    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; cursor: pointer;
+    background: transparent; border: 0; border-radius: 8px; padding: 7px 10px; font-size: 0.88rem;
+  }
+  .ag :global(.acilir-oge:hover), .ag :global(.acilir-oge:focus-visible) { background: var(--kagit-2); outline: none; }
+  .ag :global(.acilir-oge[aria-selected='true']) { background: var(--vurgu-acik); color: var(--vurgu); font-weight: 600; }
+  .ag :global(.acilir-oge[aria-selected='true']::after) { content: '✓'; margin-left: auto; }
+  .ag :global(.acilir-oge.temizle) { color: var(--murekkep-2); }
+  .ag :global(.acilir-oge[hidden]), .ag :global(.acilir-grup[hidden]), .ag :global(.acilir-bos[hidden]) { display: none; }
+  .ag :global(.acilir-bos) { margin: 0; padding: 8px 10px; color: var(--murekkep-2); font-size: 0.85rem; }
+  .filtre-kap .ok { font-size: 0.7rem; color: var(--murekkep-2); }
+  .filtre-sayi {
+    font-size: 0.7rem; font-weight: 600; padding: 0 7px; border-radius: 999px;
+    background: var(--uyari-acik); color: var(--uyari);
+  }
+  .filtre-sayi[hidden] { display: none; }
+  .filtre-panel {
+    position: absolute; top: calc(100% + 6px); left: 0; z-index: 20;
+    width: min(290px, calc(100vw - 32px)); padding: 6px; display: flex; flex-direction: column; gap: 2px;
+  }
+  .filtre-panel[hidden] { display: none; }
+  .secenek {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; cursor: pointer;
+    background: transparent; border: 0; border-radius: 8px; padding: 8px 10px;
+  }
+  .secenek:hover { background: var(--kagit-2); }
+  .secenek-metin { display: flex; flex-direction: column; gap: 1px; }
+  .secenek-metin b { font-weight: 600; font-size: 0.88rem; }
+  .secenek-metin small { color: var(--murekkep-2); font-size: 0.75rem; }
+  .secenek.ihtilaf b { color: var(--ihtilaf); }
+  /* Açma/kapama anahtarı */
+  .anahtar {
+    flex: none; position: relative; width: 32px; height: 18px; border-radius: 999px;
+    background: var(--cizgi); transition: background 0.15s;
+  }
+  .anahtar::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--kagit); transition: transform 0.15s;
+  }
+  .secenek[aria-pressed='true'] .anahtar { background: var(--vurgu); }
+  .secenek[aria-pressed='true'] .anahtar::after { transform: translateX(14px); }
+  .secenek[aria-pressed='false'] .secenek-metin { opacity: 0.6; }
+  .dugme.sade { background: transparent; }
+  .dugme.sifirla { font-size: 0.8rem; padding: 6px 10px; color: var(--murekkep-2); }
+  .dugme.sifirla:hover { color: var(--murekkep); }
+  .dugme[hidden] { display: none; }
+  .gizli-metin { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .yolbul {
+    flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+    padding: 10px; border: 1px dashed var(--cizgi); border-radius: 10px;
+  }
+  .yolbul[hidden] { display: none; }
+  .yolbul select { max-width: 200px; }
+  .bilgi :global(.bilgi-alt) { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+  .tuval-kap { position: relative; }
+  .bilgi { position: absolute; right: 14px; bottom: 14px; width: min(320px, calc(100% - 28px)); font-size: 0.88rem; }
+  .bilgi :global(h3) { font-family: var(--sans); }
+  .bilgi :global(p) { margin: 0.3rem 0 0.5rem; color: var(--murekkep-2); }
+  .lejant { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .lejant .satir { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .lejant .bolum-baslik { margin-right: 4px; }
+  .lejant button { cursor: pointer; }
+  .lejant button:hover { border-color: var(--vurgu); }
+  .lejant button[aria-pressed='false'] { opacity: 0.4; text-decoration: line-through; }
+  .lejant .ayrac { width: 1px; height: 18px; background: var(--cizgi); margin: 0 4px; }
+  .lejant .imam { color: var(--altin); }
+  .lejant .kesik { border-style: dashed; }
+  .lejant .ihtilaf-lejant { color: var(--ihtilaf); border-color: var(--ihtilaf); border-style: dashed; }
+</style>

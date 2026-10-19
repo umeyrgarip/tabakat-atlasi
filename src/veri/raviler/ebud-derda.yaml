@@ -1,0 +1,11 @@
+isim: Ebü'd-Derdâ'
+tam_isim: Ebü'd-Derdâ' Uveymir b. Zeyd el-Ensârî
+tabaka: sahabe
+vefat: { hicri: 32, miladi: 652, not: "31 de denmiştir" }
+bolge: sam
+diger_bolgeler: [medine]
+ozet: "Dımaşk kadısı ve Şam'ın Kur'an muallimi."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Ebü'd-Derdâ\"", url: "https://islamansiklopedisi.org.tr/ebud-derda" }
+dogrulandi: true

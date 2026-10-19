@@ -1,0 +1,22 @@
+isim: Abdullah b. Yezîd el-Hubulî
+tam_isim: Ebû Abdirrahmân Abdullah b. Yezîd el-Meâfirî el-Hubulî
+arapca: عبد الله بن يزيد الحبلي
+cerh_tadil: Sika (İbn Maîn; İbn Hacer, Takrîb)
+tabaka: tabiin
+vefat: { hicri: 100, miladi: 718, not: "İfrîkıye'de" }
+bolge: misir
+ozet: Ömer b. Abdülazîz'in İfrîkıye halkına dini öğretmek için gönderdiği Mısırlı tâbiî.
+biyografi: |
+  Mısırlı bir tâbiîdir. Câbir b. Abdullah, Abdullah b. Amr, Ukbe b. Âmir ve Ebû Eyyûb el-Ensârî gibi sahâbîlerden rivayette bulundu; rivayetleri Buhârî'nin el-Edebü'l-müfred'inde ve Kütüb-i Sitte'nin diğer kitaplarında yer alır.
+
+  Ömer b. Abdülazîz onu İfrîkıye halkına fıkıh öğretmek üzere gönderdi; orada çok ilim yaydı ve 100 yılında vefat ederek Kayrevan'da Tunus Kapısı yakınına defnedildi.
+hocalari:
+  - kisi: abdullah-b-amr
+    kaynak: &mz { ad: "Mizzî, Tehzîbü'l-Kemâl, 16/316-317 (Abdullah b. Yezîd el-Meâfirî)", url: "https://shamela.ws/book/3722/8310" }
+  - kisi: cabir-b-abdullah
+    kaynak: *mz
+  - kisi: ukbe-b-amir
+    kaynak: *mz
+kaynaklar:
+  - *mz
+dogrulandi: true

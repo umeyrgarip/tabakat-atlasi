@@ -1,0 +1,21 @@
+isim: Kuteybe b. Saîd
+tam_isim: Ebû Recâ Kuteybe b. Saîd b. Cemîl es-Sekafî el-Belhî
+arapca: قتيبة بن سعيد
+cerh_tadil: Sika, sebt (İbn Hacer, Takrîb; 10. tabaka)
+tabaka: tebe-i-etbai-t-tabiin
+dogum: { hicri: 149, miladi: 766, not: "150 de denmiştir" }
+vefat: { hicri: 240, miladi: 855, not: "241 de denmiştir" }
+bolge: horasan
+diger_bolgeler: [bagdat]
+ozet: Belh'in Bağlân köyünden hadis hâfızı; Leys b. Sa'd, Mâlik ve Süfyân b. Uyeyne'nin talebesi, Ahmed b. Hanbel'in hocalarından. Buhârî ondan 380, Müslim 668 hadis nakletmiştir.
+hocalari:
+  - kisi: leys-b-sad
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Kuteybe b. Saîd\"", url: "https://islamansiklopedisi.org.tr/kuteybe-b-said" }
+  - kisi: malik-b-enes
+    kaynak: *tdv
+  - kisi: sufyan-b-uyeyne
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/5187" }
+dogrulandi: true

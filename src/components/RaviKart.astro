@@ -1,0 +1,37 @@
+---
+import { TABAKALAR, imamEtiketi, tarihYaz, yol, type Bolge, type Ravi } from '../lib/veri';
+
+interface Props {
+  ravi: Ravi;
+  bolge: Bolge;
+}
+const { ravi, bolge } = Astro.props;
+const d = ravi.data;
+---
+
+<a
+  href={yol(`raviler/${ravi.id}/`)}
+  class="kart ravi-kart"
+  data-ara={`${d.isim} ${d.tam_isim ?? ''}`.toLocaleLowerCase('tr')}
+  data-bolge={[d.bolge, ...d.diger_bolgeler].join(' ')}
+  data-tabaka={d.tabaka}
+>
+  <div class="ust sans">
+    <span class="etiket" style={`--renk:${bolge.data.renk};--renk-koyu:${bolge.data.renk_koyu}`}><span class="nokta"></span>{bolge.data.isim}</span>
+    <span class="soluk">ö. {tarihYaz(d.vefat)}</span>
+  </div>
+  <h3>{d.isim}</h3>
+  <p class="soluk">{d.ozet}</p>
+  <div class="alt sans">
+    <span class="etiket">{TABAKALAR[d.tabaka]}</span>
+    {d.imam && <span class:list={['etiket imam', { kesik: !d.imam.yasayan }]}>{imamEtiketi(ravi)}</span>}
+  </div>
+</a>
+
+<style>
+  .ravi-kart { display: flex; flex-direction: column; gap: 6px; }
+  .ust { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 0.8rem; }
+  p { margin: 0; font-size: 0.93rem; line-height: 1.5; flex: 1; }
+  .alt { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .kesik { border-style: dashed; }
+</style>

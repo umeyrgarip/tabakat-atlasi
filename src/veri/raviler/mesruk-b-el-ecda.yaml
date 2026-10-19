@@ -1,0 +1,33 @@
+isim: Mesrûk b. el-Ecda'
+tam_isim: Ebû Âişe Mesrûk b. el-Ecda' el-Hemdânî el-Vâdiî
+arapca: مسروق بن الأجدع
+cerh_tadil: Sika, fakih, âbid; muhadram (İbn Hacer, Takrîb; 2. tabaka)
+tabaka: tabiin
+dogum: { hicri: 1, miladi: 622, not: "hicret yılında doğduğu anlaşılmaktadır" }
+vefat: { hicri: 63, miladi: 683, not: "62 de denmiştir" }
+bolge: kufe
+ozet: Âişe ve İbn Mes'ûd'un yakın talebesi; Kûfe'nin önde gelen fakihi.
+biyografi: |
+  Aslen Yemenlidir; kabilesi Hemdân ile birlikte Kûfe'ye yerleşti. Âişe onu evladı gibi severdi; bu yüzden kızına Âişe adını verdi ve Ebû Âişe künyesiyle anıldı.
+
+  Rivayetlerinin büyük kısmı İbn Mes'ûd'dandır. Fetvadaki bilgisi sebebiyle Kadı Şüreyh'in de zaman zaman danıştığı bir fakih olarak tanındı.
+hocalari:
+  - kisi: abdullah-b-mesud
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Mesrûk b. Ecda'\"", url: "https://islamansiklopedisi.org.tr/mesruk-b-ecda" }
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: omer
+    kaynak: *tdv
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: muaz-b-cebel
+    kaynak: *tdv
+  - kisi: ubey-b-kab
+    kaynak: *tdv
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: abdullah-b-amr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+dogrulandi: true

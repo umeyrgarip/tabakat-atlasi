@@ -1,0 +1,23 @@
+isim: Hişâm b. Urve
+tam_isim: Ebü'l-Münzir Hişâm b. Urve b. ez-Zübeyr el-Kureşî el-Esedî
+arapca: هشام بن عروة
+cerh_tadil: Sika, fakih; bazen tedlîs yapardı (İbn Hacer, Takrîb; 5. tabaka)
+tabaka: tabiin
+dogum: { hicri: 61, miladi: 680 }
+vefat: { hicri: 146, miladi: 763, not: "145 ve 147 de denmiştir" }
+bolge: medine
+diger_bolgeler: [kufe, bagdat]
+ozet: Urve b. ez-Zübeyr'in oğlu; babasının rivayetlerini Mâlik, Leys, Sevrî ve Uyeyne'ye aktaran Medineli muhaddis.
+biyografi: |
+  Muharrem 61'de (Ekim 680) Medine'de doğdu. Sahâbeden İbn Ömer, Sehl b. Sa'd, Câbir ve Enes'i gördü; hadisi başta babası Urve olmak üzere amcası Abdullah b. Zübeyr, Zührî ve hanımı Fâtıma bint Münzir'den rivayet etti.
+
+  İbn Sa'd, İbn Maîn ve Ebû Hâtim onu güvenilir sayar. Halife Mansûr döneminde üç defa Kûfe'ye gitti; Irak'ta yaptığı rivayetlerin Medine'dekiler kadar sağlam olmadığı söylenmiştir. Mâlik, Leys b. Sa'd, Süfyân es-Sevrî ve Süfyân b. Uyeyne ondan hadis aldı. 146 (763) yılında Bağdat'ta vefat etti. Buhârî'nin Sahîh'inin başındaki, el-Hâris b. Hişâm'ın vahyin nasıl geldiğini sorduğu hadis onun rivayetiyledir.
+hocalari:
+  - kisi: urve-b-ez-zubeyr
+    not: babasıdır
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Hişâm b. Urve\"", url: "https://islamansiklopedisi.org.tr/hisam-b-urve" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/6702" }
+  - { ad: "Buhârî, es-Sahîh, \"Bed'ü'l-vahy\", 2", url: "https://sunnah.com/bukhari:2" }
+dogrulandi: true

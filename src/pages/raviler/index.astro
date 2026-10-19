@@ -1,0 +1,73 @@
+---
+import Site from '../../layouts/Site.astro';
+import RaviKart from '../../components/RaviKart.astro';
+import { TABAKALAR, veriYukle } from '../../lib/veri';
+
+const v = await veriYukle();
+---
+
+<Site baslik="Râvîler" genis>
+  <p class="ust-baslik">Vefat tarihine göre sıralı</p>
+  <h1>Râvîler</h1>
+
+  <div class="suzgec sans">
+    <input type="search" id="ara" placeholder="İsim ara…" aria-label="İsim ara" />
+    <select id="bolge" aria-label="Bölge">
+      <option value="">Bütün bölgeler</option>
+      {v.bolgeler.filter((b) => !b.data.ek).map((b) => <option value={b.id}>{b.data.isim}</option>)}
+    </select>
+    <select id="tabaka" aria-label="Tabaka">
+      <option value="">Bütün tabakalar</option>
+      {Object.entries(TABAKALAR).map(([id, ad]) => <option value={id}>{ad}</option>)}
+    </select>
+    <span class="soluk" id="sayac"></span>
+  </div>
+
+  <div class="izgara" id="liste">
+    {v.liste.map((r) => <RaviKart ravi={r} bolge={v.bolge.get(r.data.bolge)!} />)}
+  </div>
+  <p class="soluk" id="bos" hidden>Bu ölçütlere uyan râvî yok.</p>
+
+  <h2>Sahâbe</h2>
+  <p class="soluk">Râvîlerin ilim aldığı sahâbîler. Araştırma listesinin dışındadır, biyografileri verilmemiştir.</p>
+  <div class="izgara">
+    {v.raviler.filter((r) => r.data.tabaka === 'sahabe').map((r) => <RaviKart ravi={r} bolge={v.bolge.get(r.data.bolge)!} />)}
+  </div>
+
+  <h2>Mezheb imamları</h2>
+  <p class="soluk">Râvîlerin bağlandığı imamlar. Bunlar araştırma listesinin dışındadır, biyografileri verilmemiştir.</p>
+  <div class="izgara">
+    {v.imamlar.filter((r) => !v.liste.includes(r)).map((r) => <RaviKart ravi={r} bolge={v.bolge.get(r.data.bolge)!} />)}
+  </div>
+</Site>
+
+<script>
+  const ara = document.querySelector<HTMLInputElement>('#ara')!;
+  const bolge = document.querySelector<HTMLSelectElement>('#bolge')!;
+  const tabaka = document.querySelector<HTMLSelectElement>('#tabaka')!;
+  const kartlar = [...document.querySelectorAll<HTMLElement>('#liste > a')];
+
+  function suz() {
+    const q = ara.value.trim().toLocaleLowerCase('tr');
+    let gorunen = 0;
+    for (const k of kartlar) {
+      const uygun =
+        (!q || k.dataset.ara!.includes(q)) &&
+        (!bolge.value || k.dataset.bolge!.split(' ').includes(bolge.value)) &&
+        (!tabaka.value || k.dataset.tabaka === tabaka.value);
+      k.hidden = !uygun;
+      if (uygun) gorunen++;
+    }
+    document.querySelector('#sayac')!.textContent = `${gorunen} râvî`;
+    document.querySelector<HTMLElement>('#bos')!.hidden = gorunen > 0;
+  }
+  [ara, bolge, tabaka].forEach((el) => el.addEventListener('input', suz));
+  suz();
+</script>
+
+<style>
+  .suzgec { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 1.5rem 0; }
+  .suzgec input { flex: 1 1 220px; }
+  #sayac { font-size: 0.85rem; margin-left: auto; }
+  .izgara :global(a[hidden]) { display: none; }
+</style>

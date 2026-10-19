@@ -1,0 +1,21 @@
+isim: Ca'fer b. Rebîa
+tam_isim: Ebû Şürahbîl Ca'fer b. Rebîa b. Şürahbîl b. Hasene el-Kindî
+arapca: جعفر بن ربيعة
+cerh_tadil: Sika (İbn Hacer, Takrîb; 5. tabaka)
+tabaka: tabiin
+vefat: { hicri: 136, miladi: 753, not: "135 de denmiştir; 132 ile 136 arasında farklı tarihler verilmiştir" }
+bolge: misir
+ozet: Leys b. Sa'd'ın hocalarından, güvenilir Mısırlı muhaddis.
+biyografi: |
+  Kinde kabilesine mensup Mısırlı bir muhaddistir; sahâbî Abdullah b. el-Hâris b. Cez' ez-Zübeydî'yi gördü. Ebü'l-Hayr Mersed, İkrime ve Abdurrahman b. Hürmüz el-A'rec gibi tâbiîlerden rivayette bulundu.
+
+  Ahmed b. Hanbel onu güvenilir bir hadis şeyhi olarak niteler. Leys b. Sa'd ve akranı Yezîd b. Ebî Habîb ondan rivayette bulunmuştur.
+hocalari:
+  - kisi: mersed-ebul-hayr
+    kaynak: &mz { ad: "Mizzî, Tehzîbü'l-Kemâl, 5/29-30 (Ca'fer b. Rebîa)", url: "https://shamela.ws/book/3722/2109" }
+  - kisi: ikrime
+    kaynak: *mz
+kaynaklar:
+  - *mz
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/1149" }
+dogrulandi: true

@@ -1,0 +1,24 @@
+---
+import Site from '../layouts/Site.astro';
+import { yol } from '../lib/veri';
+---
+
+<Site baslik="Sayfa bulunamadı" aciklama="Aradığınız sayfa bulunamadı.">
+  <section class="bulunamadi">
+    <p class="ust-baslik sans">404</p>
+    <h1>Sayfa bulunamadı</h1>
+    <p class="soluk">
+      Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir. Aşağıdaki bağlantılardan devam edebilirsiniz.
+    </p>
+    <div class="eylem sans">
+      <a class="dugme ana" href={yol()}>Ana sayfa</a>
+      <a class="dugme" href={yol('raviler/')}>Râvîler</a>
+      <a class="dugme" href={yol('ag/')}>Bağlantı ağı</a>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .bulunamadi { max-width: 560px; padding: 3rem 0; }
+  .eylem { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
+</style>

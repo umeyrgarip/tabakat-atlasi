@@ -1,0 +1,36 @@
+isim: Mücâhid b. Cebr
+tam_isim: Ebü'l-Haccâc Mücâhid b. Cebr el-Mekkî el-Mahzûmî
+arapca: مجاهد بن جبر
+cerh_tadil: Sika; tefsirde ve ilimde imam (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 21, miladi: 642 }
+vefat: { hicri: 103, miladi: 721, not: "100 ile 107 arasında farklı tarihler verilmiştir" }
+bolge: mekke
+ozet: İbn Abbâs'ın tefsir alanındaki en önemli talebesi; Mekke tefsir ekolünün öncüsü.
+biyografi: |
+  Mekke'de doğdu; Kays b. Sâib el-Mahzûmî'nin kölesiydi. Kur'an'ı İbn Abbâs'ın önünde defalarca hatmetti ve onunla birlikte baştan sona üç kez tefsir etti.
+
+  İbn Abbâs'ın vefatından sonra Mekke'deki tefsir derslerini üstlendi ve halkın fetva mercii oldu. İbn Abbâs'tan öğrendiği tefsiri yazıya geçirdi; bu tefsir talebeleri aracılığıyla sonraki tefsirlere ulaştı.
+hocalari:
+  - kisi: ibn-abbas
+    not: Kur'an'ı ona defalarca okudu
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Mücâhid b. Cebr\"", url: "https://islamansiklopedisi.org.tr/mucahid-b-cebr" }
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: aise
+    ihtilafli: true
+    not: Âişe'den işitip işitmediği tartışmalıdır
+    kaynak: *tdv
+  - kisi: ata-b-ebi-rebah
+    not: akranıdır; birbirlerinden faydalanmışlardır
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Atâ b. Ebû Rebâh\"", url: "https://islamansiklopedisi.org.tr/ata-b-ebu-rebah" }
+  - kisi: ebu-bekr-b-abdirrahman
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebû Bekir b. Abdurrahman\"", url: "https://islamansiklopedisi.org.tr/ebu-bekir-b-abdurrahman" }
+  - kisi: kadi-sureyh
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Kādî Şüreyh\"", url: "https://islamansiklopedisi.org.tr/kadi-sureyh" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/5410" }
+dogrulandi: true

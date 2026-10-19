@@ -1,0 +1,221 @@
+---
+import Site from '../../layouts/Site.astro';
+import Ag from '../../components/Ag.astro';
+import BaglantiSatiri from '../../components/BaglantiSatiri.astro';
+import {
+  TABAKALAR,
+  grafVerisi,
+  imamBaglantilari,
+  ilimBagi,
+  imamEtiketi,
+  kaynakAdi,
+  kaynakUrl,
+  tarihYaz,
+  veriYukle,
+  yol,
+  type Kenar,
+  type Ravi,
+} from '../../lib/veri';
+
+export async function getStaticPaths() {
+  const v = await veriYukle();
+  return v.raviler.map((r) => ({ params: { id: r.id }, props: { id: r.id } }));
+}
+
+const v = await veriYukle();
+const ravi: Ravi = v.ravi.get(Astro.props.id)!;
+const d = ravi.data;
+const bolgeler = [d.bolge, ...d.diger_bolgeler].map((b) => v.bolge.get(b)!);
+
+const tumHocalar: Kenar[] = v.kenarlar.filter((k) => k.talebe === ravi.id);
+const tumTalebeler: Kenar[] = v.talebeleri.get(ravi.id) ?? [];
+const hocalar = tumHocalar.filter(ilimBagi);
+const talebeler = tumTalebeler.filter(ilimBagi);
+// Akrabalık bağlantıları (ilim aktarımı tespit edilemeyenler) ayrı listelenir
+const akrabalar = [
+  ...tumHocalar.filter((k) => !ilimBagi(k)).map((k) => ({ k, kisi: k.hoca })),
+  ...tumTalebeler.filter((k) => !ilimBagi(k)).map((k) => ({ k, kisi: k.talebe })),
+];
+const komsular = new Set([ravi.id, ...tumHocalar.map((k) => k.hoca), ...tumTalebeler.map((k) => k.talebe)]);
+const agVerisi = grafVerisi(v, komsular);
+// Küçük ağda yalnızca kişinin kendi bağları çizilir; hocaların ve talebelerin birbirine bağları gösterilmez
+agVerisi.kenarlar = agVerisi.kenarlar.filter((k) => k.hoca === ravi.id || k.talebe === ravi.id);
+
+const baglantilar = imamBaglantilari(v, ravi.id).filter((b) => b.tur !== 'kendisi');
+const dogrudan = baglantilar
+  .filter((b) => b.tur === 'senedinde' || b.tur === 'talebe-zinciri')
+  .sort((a, b) => a.yol.length - b.yol.length);
+const dolayli = baglantilar.filter((b) => b.tur === 'dolayli');
+const yok = baglantilar.filter((b) => b.tur === 'yok');
+
+const isim = (id: string) => v.ravi.get(id)!.data.isim;
+const kenarBul = (a: string, b: string) =>
+  v.kenarlar.find((k) => (k.hoca === a && k.talebe === b) || (k.hoca === b && k.talebe === a));
+const TUR_ADI = {
+  senedinde: 'İlmi bu imama ulaşıyor',
+  'talebe-zinciri': 'Bu imamdan ilim almış',
+  dolayli: 'Ortak halkalar üzerinden',
+} as const;
+---
+
+<Site baslik={d.isim} aciklama={d.ozet}>
+  <a href={yol('raviler/')} class="geri sans">← Râvîler</a>
+
+  <header class="bas">
+    <div class="etiketler sans">
+      {
+        bolgeler.map((b) => (
+          <a href={yol(`bolgeler/${b.id}/`)} class="etiket" style={`--renk:${b.data.renk};--renk-koyu:${b.data.renk_koyu}`}>
+            <span class="nokta" />
+            {b.data.isim}
+          </a>
+        ))
+      }
+      <span class="etiket">{TABAKALAR[d.tabaka]}</span>
+      {d.imam && <span class:list={['etiket imam', { kesik: !d.imam.yasayan }]}>{imamEtiketi(ravi)}</span>}
+      {
+        d.dogrulandi === true ? (
+          <span class="etiket dogru" title="Bu kaydın bilgileri kaynaklardan kontrol edildi">doğrulandı</span>
+        ) : d.dogrulandi === 'kismi' ? (
+          <span class="etiket kismi" title={d.dogrulama_notu ?? 'Bağlantıların bir kısmı kaynaklarla doğrulandı; kimlik ve tarih bilgileri henüz ayrıntılı kontrol edilmedi'}>kısmen doğrulandı</span>
+        ) : (
+          <span class="etiket uyari" title="Bu kaydın bilgileri henüz kaynaklardan kontrol edilmedi">doğrulanmadı</span>
+        )
+      }
+    </div>
+    <h1>{d.isim}</h1>
+    {d.tam_isim && <p class="tam-isim">{d.tam_isim}</p>}
+    <p class="tarihler sans">
+      {d.dogum && <span>Doğum: <b>{tarihYaz(d.dogum)}</b></span>}
+      <span>Vefat: <b>{tarihYaz(d.vefat)}</b>{d.vefat?.not && <span class="soluk"> ({d.vefat.not})</span>}</span>
+      <span class="soluk">hicrî / mîlâdî</span>
+    </p>
+  </header>
+
+  {d.biyografi ? d.biyografi.trim().split(/\n\s*\n/).map((p) => <p class="biyo">{p}</p>) : <p class="biyo soluk">{d.ozet}</p>}
+
+  <h2>Bağlantıları</h2>
+  <Ag veri={agVerisi} mod="mini" merkez={ravi.id} sade />
+  <p class="ipucu sans soluk">Üstte hocaları, altta talebeleri. Kesikli çizgiler listede olmayan bir aracı üzerinden, kırmızı kesik çizgiler kaynaklarda ihtilaflı olan bağlantılardır. Bir isme tıklayarak sayfasına gidebilirsiniz. <a href={yol(`ag/?kisi=${ravi.id}`)}>Bağlantı ağında göster →</a></p>
+
+  <div class="iki-sutun">
+    <section>
+      <h3>Hocaları</h3>
+      {hocalar.length === 0 && <p class="soluk">Listede kayıtlı hocası yok.</p>}
+      <ul>
+        {
+          hocalar.map((k) => <BaglantiSatiri kenar={k} kisi={k.hoca} isim={isim(k.hoca)} />)
+        }
+      </ul>
+    </section>
+    <section>
+      <h3>Talebeleri</h3>
+      {talebeler.length === 0 && <p class="soluk">Listede kayıtlı talebesi yok.</p>}
+      <ul>
+        {
+          talebeler.map((k) => <BaglantiSatiri kenar={k} kisi={k.talebe} isim={isim(k.talebe)} />)
+        }
+      </ul>
+    </section>
+    {
+      akrabalar.length > 0 && (
+        <section>
+          <h3>Akrabaları</h3>
+          <ul>
+            {akrabalar.map(({ k, kisi }) => (
+              <BaglantiSatiri kenar={k} kisi={kisi} isim={isim(kisi)} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </div>
+
+  <h2>Mezheb imamlarıyla bağlantısı</h2>
+  {dogrudan.length === 0 && <p class="soluk">Mevcut veride bu kişiden bir imama uzanan hoca-talebe zinciri yok.</p>}
+  <div class="zincirler">
+    {
+      dogrudan.map((b) => (
+        <div class="zincir kart">
+          <div class="zincir-bas sans">
+            <a href={yol(`raviler/${b.imam.id}/`)}><b>{b.imam.data.isim}</b></a>
+            <span class="soluk">{TUR_ADI[b.tur as keyof typeof TUR_ADI]} · {b.yol.length - 1} adım</span>
+          </div>
+          <ol class="halkalar sans">
+            {b.yol.map((id, i) => {
+              const k = i > 0 ? kenarBul(b.yol[i - 1], id) : undefined;
+              return (
+                <>
+                  {k?.araci && <li class="ara">{k.araci}</li>}
+                  <li class:list={[{ ben: id === ravi.id, imam: id === b.imam.id }]}>
+                    {id === ravi.id ? isim(id) : <a href={yol(`raviler/${id}/`)}>{isim(id)}</a>}
+                  </li>
+                </>
+              );
+            })}
+          </ol>
+        </div>
+      ))
+    }
+  </div>
+  {
+    dolayli.length > 0 && (
+      <details class="sans">
+        <summary>Dolaylı bağlantılar ({dolayli.length} imam)</summary>
+        <ul>
+          {dolayli.map((b) => (
+            <li>
+              <b>{b.imam.data.isim}</b>: {b.yol.map(isim).join(' — ')}
+            </li>
+          ))}
+        </ul>
+      </details>
+    )
+  }
+  {yok.length > 0 && <p class="sans soluk kucuk">Bağlantı bulunamayan imamlar: {yok.map((b) => b.imam.data.isim).join(', ')}</p>}
+
+  <h2>Kaynaklar</h2>
+  {
+    d.kaynaklar.length ? (
+      <ul class="kaynaklar">
+        {d.kaynaklar.map((k) => (
+          <li>{kaynakUrl(k) ? <a href={kaynakUrl(k)} target="_blank" rel="noopener">{kaynakAdi(k)} ↗</a> : kaynakAdi(k)}</li>
+        ))}
+      </ul>
+    ) : (
+      <p class="soluk">Henüz kaynak eklenmedi.</p>
+    )
+  }
+</Site>
+
+<style>
+  .geri { font-size: 0.85rem; text-decoration: none; }
+  .bas { margin: 1.2rem 0 1.5rem; }
+  .etiketler { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.9rem; }
+  .etiketler a.etiket { text-decoration: none; }
+  .kesik { border-style: dashed; }
+  .tam-isim { font-size: 1.1rem; color: var(--murekkep-2); margin: 0; font-style: italic; }
+  .tarihler { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 0.88rem; margin-top: 0.8rem; }
+  .biyo { font-size: 1.12rem; }
+  .ipucu { font-size: 0.8rem; margin-top: 8px; }
+  .iki-sutun { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 2rem; margin-top: 1.5rem; }
+  .iki-sutun ul { padding-left: 1.1rem; margin: 0.4rem 0; }
+  .iki-sutun li { margin: 0.25rem 0; }
+  .dogru { color: var(--vurgu); border-color: var(--vurgu); background: var(--vurgu-acik); }
+  .kismi { color: var(--vurgu); border-color: var(--vurgu); border-style: dashed; }
+  .araci { display: inline-block; margin-left: 6px; font-size: 0.75rem; color: var(--murekkep-2); border: 1px dashed var(--cizgi); border-radius: 999px; padding: 0 8px; }
+  .zincirler { display: grid; gap: 10px; }
+  .zincir-bas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 0.9rem; }
+  .halkalar { list-style: none; padding: 0; margin: 0.7rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 0.85rem; }
+  .halkalar li { padding: 3px 10px; border-radius: 999px; background: var(--kagit-2); border: 1px solid var(--cizgi); }
+  .halkalar li:not(:first-child)::before { content: '→'; margin-right: 8px; color: var(--murekkep-2); }
+  .halkalar li { position: relative; }
+  .halkalar li a { text-decoration: none; }
+  .halkalar .ben { background: var(--vurgu-acik); border-color: var(--vurgu); color: var(--vurgu); font-weight: 600; }
+  .halkalar .imam { border-color: var(--altin); }
+  .halkalar .ara { background: transparent; border-style: dashed; color: var(--murekkep-2); font-style: italic; }
+  details { margin-top: 1rem; font-size: 0.9rem; }
+  summary { cursor: pointer; color: var(--vurgu); }
+  .kucuk { font-size: 0.82rem; margin-top: 1rem; }
+  .kaynaklar { padding-left: 1.1rem; }
+</style>

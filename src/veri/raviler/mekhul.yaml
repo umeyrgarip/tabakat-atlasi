@@ -1,0 +1,37 @@
+isim: Mekhûl eş-Şâmî
+tam_isim: Ebû Abdillâh Mekhûl b. Ebî Müslim eş-Şâmî ed-Dımaşkī
+arapca: مكحول الشامي
+cerh_tadil: Sika, fakih, meşhur; çok irsâl eder (İbn Hacer, Takrîb; 5. tabaka)
+tabaka: tabiin
+vefat: { hicri: 112, miladi: 730, not: "farklı tarihler de verilmiştir" }
+bolge: sam
+ozet: Dımaşk'ın en büyük fakihi; Evzâî'nin hocası.
+biyografi: |
+  Kâbil kökenli bir azatlıdır; Mısır'da azat edildi. İlim için Mısır, Irak, Hicaz ve Şam'ı dolaştı. Sahâbeden Enes b. Mâlik ve Vâsile b. el-Eska' ile görüşüp onlardan rivayette bulunduğunda ittifak vardır; bazı sahâbî ve tâbiîlerden ise ulaşmadığı hâlde rivayette bulunmuştur.
+
+  Muâz b. Cebel ve Ebü'd-Derdâ'dan sonra Dımaşk'ın fıkıh merkezi oldu; kendisine yapılan kadılık tekliflerini geri çevirdi. En meşhur talebesi Evzâî'dir.
+hocalari:
+  - kisi: vasile-b-eska
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Mekhûl b. Ebû Müslim\"", url: "https://islamansiklopedisi.org.tr/mekhul-b-ebu-muslim" }
+  - kisi: enes-b-malik
+    kaynak: *tdv
+  - kisi: ebu-idris-el-havlani
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebû İdrîs el-Havlânî\"", url: "https://islamansiklopedisi.org.tr/ebu-idris-el-havlani" }
+  - kisi: reca-b-hayve
+    tur: fikih
+    not: Mekhûl ona "şeyhimiz ve efendimiz" der, kendisine sorulan meseleleri ona yönlendirirdi
+    kaynak: { ad: "Mizzî, Tehzîbü'l-Kemâl, 9/151 (Recâ b. Hayve)", url: "https://shamela.ws/narrator/1986" }
+  - kisi: mesruk-b-el-ecda
+    ihtilafli: true
+    not: Mesrûk'a ulaşmadığı hâlde ondan rivayet ettiği kaydedilir (mürsel)
+    kaynak: *tdv
+  - kisi: tavus-b-keysan
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Tâvûs b. Keysân\"", url: "https://islamansiklopedisi.org.tr/tavus-b-keysan" }
+  - kisi: suleyman-b-yesar
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Süleyman b. Yesâr\"", url: "https://islamansiklopedisi.org.tr/suleyman-b-yesar" }
+  - kisi: kadi-sureyh
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Kādî Şüreyh\"", url: "https://islamansiklopedisi.org.tr/kadi-sureyh" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/6332" }
+dogrulandi: true

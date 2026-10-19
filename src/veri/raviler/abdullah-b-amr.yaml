@@ -1,0 +1,11 @@
+isim: Abdullah b. Amr
+tam_isim: Abdullah b. Amr b. el-Âs es-Sehmî
+tabaka: sahabe
+vefat: { hicri: 65, miladi: 684, not: "63, 68 ve 69 da denmiştir" }
+bolge: misir
+diger_bolgeler: [medine]
+ozet: "Resûlullah'tan duyduklarını yazan (es-Sahîfetü's-sâdıka) sahâbî."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Abdullah b. Amr b. Âs\"", url: "https://islamansiklopedisi.org.tr/abdullah-b-amr-b-as" }
+dogrulandi: true

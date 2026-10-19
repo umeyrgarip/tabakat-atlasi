@@ -1,0 +1,30 @@
+isim: Ebü'l-Âliye er-Riyâhî
+tam_isim: Ebü'l-Âliye Rufey' b. Mihrân er-Riyâhî el-Basrî
+arapca: أبو العالية الرياحي
+cerh_tadil: Sika; çok irsâl eder (İbn Hacer, Takrîb; 2. tabaka)
+tabaka: tabiin
+vefat: { hicri: 90, miladi: 709, not: "93, 106 ve 111 de denmiştir" }
+bolge: basra
+ozet: Sahâbeden sonra Kur'an'ı en iyi bilenlerden sayılan Basralı kıraat ve tefsir âlimi.
+biyografi: |
+  Câhiliye döneminde doğdu, Ebû Bekir'in hilâfeti yıllarında müslüman oldu. Riyâhoğulları'ndan bir kadının kölesiyken Basra'da gizlice Kur'an okumayı ve yazıyı öğrendi; sonra azat edildi.
+
+  Hadisleri ashabın ağzından duymak için Medine'ye ve Dımaşk'a gitti. Kıraati Übey b. Kâ'b, Zeyd b. Sâbit ve İbn Abbâs'tan öğrendi. İbn Abbâs, Basra valisiyken onu meclisinde yanına oturturdu.
+hocalari:
+  - kisi: ubey-b-kab
+    not: kıraati ondan öğrendi
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Ebü’l-Âliye er-Riyâhî\"", url: "https://islamansiklopedisi.org.tr/ebul-aliye-er-riyahi" }
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: abdullah-b-mesud
+    kaynak: *tdv
+  - kisi: aise
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/2015" }
+dogrulandi: true

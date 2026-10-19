@@ -1,0 +1,13 @@
+isim: el-Hâris b. Hişâm
+tam_isim: Ebû Abdirrahmân el-Hâris b. Hişâm b. el-Mugîre el-Mahzûmî
+arapca: الحارث بن هشام
+tabaka: sahabe
+vefat: { hicri: 18, miladi: 639, not: "Amvâs vebasında; Yermük'te (15/636) öldüğü de rivayet edilir" }
+bolge: mekke
+diger_bolgeler: [sam]
+ozet: Ebû Cehil'in kardeşi; Mekke'nin fethinde müslüman oldu, Şam fetihlerine katıldı. Vahyin nasıl geldiğini Resûlullah'a soran sahâbî olarak Buhârî'nin Sahîh'inin başında anılır; Ebû Bekr b. Abdirrahmân'ın dedesidir.
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Hâris b. Hişâm\"", url: "https://islamansiklopedisi.org.tr/haris-b-hisam" }
+  - { ad: "Buhârî, es-Sahîh, \"Bed'ü'l-vahy\", 2", url: "https://sunnah.com/bukhari:2" }
+dogrulandi: true

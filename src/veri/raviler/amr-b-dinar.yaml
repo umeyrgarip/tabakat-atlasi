@@ -1,0 +1,38 @@
+isim: Amr b. Dînâr
+tam_isim: Ebû Muhammed Amr b. Dînâr el-Mekkî el-Cumahî
+arapca: عمرو بن دينار
+cerh_tadil: Sika, sebt (İbn Hacer, Takrîb; 4. tabaka)
+tabaka: tabiin
+dogum: { hicri: 45, miladi: 665, not: "46 da denmiştir" }
+vefat: { hicri: 126, miladi: 744, not: "125 de denmiştir" }
+bolge: mekke
+ozet: Atâ'dan sonra Mekke'nin fetva mercii; iki Süfyân'ın ve İmam Mâlik'in hocası.
+biyografi: |
+  Aslen İranlıdır; Cumah kabilesinin himayesine girdiği için velâ yoluyla mevâlîdendir. İbn Abbâs ve Câbir gibi sahâbîlerden, Tâvûs, Mücâhid, İkrime, Atâ ve Vehb b. Münebbih gibi tâbiîlerden hadis dinledi.
+
+  Atâ'dan sonra Mekke'nin fetva mercii oldu. Güvenilirliği konusunda hadis otoriteleri ittifak etmiştir; hadis alanında eser veren ilk altı kişiden biri olarak anılır. İmam Mâlik, Süfyân es-Sevrî ve Süfyân b. Uyeyne ondan rivayette bulunmuştur.
+hocalari:
+  - kisi: tavus-b-keysan
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Amr b. Dînâr\"", url: "https://islamansiklopedisi.org.tr/amr-b-dinar" }
+  - kisi: ikrime
+    kaynak: *tdv
+  - kisi: vehb-b-munebbih
+    kaynak: *tdv
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: mucahid-b-cebr
+    kaynak: *tdv
+  - kisi: ata-b-ebi-rebah
+    kaynak: *tdv
+  - kisi: said-b-el-museyyeb
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Saîd b. Müseyyeb\"", url: "https://islamansiklopedisi.org.tr/said-b-museyyeb" }
+  - kisi: suleyman-b-yesar
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Süleyman b. Yesâr\"", url: "https://islamansiklopedisi.org.tr/suleyman-b-yesar" }
+  - kisi: ebu-bekr-b-abdirrahman
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebû Bekir b. Abdurrahman\"", url: "https://islamansiklopedisi.org.tr/ebu-bekir-b-abdurrahman" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/4822" }
+dogrulandi: true

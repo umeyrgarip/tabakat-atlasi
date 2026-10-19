@@ -1,0 +1,29 @@
+isim: Atâ b. Ebî Rebâh
+tam_isim: Ebû Muhammed Atâ b. Ebî Rebâh Eslem el-Kureşî
+arapca: عطاء بن أبي رباح
+cerh_tadil: Sika, fakih, fâzıl; ancak çok irsâl eder, ömrünün sonunda hafızasının değiştiği söylenmiştir (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 27, miladi: 647, not: "Ömer b. el-Hattâb veya Osman b. Affân döneminde doğduğu rivayet edilir" }
+vefat: { hicri: 114, miladi: 732, not: "115 de denmiştir; 112 ile 117 arasında farklı tarihler verilmiştir" }
+bolge: mekke
+ozet: İbn Abbâs'tan sonra Mekke'nin fetva mercii; hac menâsikinde zamanının en yetkili fakihi.
+biyografi: |
+  Nübye asıllı bir ailedendir; Yemen'in Cened şehrinde doğdu, küçük yaşta Mekke'ye gitti. Kendi ifadesine göre iki yüz kadar sahâbîyle görüştü.
+
+  İbn Abbâs'tan sonra Mescid-i Harâm'daki öğretim kürsüsüne o oturdu ve Mekke halkının fetva mercii oldu; özellikle hac konularında zamanının en yetkili âlimi sayıldı. Ebû Hanîfe, Evzâî ve Zührî ondan ilim alanlar arasındadır.
+hocalari:
+  - kisi: ibn-abbas
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Atâ b. Ebû Rebâh\"", url: "https://islamansiklopedisi.org.tr/ata-b-ebu-rebah" }
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: mucahid-b-cebr
+    not: akranıdır; birbirlerinden faydalanmışlardır
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mücâhid b. Cebr\"", url: "https://islamansiklopedisi.org.tr/mucahid-b-cebr" }
+  - kisi: urve-b-ez-zubeyr
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Urve b. Zübeyr\"", url: "https://islamansiklopedisi.org.tr/urve-b-zubeyr" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/4385" }
+dogrulandi: true

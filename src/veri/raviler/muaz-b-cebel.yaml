@@ -1,0 +1,11 @@
+isim: Muâz b. Cebel
+tam_isim: Ebû Abdirrahmân Muâz b. Cebel el-Ensârî
+tabaka: sahabe
+vefat: { hicri: 18, miladi: 639 }
+bolge: sam
+diger_bolgeler: [yemen, medine]
+ozet: "Resûlullah'ın Yemen'e muallim olarak gönderdiği sahâbî; Şam'da vefat etti."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Muâz b. Cebel\"", url: "https://islamansiklopedisi.org.tr/muaz-b-cebel" }
+dogrulandi: true

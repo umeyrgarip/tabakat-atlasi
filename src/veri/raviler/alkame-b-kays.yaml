@@ -1,0 +1,26 @@
+isim: Alkame b. Kays
+tam_isim: Ebû Şibl Alkame b. Kays b. Abdillâh en-Nehaî
+arapca: علقمة بن قيس النخعي
+cerh_tadil: Sika, sebt, fakih, âbid (İbn Hacer, Takrîb; 2. tabaka)
+tabaka: tabiin
+vefat: { hicri: 62, miladi: 682, not: "61, 63, 65 ve 72 de denmiştir" }
+bolge: kufe
+ozet: Abdullah b. Mes'ûd'un en önde gelen talebesi; Kûfe fıkıh ve tefsir mektebinin önde gelen temsilcisi.
+biyografi: |
+  Resûlullah hayattayken doğduğu hâlde onu görmemiş (muhadram) büyük tâbiîlerdendir. Kûfe'de Abdullah b. Mes'ûd'un kıraat, tefsir ve fıkıhta en önde gelen talebesi oldu; Ebû Şibl künyesini ona hocası vermiştir.
+
+  Ali b. Ebî Tâlib ile Sıffîn'de bulundu. Esved b. Yezîd'in amcasıdır. Nehaî ve Şa'bî'nin hocası olarak Ebû Hanîfe'ye uzanan Kûfe zincirinin önemli halkalarındandır.
+hocalari:
+  - kisi: abdullah-b-mesud
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Alkame b. Kays\"", url: "https://islamansiklopedisi.org.tr/alkame-b-kays" }
+  - kisi: omer
+    kaynak: *tdv
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: ebud-derda
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+dogrulandi: true

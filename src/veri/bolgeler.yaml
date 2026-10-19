@@ -1,0 +1,76 @@
+# Araştırmanın 7 bölgesi + imamları yerleştirmek için ek bölge (Bağdat).
+# sira: ağ grafiğindeki "zaman × bölge" görünümünde soldan sağa sütun sırası.
+- id: misir
+  isim: Mısır
+  sira: 1
+  renk: "#d6336c"
+  renk_koyu: "#f06595"
+  enlem: 30.01
+  boylam: 31.23
+  aciklama: Fustat merkezli Mısır ilim çevresi. Leys b. Sa'd ile zirveye ulaşan, İmam Şâfiî'nin son yıllarını geçirdiği bölge.
+- id: sam
+  isim: Şam
+  sira: 2
+  renk: "#0c8599"
+  renk_koyu: "#3bc9db"
+  enlem: 33.51
+  boylam: 36.29
+  aciklama: Emevî başkenti Dımaşk ve çevresi. Evzâî mezhebinin doğduğu, uzun süre bu mezhebe bağlı kalan bölge.
+- id: medine
+  isim: Medine
+  sira: 3
+  renk: "#2b8a3e"
+  renk_koyu: "#51cf66"
+  enlem: 24.47
+  boylam: 39.61
+  aciklama: Sünnetin ve "Medine ehlinin ameli"nin merkezi. Tâbiîn döneminde "fukahâ-i seb'a" denilen yedi fakihin şehri, İmam Mâlik'in ilim yurdu.
+- id: mekke
+  isim: Mekke
+  sira: 4
+  renk: "#e8590c"
+  renk_koyu: "#ff922b"
+  enlem: 21.42
+  boylam: 39.83
+  aciklama: İbn Abbâs'ın tefsir ve fıkıh halkasının devam ettiği şehir. Hac mevsimleri bütün bölgelerin âlimlerini burada buluşturdu.
+- id: yemen
+  isim: Yemen
+  sira: 5
+  renk: "#5c940d"
+  renk_koyu: "#a9e34b"
+  enlem: 15.37
+  boylam: 44.19
+  aciklama: San'a ve Cened çevresi. Muâz b. Cebel'in gönderildiği, Tâvûs ve Vehb b. Münebbih ile anılan bölge.
+- id: kufe
+  isim: Kûfe
+  sira: 6
+  renk: "#1c7ed6"
+  renk_koyu: "#4dabf7"
+  enlem: 32.03
+  boylam: 44.40
+  aciklama: Abdullah b. Mes'ûd'un talebeleriyle şekillenen, re'y ekolünün merkezi. Ebû Hanîfe ve Süfyân es-Sevrî'nin şehri.
+- id: basra
+  isim: Basra
+  sira: 7
+  renk: "#7048e8"
+  renk_koyu: "#9775fa"
+  enlem: 30.51
+  boylam: 47.81
+  aciklama: Hasan-ı Basrî ile anılan; hadis, zühd, dil ve kelâm çalışmalarının erken merkezlerinden.
+- id: bagdat
+  isim: Bağdat
+  sira: 8
+  ek: true
+  renk: "#a0612b"
+  renk_koyu: "#e0a46b"
+  enlem: 33.31
+  boylam: 44.36
+  aciklama: 145/762'de kurulan Abbâsî başkenti. Araştırma bölgelerinden değildir; burada yaşamış imamları göstermek için eklenmiştir.
+- id: horasan
+  isim: Horasan
+  sira: 9
+  ek: true
+  renk: "#ae3ec9"
+  renk_koyu: "#da77f2"
+  enlem: 36.76
+  boylam: 66.9
+  aciklama: Belh ve çevresi. Araştırma bölgelerinden değildir; buradan yetişen sonraki dönem muhaddislerini göstermek için eklenmiştir.

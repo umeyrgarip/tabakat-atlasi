@@ -1,0 +1,21 @@
+isim: Süfyân es-Sevrî
+tam_isim: Ebû Abdillâh Süfyân b. Saîd es-Sevrî
+tabaka: etbau-t-tabiin
+dogum: { hicri: 97, miladi: 715, not: "95, 96 ve 98 de denmiştir" }
+vefat: { hicri: 161, miladi: 778 }
+bolge: kufe
+diger_bolgeler: [basra]
+imam: { mezheb: Sevrî, yasayan: false }
+ozet: Hadiste "emîrü'l-mü'minîn" diye anılan Kûfeli muhaddis; Sevrî mezhebinin imamı.
+hocalari:
+  - kisi: amr-b-dinar
+    not: Mekke'de talebesi oldu
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Süfyân es-Sevrî\"", url: "https://islamansiklopedisi.org.tr/sufyan-es-sevri" }
+  - kisi: ibrahim-en-nehai
+    araci: Mansûr b. el-Mu'temir
+    kaynak: *tdv
+  - kisi: hisam-b-urve
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Hişâm b. Urve\"", url: "https://islamansiklopedisi.org.tr/hisam-b-urve" }
+kaynaklar:
+  - *tdv
+dogrulandi: true

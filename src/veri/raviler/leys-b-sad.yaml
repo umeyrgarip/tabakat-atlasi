@@ -1,0 +1,20 @@
+isim: Leys b. Sa'd
+tam_isim: Ebü'l-Hâris el-Leys b. Sa'd el-Fehmî
+tabaka: etbau-t-tabiin
+dogum: { hicri: 94, miladi: 713 }
+vefat: { hicri: 175, miladi: 791 }
+bolge: misir
+imam: { mezheb: Leysî, yasayan: false }
+ozet: Mısır'ın büyük fakihi; Leysî mezhebinin imamı.
+hocalari:
+  - kisi: yezid-b-ebi-habib
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Leys b. Sa'd\"", url: "https://islamansiklopedisi.org.tr/leys-b-sad" }
+  - kisi: ata-b-ebi-rebah
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Leys b. Sa'd\"", url: "https://islamansiklopedisi.org.tr/leys-b-sad" }
+  - kisi: cafer-b-rebia
+    kaynak: { ad: "Mizzî, Tehzîbü'l-Kemâl, 5/29-30 (Ca'fer b. Rebîa)", url: "https://shamela.ws/book/3722/2109" }
+  - kisi: hisam-b-urve
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Hişâm b. Urve\"", url: "https://islamansiklopedisi.org.tr/hisam-b-urve" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Leys b. Sa'd\"", url: "https://islamansiklopedisi.org.tr/leys-b-sad" }
+dogrulandi: true

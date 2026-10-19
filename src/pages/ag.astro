@@ -1,0 +1,23 @@
+---
+import Site from '../layouts/Site.astro';
+import Ag from '../components/Ag.astro';
+import { grafVerisi, veriYukle } from '../lib/veri';
+
+const v = await veriYukle();
+---
+
+<Site baslik="Bağlantı Ağı" genis>
+  <p class="ust-baslik">Hoca → talebe</p>
+  <h1>Bağlantı Ağı</h1>
+  <p class="soluk aciklama">
+    <b>Zaman × Bölge</b> görünümünde her sütun bir bölge, dikey eksen vefat yılıdır (hicrî); ilim yukarıdan aşağıya
+    akar. <b>Kişi seç</b> menüsünden bir isim seçtiğinizde yalnızca onun bağları görünür: doğrudan hocaları ve
+    talebeleri ya da sahâbeden imamlara uzanan bütün zinciri. Bir kişiye tıklayınca bağlantıları vurgulanır, çift
+    tıklayınca sayfası açılır. İki kişi seçip aralarındaki en kısa yolu görebilirsiniz.
+  </p>
+  <Ag veri={grafVerisi(v)} mod="tam" />
+</Site>
+
+<style>
+  .aciklama { max-width: 760px; margin-bottom: 1.5rem; }
+</style>

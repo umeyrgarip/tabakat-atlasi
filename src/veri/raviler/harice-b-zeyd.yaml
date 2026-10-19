@@ -1,0 +1,21 @@
+isim: Hârice b. Zeyd
+tam_isim: Ebû Zeyd Hârice b. Zeyd b. Sâbit el-Ensârî en-Neccârî
+arapca: خارجة بن زيد بن ثابت
+cerh_tadil: Sika, fakih (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 30, miladi: 650, not: "29 da denmiştir" }
+vefat: { hicri: 100, miladi: 718, not: "99 da denmiştir" }
+bolge: medine
+ozet: Vahiy kâtibi Zeyd b. Sâbit'in oğlu; ferâiz ilminde otorite olan Medine fakihi.
+biyografi: |
+  Ensardan sahâbî Zeyd b. Sâbit'in oğludur. Babasının ferâiz birikimini devam ettirdi; divan kâtipliği alanında da uzman sayıldı.
+
+  Ömer b. Abdülazîz'in Medine valiliği sırasında kurduğu on kişilik danışma meclisinde yer aldı. Vefatında Ömer b. Abdülazîz, onun ölümünün İslâm'da bir boşluk açtığını söylemiştir.
+hocalari:
+  - kisi: zeyd-b-sabit
+    not: babasıdır
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Hârice b. Zeyd\"", url: "https://islamansiklopedisi.org.tr/harice-b-zeyd" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/1704" }
+dogrulandi: true

@@ -1,0 +1,10 @@
+isim: Câbir b. Abdullah
+tam_isim: Ebû Abdillâh Câbir b. Abdillâh el-Ensârî
+tabaka: sahabe
+vefat: { hicri: 78, miladi: 697, not: "68, 73 ve 77 de denmiştir" }
+bolge: medine
+ozet: "Medine'de vefat eden son sahâbîlerden, çok hadis rivayet edenlerden."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Câbir b. Abdullah\"", url: "https://islamansiklopedisi.org.tr/cabir-b-abdullah" }
+dogrulandi: true

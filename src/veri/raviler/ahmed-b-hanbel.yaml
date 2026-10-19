@@ -1,0 +1,28 @@
+isim: Ahmed b. Hanbel
+tam_isim: Ebû Abdillâh Ahmed b. Muhammed b. Hanbel eş-Şeybânî
+tabaka: tebe-i-etbai-t-tabiin
+dogum: { hicri: 164, miladi: 780 }
+vefat: { hicri: 241, miladi: 855 }
+bolge: bagdat
+imam: { mezheb: Hanbelî, yasayan: true }
+ozet: Hanbelî mezhebinin imamı; el-Müsned'in müellifi.
+hocalari:
+  - kisi: safii
+    not: ondan fıkıh ve usûl-i fıkıh öğrendi
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ahmed b. Hanbel\"", url: "https://islamansiklopedisi.org.tr/ahmed-b-hanbel" }
+  - kisi: sufyan-b-uyeyne
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ahmed b. Hanbel\"", url: "https://islamansiklopedisi.org.tr/ahmed-b-hanbel" }
+  - kisi: katade-b-diame
+    araci: Ma'mer b. Râşid → Abdürrezzâk es-San'ânî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Abdürrezzâk es-San‘ânî\"", url: "https://islamansiklopedisi.org.tr/abdurrezzak-es-sanani" }
+  - kisi: hemmam-b-munebbih
+    araci: Ma'mer b. Râşid → Abdürrezzâk es-San'ânî
+    not: es-Sahîfetü's-sahîha bu yolla el-Müsned'e girdi
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Hemmâm b. Münebbih\"", url: "https://islamansiklopedisi.org.tr/hemmam-b-munebbih" }
+  - kisi: kuteybe-b-said
+    not: 216'da Bağdat'a geldiğinde ondan hadis dinledi
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Kuteybe b. Saîd\"", url: "https://islamansiklopedisi.org.tr/kuteybe-b-said" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Ahmed b. Hanbel\"", url: "https://islamansiklopedisi.org.tr/ahmed-b-hanbel" }
+  - { ad: "TDV İslâm Ansiklopedisi, \"Abdürrezzâk es-San‘ânî\"", url: "https://islamansiklopedisi.org.tr/abdurrezzak-es-sanani" }
+dogrulandi: true

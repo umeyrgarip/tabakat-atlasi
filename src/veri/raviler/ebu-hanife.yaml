@@ -1,0 +1,28 @@
+isim: Ebû Hanîfe
+tam_isim: Ebû Hanîfe en-Nu'mân b. Sâbit
+tabaka: etbau-t-tabiin
+dogum: { hicri: 80, miladi: 699 }
+vefat: { hicri: 150, miladi: 767 }
+bolge: kufe
+diger_bolgeler: [bagdat]
+imam: { mezheb: Hanefî, yasayan: true }
+ozet: Hanefî mezhebinin imamı.
+hocalari:
+  - kisi: katade-b-diame
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Katâde b. Diâme\"", url: "https://islamansiklopedisi.org.tr/katade-b-diame" }
+  - kisi: ibrahim-en-nehai
+    araci: Hammâd b. Ebî Süleymân
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Ebû Hanîfe\"", url: "https://islamansiklopedisi.org.tr/ebu-hanife" }
+  - kisi: amir-es-sabi
+    araci: Hammâd b. Ebî Süleymân
+    not: Şa'bî onu gençliğinde ilme teşvik etmiştir
+    kaynak: *tdv
+  - kisi: ata-b-ebi-rebah
+    not: seyahatlerinde bizzat hadis dinledi
+    kaynak: *tdv
+  - kisi: ikrime
+    not: seyahatlerinde bizzat hadis dinledi
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+dogrulandi: true

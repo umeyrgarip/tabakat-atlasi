@@ -1,0 +1,11 @@
+isim: Abdullah b. Mes'ûd
+tam_isim: Ebû Abdirrahmân Abdullah b. Mes'ûd el-Hüzelî
+tabaka: sahabe
+vefat: { hicri: 32, miladi: 652, not: "mîlâdî 652-53; 33 de denmiştir" }
+bolge: kufe
+diger_bolgeler: [medine]
+ozet: "Kûfe fıkıh ekolünün kurucusu sayılan sahâbî."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Abdullah b. Mes'ûd\"", url: "https://islamansiklopedisi.org.tr/abdullah-b-mesud" }
+dogrulandi: true

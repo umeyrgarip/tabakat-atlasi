@@ -1,0 +1,35 @@
+isim: İkrime
+tam_isim: Ebû Abdillâh İkrime b. Abdillâh el-Berberî, mevlâ İbn Abbâs
+arapca: عكرمة مولى ابن عباس
+cerh_tadil: Sika, sebt, tefsir âlimi; İbn Ömer'in onu yalanladığı da bid'atçı olduğu da sabit değildir (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 21, miladi: 642, not: "muhtemel tarih" }
+vefat: { hicri: 105, miladi: 723, not: "104, 106 ve 107 de denmiştir" }
+bolge: mekke
+ozet: İbn Abbâs'ın azatlısı; tefsiri en iyi bilen tâbiîlerden, güvenilirliği tartışılmış bir âlim.
+biyografi: |
+  Aslen Mağribli bir Berberîdir; Basra valisi iken İbn Abbâs'a hediye edildi. Kırk yıl kadar süren tahsili boyunca İbn Abbâs ona Kur'an, fıkıh ve sünneti öğretti; yetiştiğini görünce onu fetva vermekle görevlendirdi.
+
+  Katâde ve Ebû Hâtim, İbn Abbâs'ın talebeleri arasında tefsiri en iyi bilenin İkrime olduğunu söyler. Horasan'dan Mağrib'e kadar pek çok bölgeyi dolaştı. Hadisteki yeri tartışmalıdır: pek çok münekkit onu güvenilir sayarken İmam Mâlik ondan hadis alınmamasını istemiştir.
+hocalari:
+  - kisi: ibn-abbas
+    not: azatlısıdır; kırk yıl yanında kaldı
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"İkrime el-Berberî\"", url: "https://islamansiklopedisi.org.tr/ikrime-el-berberi" }
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: abdullah-b-amr
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: ukbe-b-amir
+    kaynak: *tdv
+  - kisi: ali
+    ihtilafli: true
+    not: Ali b. Ebî Tâlib'den rivayetinin mürsel olabileceği belirtilir
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/4458" }
+dogrulandi: true

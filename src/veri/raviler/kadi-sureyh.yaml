@@ -1,0 +1,31 @@
+isim: Kadı Şüreyh
+tam_isim: Ebû Ümeyye Şüreyh b. el-Hâris el-Kindî
+arapca: القاضي شريح بن الحارث
+cerh_tadil: Sika; sahâbî olduğu da söylenmiştir (İbn Hacer, Takrîb; 2. tabaka)
+tabaka: tabiin
+vefat: { hicri: 80, miladi: 699, not: "78 de denmiştir; 76 ile 99 arasında farklı tarihler verilmiştir" }
+bolge: kufe
+ozet: Kûfe ve Basra'da kadılık yapan, İslâm yargı tarihinin sembol ismi.
+biyografi: |
+  Yemen'de yaşayan İran asıllı bir aileden gelir. Resûlullah'ı göremeyen (muhadram) tâbiîlerdendir; Ebû Bekir döneminde Medine'ye göç etti.
+
+  Yaygın rivayete göre Ömer b. el-Hattâb tarafından Kûfe kadılığına getirildi ve aralıklarla yaklaşık altmış yıl bu görevde kaldı. Bir dönem Basra kadılığı da yaptığı için "kādı'l-mısreyn" diye anılır.
+hocalari:
+  - kisi: omer
+    not: Kûfe kadılığına tayin ettiği rivayet edilir; tayin tarihi ihtilaflıdır
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Kādî Şüreyh\"", url: "https://islamansiklopedisi.org.tr/kadi-sureyh" }
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: abdullah-b-mesud
+    not: meclislerine az katıldığı nakledilir
+    kaynak: *tdv
+  - kisi: muaz-b-cebel
+    not: İslâm'ı Yemen'de ondan öğrendi
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+dogrulandi: true

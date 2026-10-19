@@ -1,0 +1,11 @@
+isim: Enes b. Mâlik
+tam_isim: Ebû Hamza Enes b. Mâlik el-Ensârî
+tabaka: sahabe
+vefat: { hicri: 93, miladi: 712, not: "mîlâdî 711-12; Basra'da vefat eden son sahâbî" }
+bolge: basra
+diger_bolgeler: [medine]
+ozet: "Resûlullah'ın hizmetkârı; Basra'da vefat eden son sahâbîlerden."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Enes b. Mâlik\"", url: "https://islamansiklopedisi.org.tr/enes-b-malik" }
+dogrulandi: true

@@ -1,0 +1,96 @@
+---
+import Site from '../layouts/Site.astro';
+import { ilimBagi, tarihYaz, veriYukle, yol, type Ravi } from '../lib/veri';
+
+const v = await veriYukle();
+const arastirmaBolgeleri = v.bolgeler.filter((b) => !b.data.ek);
+const sayilar = [
+  { n: v.raviler.filter((r) => r.data.tabaka === 'sahabe').length, ad: 'sahâbî' },
+  { n: v.liste.length, ad: 'tâbiî âlim' },
+  { n: arastirmaBolgeleri.length, ad: 'ilim bölgesi' },
+  { n: v.imamlar.length, ad: 'mezheb imamı' },
+  { n: v.kenarlar.filter(ilimBagi).length, ad: 'bağlantı' },
+];
+const bolgedekiler = (id: string) => v.liste.filter((r) => r.data.bolge === id || r.data.diger_bolgeler.includes(id));
+const dortMezheb = v.imamlar.filter((r) => r.data.imam!.yasayan);
+const digerMezhepler = v.imamlar.filter((r) => !r.data.imam!.yasayan);
+const imamOzet = (r: Ravi) =>
+  `${tarihYaz(r.data.dogum)} – ${tarihYaz(r.data.vefat)} · ${v.bolge.get(r.data.bolge)!.data.isim}`;
+---
+
+<Site genis>
+  <section class="giris">
+    <p class="ust-baslik">Sahâbe · tâbiîn · imamlar</p>
+    <h1>Tabakât Atlası</h1>
+    <p class="alt-baslik">Sahâbeden imamlara, yedi ilim merkezinde ilmin aktarımı</p>
+    <p class="tanitim">
+      Sahâbe, tâbiîn ve sonraki kuşaklardan âlimlerin hayatlarını, kimden ilim aldıklarını ve bu ilmin
+      imamlara hangi yollarla ulaştığını kuşak kuşak ve bölge bölge izlemek için hazırlanmış bir çalışma.
+    </p>
+    <p class="koken sans">
+      Bu çalışma, Islah-ı Medaris Halkası'nda verilen bir araştırma ödevi sonucunda oluşturulmuştur.
+    </p>
+    <div class="eylem">
+      <a class="dugme ana" href={yol('ag/')}>Bağlantı ağını aç →</a>
+      <a class="dugme" href={yol('raviler/')}>Bütün râvîler</a>
+    </div>
+    <dl class="sayilar sans">
+      {sayilar.map((s) => <div><dt>{s.ad}</dt><dd>{s.n}</dd></div>)}
+    </dl>
+  </section>
+
+  <h2>Bölgeler</h2>
+  <div class="izgara">
+    {
+      arastirmaBolgeleri.map((b) => (
+        <a class="kart bolge-kart" href={yol(`bolgeler/${b.id}/`)} style={`--renk:${b.data.renk};--renk-koyu:${b.data.renk_koyu}`}>
+          <h3><span class="nokta" /> {b.data.isim}</h3>
+          <p class="isimler">{bolgedekiler(b.id).map((r) => r.data.isim).join(' · ')}</p>
+        </a>
+      ))
+    }
+  </div>
+
+  <h2>Dört mezheb imamı</h2>
+  <div class="izgara">
+    {
+      dortMezheb.map((r) => (
+        <a class="kart imam-kart" href={yol(`raviler/${r.id}/`)}>
+          <span class="etiket imam">{r.data.imam!.mezheb}</span>
+          <h3>{r.data.isim}</h3>
+          <p class="soluk sans">{imamOzet(r)}</p>
+        </a>
+      ))
+    }
+  </div>
+
+  <h2>Günümüze ulaşmayan mezheblerin imamları</h2>
+  <div class="izgara">
+    {
+      digerMezhepler.map((r) => (
+        <a class="kart imam-kart" href={yol(`raviler/${r.id}/`)}>
+          <span class="etiket imam kesik">{r.data.imam!.mezheb}</span>
+          <h3>{r.data.isim}</h3>
+          <p class="soluk sans">{imamOzet(r)}</p>
+        </a>
+      ))
+    }
+  </div>
+</Site>
+
+<style>
+  .giris { padding: 2rem 0 1rem; max-width: 760px; }
+  .alt-baslik { font-size: 1.3rem; font-weight: 500; color: var(--vurgu); margin: 0.2rem 0 0; }
+  .tanitim { font-size: 1.2rem; color: var(--murekkep-2); margin: 0.5rem 0 0.6rem; }
+  .koken { font-size: 0.85rem; color: var(--murekkep-2); margin: 0 0 1.5rem; padding-left: 10px; border-left: 2px solid var(--cizgi); }
+  .eylem { display: flex; flex-wrap: wrap; gap: 10px; }
+  .sayilar { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin: 2.2rem 0 0; }
+  .sayilar div { display: flex; flex-direction: column-reverse; }
+  .sayilar dd { margin: 0; font-family: var(--sans); font-size: 2.2rem; font-weight: 600; line-height: 1; }
+  .sayilar dt { color: var(--murekkep-2); font-size: 0.85rem; margin-top: 4px; }
+  .imam-kart h3 { margin-top: 0.6rem; font-size: 1.25rem; }
+  .imam-kart p { margin: 0.2rem 0 0; font-size: 0.85rem; }
+  .kesik { border-style: dashed; }
+  .bolge-kart h3 { display: flex; align-items: center; gap: 8px; }
+  .isimler { margin: 0.4rem 0 0; font-size: 0.92rem; line-height: 1.55; color: var(--murekkep-2); }
+</style>

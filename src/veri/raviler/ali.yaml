@@ -1,0 +1,11 @@
+isim: Ali b. Ebî Tâlib
+tam_isim: Ebü'l-Hasen Alî b. Ebî Tâlib
+tabaka: sahabe
+vefat: { hicri: 40, miladi: 661 }
+bolge: kufe
+diger_bolgeler: [medine]
+ozet: "Dördüncü halife; hilâfet merkezini Kûfe'ye taşıyan sahâbî."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Ali\"", url: "https://islamansiklopedisi.org.tr/ali" }
+dogrulandi: true

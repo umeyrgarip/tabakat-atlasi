@@ -1,0 +1,96 @@
+---
+import Site from '../../layouts/Site.astro';
+import RaviKart from '../../components/RaviKart.astro';
+import { ilimBagi, veriYukle, yol } from '../../lib/veri';
+
+export async function getStaticPaths() {
+  const v = await veriYukle();
+  return v.bolgeler.map((b) => ({ params: { id: b.id }, props: { id: b.id } }));
+}
+
+const v = await veriYukle();
+const bolge = v.bolge.get(Astro.props.id)!;
+const buradaMi = (id: string) => {
+  const r = v.ravi.get(id)!.data;
+  return r.bolge === bolge.id;
+};
+const anaBolgede = v.raviler.filter((r) => r.data.bolge === bolge.id);
+const ugrayanlar = v.raviler.filter((r) => r.data.diger_bolgeler.includes(bolge.id));
+
+// Bölge dışına giden ve dışarıdan gelen bağlantılar
+const giden = v.kenarlar.filter((k) => ilimBagi(k) && buradaMi(k.hoca) && !buradaMi(k.talebe));
+const gelen = v.kenarlar.filter((k) => ilimBagi(k) && !buradaMi(k.hoca) && buradaMi(k.talebe));
+const isim = (id: string) => v.ravi.get(id)!.data.isim;
+const bolgeAdi = (id: string) => v.bolge.get(v.ravi.get(id)!.data.bolge)!.data.isim;
+---
+
+<Site baslik={bolge.data.isim} genis>
+  <a href={yol('bolgeler/')} class="geri sans">← Bölgeler</a>
+  <header style={`--renk:${bolge.data.renk};--renk-koyu:${bolge.data.renk_koyu}`}>
+    <h1><span class="nokta buyuk" /> {bolge.data.isim}</h1>
+    <p class="aciklama">{bolge.data.aciklama}</p>
+    <p class="sans"><a href={yol(`ag/?bolge=${bolge.id}`)}>Bu bölgeye gelen ve giden ilmi bağlantı ağında göster →</a></p>
+  </header>
+
+  <h2>Bu bölgenin râvîleri</h2>
+  {anaBolgede.length === 0 && <p class="soluk">Bu bölgeye kayıtlı râvî yok.</p>}
+  <div class="izgara">
+    {anaBolgede.map((r) => <RaviKart ravi={r} bolge={bolge} />)}
+  </div>
+
+  {
+    ugrayanlar.length > 0 && (
+      <>
+        <h2>Bu bölgede bulunmuş diğerleri</h2>
+        <div class="izgara">
+          {ugrayanlar.map((r) => <RaviKart ravi={r} bolge={v.bolge.get(r.data.bolge)!} />)}
+        </div>
+      </>
+    )
+  }
+
+  <div class="akis">
+    <section>
+      <h2>Buradan dışarı</h2>
+      <p class="soluk sans kucuk">Bu bölgenin hocalarından ilim alan, başka bölgelerdeki talebeler</p>
+      {giden.length === 0 && <p class="soluk">Kayıt yok.</p>}
+      <ul>
+        {
+          giden.map((k) => (
+            <li>
+              <a href={yol(`raviler/${k.hoca}/`)}>{isim(k.hoca)}</a> → <a href={yol(`raviler/${k.talebe}/`)}>{isim(k.talebe)}</a>
+              <span class="soluk sans"> ({bolgeAdi(k.talebe)}{k.araci ? `, ${k.araci} üzerinden` : ''})</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section>
+      <h2>Dışarıdan buraya</h2>
+      <p class="soluk sans kucuk">Başka bölgelerden bu bölgedekilere ilim verenler</p>
+      {gelen.length === 0 && <p class="soluk">Kayıt yok.</p>}
+      <ul>
+        {
+          gelen.map((k) => (
+            <li>
+              <a href={yol(`raviler/${k.hoca}/`)}>{isim(k.hoca)}</a>
+              <span class="soluk sans"> ({bolgeAdi(k.hoca)}{k.araci ? `, ${k.araci} üzerinden` : ''})</span> →{' '}
+              <a href={yol(`raviler/${k.talebe}/`)}>{isim(k.talebe)}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Site>
+
+<style>
+  .geri { font-size: 0.85rem; text-decoration: none; }
+  h1 { display: flex; align-items: center; gap: 14px; margin-top: 1rem; }
+  .buyuk { width: 18px; height: 18px; }
+  .aciklama { font-size: 1.15rem; color: var(--murekkep-2); max-width: 720px; }
+  .akis { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 2.5rem; }
+  .akis ul { padding-left: 1.1rem; }
+  .akis li { margin: 0.35rem 0; }
+  .kucuk { font-size: 0.85rem; margin-top: -0.6rem; }
+</style>

@@ -1,0 +1,20 @@
+isim: Süfyân b. Uyeyne
+tam_isim: Ebû Muhammed Süfyân b. Uyeyne el-Hilâlî
+tabaka: etbau-t-tabiin
+dogum: { hicri: 107, miladi: 725 }
+vefat: { hicri: 198, miladi: 814 }
+bolge: mekke
+diger_bolgeler: [kufe]
+imam: { mezheb: Süfyân b. Uyeyne, yasayan: false }
+ozet: Mekke'nin büyük muhaddisi; Şâfiî ve Ahmed b. Hanbel'in hocası.
+hocalari:
+  - kisi: amr-b-dinar
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Süfyân b. Uyeyne\"", url: "https://islamansiklopedisi.org.tr/sufyan-b-uyeyne" }
+  - kisi: mucahid-b-cebr
+    araci: İbn Ebî Necîh
+    kaynak: { ad: "Zehebî, Siyeru a'lâmi'n-nübelâ, 6/125 (İbn Ebî Necîh)", url: "https://shamela.ws/book/10906/4375" }
+  - kisi: hisam-b-urve
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Hişâm b. Urve\"", url: "https://islamansiklopedisi.org.tr/hisam-b-urve" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Süfyân b. Uyeyne\"", url: "https://islamansiklopedisi.org.tr/sufyan-b-uyeyne" }
+dogrulandi: true

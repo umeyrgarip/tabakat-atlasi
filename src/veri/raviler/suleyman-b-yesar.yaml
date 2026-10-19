@@ -1,0 +1,30 @@
+isim: Süleymân b. Yesâr
+tam_isim: Ebû Eyyûb Süleymân b. Yesâr el-Hilâlî el-Medenî
+arapca: سليمان بن يسار
+cerh_tadil: Sika, fâzıl; yedi fakihten biri (İbn Hacer, Takrîb; 3. tabakanın büyüklerinden)
+tabaka: tabiin
+dogum: { hicri: 34, miladi: 654, not: "24 ve 27 de denmiştir" }
+vefat: { hicri: 107, miladi: 725, not: "94 ile 110 arasında farklı tarihler verilmiştir" }
+bolge: medine
+ozet: Resûlullah'ın hanımı Meymûne'nin azatlısı; Medine'nin yerleşik uygulamalarını en iyi bilen fakihlerden.
+biyografi: |
+  İran asıllı bir ailedendir; babası ve kardeşleri gibi Resûlullah'ın hanımı Meymûne'nin azatlısıydı. Saîd b. el-Müseyyeb, onun zamanının en bilgili kişisi olduğunu söyleyerek bazı soruları ona yönlendirirdi.
+
+  Ömer b. Abdülazîz'in danışma meclisinde bulundu ve Medine çarşısının düzeniyle görevlendirildi. Özellikle Medine'nin yerleşik uygulamaları (sünen-i mâziye) hakkındaki bilgisiyle öne çıkar.
+hocalari:
+  - kisi: aise
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Süleyman b. Yesâr\"", url: "https://islamansiklopedisi.org.tr/suleyman-b-yesar" }
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: urve-b-ez-zubeyr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/2642" }
+dogrulandi: true

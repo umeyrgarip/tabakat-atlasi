@@ -1,0 +1,25 @@
+isim: Ebû Bekr b. Abdirrahmân
+tam_isim: Ebû Abdirrahmân Ebû Bekr b. Abdirrahmân b. el-Hâris b. Hişâm el-Mahzûmî
+arapca: أبو بكر بن عبد الرحمن بن الحارث
+cerh_tadil: Sika, fakih, âbid (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+vefat: { hicri: 94, miladi: 713, not: "93 ve 95 de denmiştir" }
+bolge: medine
+ozet: "\"Kureyş'in râhibi\" diye anılan Medine fakihi; bir görüşe göre yedi fakihten biri."
+biyografi: |
+  Ömer b. el-Hattâb'ın halifeliği döneminde doğdu; Kureyş'in Mahzûm koluna mensuptur. Hadis ve fıkıhta devrinin sayılı otoriteleri arasına girdi; rivayetlerinin çoğu kazâ ve ahkâmla ilgilidir.
+
+  Çok oruç tutup namaz kıldığı için "Kureyş'in râhibi" lakabıyla anıldı; ömrünün sonlarına doğru gözlerini kaybetti. Yedi fakihin yedincisi konusunda ihtilaf bulunduğundan, bir görüşe göre bu yedi fakihten biridir.
+hocalari:
+  - kisi: ebu-hureyre
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Ebû Bekir b. Abdurrahman\"", url: "https://islamansiklopedisi.org.tr/ebu-bekir-b-abdurrahman" }
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: haris-b-hisam
+    tur: akrabalik
+    not: dedesidir
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebû Bekir b. Abdurrahman\"", url: "https://islamansiklopedisi.org.tr/ebu-bekir-b-abdurrahman" }
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/224" }
+dogrulandi: true

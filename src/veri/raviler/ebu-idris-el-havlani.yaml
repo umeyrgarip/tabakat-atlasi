@@ -1,0 +1,28 @@
+isim: Ebû İdrîs el-Havlânî
+tam_isim: Ebû İdrîs Âizullah b. Abdillâh b. Amr el-Havlânî
+arapca: أبو إدريس الخولاني
+cerh_tadil: Sika (Ebû Hâtim, Nesâî, İbn Sa'd); Saîd b. Abdülazîz'e göre Ebü'd-Derdâ'dan sonra Şam'ın âlimi
+tabaka: tabiin
+dogum: { hicri: 8, miladi: 630, not: "Huneyn gazvesinin yapıldığı yılın sonları" }
+vefat: { hicri: 80, miladi: 699 }
+bolge: sam
+ozet: Dımaşk kadısı ve vaizi; Ebü'd-Derdâ'dan sonra Şam'ın âlimi sayılan tâbiî.
+biyografi: |
+  Dımaşk köylerinden Havlân'da doğdu. Dımaşk'ın fethinden sonra oraya yerleşen sahâbîlerden ilim aldı; Ömer b. el-Hattâb, Ebü'd-Derdâ ve Ebû Hüreyre bunlar arasındadır. Muâz b. Cebel'den hadis işitip işitmediği ihtilaflıdır.
+
+  Muâviye döneminde Dımaşk kadılığına getirildi, Yezîd ve Abdülmelik dönemlerinde de bu görevde kaldı. Vaizliği kadılıktan daha çok severdi.
+hocalari:
+  - kisi: ebud-derda
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Ebû İdrîs el-Havlânî\"", url: "https://islamansiklopedisi.org.tr/ebu-idris-el-havlani" }
+  - kisi: omer
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: muaz-b-cebel
+    ihtilafli: true
+    not: Muâz'dan işitip işitmediği ihtilaflıdır; Ebû Hâtim ve Ebû Zür'a işitmediğini söyler
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/3024" }
+dogrulandi: true

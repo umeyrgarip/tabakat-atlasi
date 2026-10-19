@@ -1,0 +1,17 @@
+isim: Dâvûd ez-Zâhirî
+tam_isim: Ebû Süleymân Dâvûd b. Alî b. Halef ez-Zâhirî
+tabaka: sonraki
+dogum: { hicri: 200, miladi: 815, not: "202 de denmiştir" }
+vefat: { hicri: 270, miladi: 884 }
+bolge: bagdat
+diger_bolgeler: [kufe, basra]
+imam: { mezheb: Zâhirî, yasayan: false }
+ozet: Zâhirî mezhebinin kurucusu.
+hocalari:
+  - kisi: safii
+    araci: Ebû Sevr
+    not: Şâfiî'yi doğrudan hocası sayan rivayet, Şâfiî vefat ettiğinde Dâvûd dört yaşında olduğu için mümkün görülmez
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Dâvûd ez-Zâhirî\"", url: "https://islamansiklopedisi.org.tr/davud-ez-zahiri" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Dâvûd ez-Zâhirî\"", url: "https://islamansiklopedisi.org.tr/davud-ez-zahiri" }
+dogrulandi: true

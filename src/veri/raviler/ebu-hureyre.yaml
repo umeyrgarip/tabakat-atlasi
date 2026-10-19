@@ -1,0 +1,10 @@
+isim: Ebû Hüreyre
+tam_isim: Ebû Hüreyre Abdurrahmân b. Sahr ed-Devsî
+tabaka: sahabe
+vefat: { hicri: 58, miladi: 678, not: "57 ve 59 da denmiştir" }
+bolge: medine
+ozet: "En çok hadis rivayet eden sahâbî."
+hocalari: []
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Ebû Hüreyre\"", url: "https://islamansiklopedisi.org.tr/ebu-hureyre" }
+dogrulandi: true

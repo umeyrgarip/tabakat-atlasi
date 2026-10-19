@@ -1,0 +1,76 @@
+---
+import Site from '../../layouts/Site.astro';
+import { ilimBagi, veriYukle, yol } from '../../lib/veri';
+
+const v = await veriYukle();
+// Hoca bölgesi × talebe bölgesi: ilim hangi bölgeden hangisine aktı?
+const sayac = new Map<string, number>();
+for (const k of v.kenarlar.filter(ilimBagi)) {
+  const a = v.ravi.get(k.hoca)!.data.bolge;
+  const b = v.ravi.get(k.talebe)!.data.bolge;
+  sayac.set(`${a}>${b}`, (sayac.get(`${a}>${b}`) ?? 0) + 1);
+}
+const enCok = Math.max(...sayac.values());
+const kisiler = (id: string) => v.raviler.filter((r) => r.data.bolge === id);
+---
+
+<Site baslik="Bölgeler" genis>
+  <p class="ust-baslik">Yedi ilim merkezi</p>
+  <h1>Bölgeler</h1>
+
+  <div class="izgara">
+    {
+      v.bolgeler.filter((b) => !b.data.ek).map((b) => (
+        <a class="kart" href={yol(`bolgeler/${b.id}/`)} style={`--renk:${b.data.renk};--renk-koyu:${b.data.renk_koyu}`}>
+          <h3 class="baslik"><span class="nokta" /> {b.data.isim}</h3>
+          <p class="soluk">{b.data.aciklama}</p>
+        </a>
+      ))
+    }
+  </div>
+
+  <h2>Bölgeler arası ilim aktarımı</h2>
+  <p class="soluk">
+    Satır, hocanın bölgesini; sütun, talebenin bölgesini gösterir. Sayılar o iki bölge arasındaki hoca-talebe
+    bağlantılarıdır. Köşegen, bölge içi aktarımdır. (Kişinin ana bölgesi esas alınmıştır.)
+  </p>
+  <div class="tablo-kap">
+    <table class="sans">
+      <thead>
+        <tr>
+          <th>Hoca ↓ / Talebe →</th>
+          {v.bolgeler.map((b) => <th>{b.data.isim}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {
+          v.bolgeler.map((a) => (
+            <tr>
+              <th>{a.data.isim} <span class="soluk">({kisiler(a.id).length})</span></th>
+              {v.bolgeler.map((b) => {
+                const n = sayac.get(`${a.id}>${b.id}`) ?? 0;
+                return (
+                  <td style={n ? `--yogunluk:${(0.15 + 0.85 * (n / enCok)).toFixed(2)}` : undefined} class:list={{ dolu: n > 0, kosegen: a.id === b.id }}>
+                    {n || ''}
+                  </td>
+                );
+              })}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Site>
+
+<style>
+  .baslik { display: flex; align-items: center; gap: 8px; }
+  .kart p { font-size: 0.92rem; line-height: 1.5; margin: 0.4rem 0 0; }
+  .tablo-kap { overflow-x: auto; margin-top: 1rem; }
+  table { border-collapse: collapse; font-size: 0.85rem; min-width: 640px; }
+  th, td { border: 1px solid var(--cizgi); padding: 8px 10px; text-align: center; }
+  th { font-weight: 500; background: var(--kagit-2); white-space: nowrap; }
+  tbody th { text-align: left; }
+  td.dolu { background: color-mix(in srgb, var(--vurgu) calc(var(--yogunluk) * 100%), var(--kart)); color: var(--kagit); font-weight: 600; }
+  td.kosegen:not(.dolu) { background: var(--kagit-2); }
+</style>

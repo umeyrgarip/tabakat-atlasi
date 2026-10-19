@@ -1,0 +1,46 @@
+isim: Mâlik b. Enes
+tam_isim: Ebû Abdillâh Mâlik b. Enes el-Asbahî
+tabaka: etbau-t-tabiin
+dogum: { hicri: 93, miladi: 712, not: "90 ile 98 arasında da denmiştir" }
+vefat: { hicri: 179, miladi: 795 }
+bolge: medine
+imam: { mezheb: Mâlikî, yasayan: true }
+ozet: Mâlikî mezhebinin imamı; Muvatta'ın müellifi.
+hocalari:
+  - kisi: mekhul
+    araci: Rebîatü'r-Re'y
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mekhûl b. Ebû Müslim\"", url: "https://islamansiklopedisi.org.tr/mekhul-b-ebu-muslim" }
+  - kisi: vehb-b-munebbih
+    araci: Rebîatü'r-Re'y
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Vehb b. Münebbih\"", url: "https://islamansiklopedisi.org.tr/vehb-b-munebbih" }
+  - kisi: amr-b-dinar
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Amr b. Dînâr\"", url: "https://islamansiklopedisi.org.tr/amr-b-dinar" }
+  - kisi: said-b-el-museyyeb
+    araci: İbn Şihâb ez-Zührî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+  - kisi: hisam-b-urve
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Hişâm b. Urve\"", url: "https://islamansiklopedisi.org.tr/hisam-b-urve" }
+  - kisi: kasim-b-muhammed
+    araci: Rebîatü'r-Re'y
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+  - kisi: ubeydullah-b-abdullah
+    araci: İbn Şihâb ez-Zührî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+  - kisi: harice-b-zeyd
+    araci: İbn Şihâb ez-Zührî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+  - kisi: suleyman-b-yesar
+    araci: İbn Şihâb ez-Zührî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+  - kisi: ebu-bekr-b-abdirrahman
+    araci: İbn Şihâb ez-Zührî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+  - kisi: ebu-idris-el-havlani
+    araci: İbn Şihâb ez-Zührî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"Ebû İdrîs el-Havlânî\"", url: "https://islamansiklopedisi.org.tr/ebu-idris-el-havlani" }
+  - kisi: muhammed-b-sirin
+    araci: Eyyûb es-Sahtiyânî
+    kaynak: { ad: "TDV İslâm Ansiklopedisi, \"İbn Sîrîn\"", url: "https://islamansiklopedisi.org.tr/ibn-sirin" }
+kaynaklar:
+  - { ad: "TDV İslâm Ansiklopedisi, \"Mâlik b. Enes\"", url: "https://islamansiklopedisi.org.tr/malik-b-enes" }
+dogrulandi: true

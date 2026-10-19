@@ -1,0 +1,26 @@
+isim: Kâsım b. Muhammed
+tam_isim: Ebû Muhammed el-Kâsım b. Muhammed b. Ebî Bekr es-Sıddîk et-Teymî
+arapca: القاسم بن محمد بن أبي بكر
+cerh_tadil: Sika (İbn Hacer, Takrîb; 3. tabakanın büyüklerinden)
+tabaka: tabiin
+vefat: { hicri: 107, miladi: 725, not: "İbn Hacer'e göre 106; 101 ile 112 arasında farklı tarihler verilmiştir" }
+bolge: medine
+ozet: Ebû Bekir'in torunu; halası Âişe'nin yanında yetişen Medine fakihi.
+biyografi: |
+  Osman b. Affân'ın halifeliği döneminde doğdu. Babası öldürülünce bir müddet halası Âişe'nin yanında kaldı ve ondan çok sayıda rivayet aldı.
+
+  Mescid-i Nebevî'de ders halkası vardı. Bilmediği soruları cevaplamaz, görüşünü belirttiğinde bunun kendi görüşü olduğunu vurgulardı. Ömrünün son yıllarında gözlerini kaybetti.
+hocalari:
+  - kisi: aise
+    not: halasıdır; yanında büyüdü
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Kāsım b. Muhammed b. Ebû Bekir\"", url: "https://islamansiklopedisi.org.tr/kasim-b-muhammed-b-ebu-bekir" }
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: abdullah-b-amr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/5159" }
+dogrulandi: true

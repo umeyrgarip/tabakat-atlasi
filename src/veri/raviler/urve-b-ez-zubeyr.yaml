@@ -1,0 +1,33 @@
+isim: Urve b. ez-Zübeyr
+tam_isim: Ebû Abdillâh Urve b. ez-Zübeyr b. el-Avvâm el-Esedî
+arapca: عروة بن الزبير
+cerh_tadil: Sika, fakih, meşhur (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 23, miladi: 643 }
+vefat: { hicri: 94, miladi: 713, not: "91 ile 101 arasında farklı tarihler verilmiştir" }
+bolge: medine
+ozet: Âişe'nin yeğeni ve rivayetlerinin baş râvîsi; megâzî ilminin kurucusu sayılan Medine fakihi.
+biyografi: |
+  Zübeyr b. Avvâm ile Esmâ bint Ebî Bekr'in oğludur. Hadis ve fıkıhta özellikle teyzesi Âişe'den yararlandı. Ailesinin karıştığı siyasî hadiselerden uzak durarak ilimle meşgul oldu.
+
+  Megâzî alanında ilk eseri yazan kişi olarak bu ilmin kurucusu kabul edilir. "Senetü'l-fukahâ" denilen 94 yılında vefat etti.
+hocalari:
+  - kisi: aise
+    not: teyzesidir
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Urve b. Zübeyr\"", url: "https://islamansiklopedisi.org.tr/urve-b-zubeyr" }
+  - kisi: ali
+    kaynak: *tdv
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: ibn-abbas
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: abdullah-b-amr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/4361" }
+dogrulandi: true

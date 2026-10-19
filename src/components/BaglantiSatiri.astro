@@ -1,0 +1,44 @@
+---
+import { kaynakAdi, kaynakUrl, yol, type Kenar } from '../lib/veri';
+
+interface Props {
+  kenar: Kenar;
+  kisi: string; // satırda gösterilecek karşı taraf (id)
+  isim: string;
+}
+const { kenar: k, kisi, isim } = Astro.props;
+---
+
+<li>
+  <a href={yol(`raviler/${kisi}/`)}>{isim}</a>
+  {k.araci && <span class="rozet kesik sans">{k.araci} üzerinden</span>}
+  {k.tur === 'fikih' && <span class="rozet sans">fıkhî</span>}
+  {k.ihtilafli && <span class="rozet ihtilaf sans" title="Bu bağlantı kaynaklarda tartışmalıdır">ihtilaflı</span>}
+  {k.not && <span class="soluk"> · {k.not}</span>}
+  {!k.kaynak && k.tur !== 'akrabalik' && <span class="rozet bekliyor sans" title="Bu bağlantı için henüz kaynak gösterilmedi">kaynak bekliyor</span>}
+  {
+    k.kaynak && (
+      <span class="kaynak sans">
+        {kaynakUrl(k.kaynak) ? (
+          <a href={kaynakUrl(k.kaynak)} target="_blank" rel="noopener" title={kaynakAdi(k.kaynak)}>kaynak ↗</a>
+        ) : (
+          <span title={kaynakAdi(k.kaynak)}>kaynak: {kaynakAdi(k.kaynak)}</span>
+        )}
+      </span>
+    )
+  }
+</li>
+
+<style>
+  li { margin: 0.3rem 0; }
+  .rozet {
+    display: inline-block; margin-left: 6px; font-size: 0.72rem; color: var(--murekkep-2);
+    border: 1px solid var(--cizgi); border-radius: 999px; padding: 0 8px;
+  }
+  .kesik { border-style: dashed; }
+  .ihtilaf { color: var(--ihtilaf); border-color: var(--ihtilaf); border-style: dashed; }
+  .bekliyor { color: var(--murekkep-3, var(--murekkep-2)); border-style: dotted; }
+  .kaynak { margin-left: 6px; font-size: 0.75rem; }
+  .kaynak a { color: var(--murekkep-2); }
+  .kaynak a:hover { color: var(--vurgu); }
+</style>

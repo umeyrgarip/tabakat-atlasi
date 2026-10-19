@@ -1,0 +1,32 @@
+isim: Tâvûs b. Keysân
+tam_isim: Ebû Abdirrahmân Tâvûs b. Keysân el-Yemânî el-Hemdânî
+arapca: طاووس بن كيسان
+cerh_tadil: Sika, fakih, fâzıl (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+dogum: { hicri: 33, miladi: 653 }
+vefat: { hicri: 106, miladi: 725, not: "100 ile 106 arasında ve 110'dan sonra da denmiştir" }
+bolge: yemen
+diger_bolgeler: [mekke]
+ozet: Hem Yemen'in hem Mekke'nin fakihleri arasında sayılan, İbn Abbâs'ın seçkin talebesi.
+biyografi: |
+  Yemen'de doğdu ve Cened şehrinde yaşadı; Yemen'i zapteden Sâsânî askerlerinin soyundan gelen Fars kökenli bir aileye mensuptur. Elli kadar sahâbîye yetişti; en çok İbn Abbâs ile beraber oldu.
+
+  Hem Yemen'in hem Mekke'nin fakihleri arasında sayılır; re'y ile nakli dengeleyen bir fıkıh anlayışı vardı. Emevî idarecilerinden uzak durdu. Ömrünün son yıllarında Mekke'de oturdu ve hac sırasında vefat etti.
+hocalari:
+  - kisi: ibn-abbas
+    not: en çok yanında bulunduğu hocasıdır
+    kaynak: &tdv { ad: "TDV İslâm Ansiklopedisi, \"Tâvûs b. Keysân\"", url: "https://islamansiklopedisi.org.tr/tavus-b-keysan" }
+  - kisi: ebu-hureyre
+    kaynak: *tdv
+  - kisi: aise
+    kaynak: *tdv
+  - kisi: zeyd-b-sabit
+    kaynak: *tdv
+  - kisi: cabir-b-abdullah
+    kaynak: *tdv
+  - kisi: abdullah-b-amr
+    kaynak: *tdv
+kaynaklar:
+  - *tdv
+  - { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/2980" }
+dogrulandi: true

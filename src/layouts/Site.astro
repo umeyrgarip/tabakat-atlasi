@@ -1,0 +1,133 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { yol } from '../lib/veri';
+
+interface Props {
+  baslik?: string;
+  aciklama?: string;
+  genis?: boolean;
+}
+const { baslik, aciklama = 'Sahâbeden imamlara, yedi ilim merkezinde ilmin aktarımı.', genis = false } = Astro.props;
+const tamBaslik = baslik ? `${baslik} · Tabakât Atlası` : 'Tabakât Atlası';
+const simdiki = Astro.url.pathname;
+const menu: { href: string; ad: string; kisa?: string }[] = [
+  { href: yol('raviler/'), ad: 'Râvîler' },
+  { href: yol('bolgeler/'), ad: 'Bölgeler' },
+  { href: yol('ag/'), ad: 'Bağlantı Ağı', kisa: 'Ağ' },
+];
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tamBaslik}</title>
+    <meta name="description" content={aciklama} />
+    <!-- Paylaşım önizlemesi (WhatsApp, sosyal medya) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tabakât Atlası" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content={tamBaslik} />
+    <meta property="og:description" content={aciklama} />
+    {Astro.site && <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />}
+    {Astro.site && <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={tamBaslik} />
+    <meta name="twitter:description" content={aciklama} />
+    <link rel="icon" type="image/svg+xml" href={yol('favicon.svg')} />
+    <script is:inline>
+      try {
+        const t = localStorage.getItem('tema');
+        if (t) document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <header class="ust">
+      <div class="kap ust-ic">
+        <a href={yol()} class="logo">
+          <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+            <path d="M8 7 L16 16 M24 7 L16 16 M16 16 L16 25" stroke="currentColor" stroke-width="1.6" fill="none" opacity="0.55" />
+            <circle cx="8" cy="7" r="3.2" fill="currentColor" />
+            <circle cx="24" cy="7" r="3.2" fill="currentColor" />
+            <circle cx="16" cy="16" r="3.6" fill="var(--altin)" />
+            <circle cx="16" cy="25" r="3.2" fill="currentColor" />
+          </svg>
+          <span>Tabakât Atlası</span>
+          <small class="beta" title="Site geliştirme aşamasındadır; bilgiler güncellenebilir">Beta</small>
+        </a>
+        <nav>
+          {
+            menu.map((m) => (
+              <a href={m.href} aria-current={simdiki.startsWith(m.href) ? 'page' : undefined} aria-label={m.ad}>
+                {m.kisa ? (
+                  <>
+                    <span class="uzun">{m.ad}</span>
+                    <span class="kisa" aria-hidden="true">{m.kisa}</span>
+                  </>
+                ) : (
+                  m.ad
+                )}
+              </a>
+            ))
+          }
+          <button class="tema" type="button" aria-label="Temayı değiştir" title="Açık / koyu tema">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z" fill="currentColor" /></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class:list={['kap', { dar: !genis }]}>
+      <slot />
+    </main>
+
+    <footer class="kap alt sans">
+      <p>
+        Tabakât Atlası, Islah-ı Medaris Halkası'nda verilen bir araştırma ödevi sonucunda
+        oluşturulmuştur. Bilgiler kaynaklarıyla birlikte verilmeye çalışılmıştır.
+      </p>
+    </footer>
+
+    <script>
+      document.querySelector('.tema')?.addEventListener('click', () => {
+        const kok = document.documentElement;
+        const koyuMu = kok.dataset.theme
+          ? kok.dataset.theme === 'dark'
+          : matchMedia('(prefers-color-scheme: dark)').matches;
+        kok.dataset.theme = koyuMu ? 'light' : 'dark';
+        try { localStorage.setItem('tema', kok.dataset.theme); } catch {}
+        window.dispatchEvent(new Event('tema-degisti'));
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .ust { border-bottom: 1px solid var(--cizgi); background: color-mix(in srgb, var(--kagit) 88%, transparent); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+  .ust-ic { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; color: var(--murekkep); text-decoration: none; font-weight: 600; font-size: 1.1rem; white-space: nowrap; }
+  .logo svg { color: var(--vurgu); }
+  .beta {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1;
+    padding: 3px 7px; border-radius: 999px; border: 1px solid var(--vurgu); color: var(--vurgu); opacity: 0.85;
+  }
+  nav { display: flex; align-items: center; gap: 4px; font-family: var(--sans); font-size: 0.9rem; }
+  nav a { color: var(--murekkep-2); text-decoration: none; padding: 6px 10px; border-radius: 8px; }
+  nav a:hover { color: var(--murekkep); background: var(--kagit-2); }
+  nav a[aria-current='page'] { color: var(--vurgu); background: var(--vurgu-acik); }
+  .tema { background: none; border: 0; color: var(--murekkep-2); cursor: pointer; padding: 6px; border-radius: 8px; display: flex; }
+  .tema:hover { background: var(--kagit-2); color: var(--murekkep); }
+  main { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 70vh; }
+  .alt { border-top: 1px solid var(--cizgi); padding-top: 1.2rem; padding-bottom: 2rem; font-size: 0.82rem; color: var(--murekkep-2); }
+  nav .kisa { display: none; }
+  @media (max-width: 560px) {
+    .logo span { display: none; }
+    nav a { padding: 6px 7px; }
+    /* Dar ekranda menü tek satıra sığsın: "Bağlantı Ağı" → "Ağ" */
+    nav .uzun { display: none; }
+    nav .kisa { display: inline; }
+  }
+</style>

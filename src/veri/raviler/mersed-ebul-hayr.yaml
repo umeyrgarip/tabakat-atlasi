@@ -1,0 +1,20 @@
+isim: Mersed b. Abdillâh (Ebü'l-Hayr el-Yezenî)
+tam_isim: Ebü'l-Hayr Mersed b. Abdillâh el-Yezenî
+arapca: مرثد بن عبد الله اليزني
+cerh_tadil: Sika, fakih (İbn Hacer, Takrîb; 3. tabaka)
+tabaka: tabiin
+vefat: { hicri: 90, miladi: 709 }
+bolge: misir
+ozet: Ukbe b. Âmir'in yanından ayrılmayan talebesi; İskenderiye kadısı.
+biyografi: |
+  Mısır'daki Yezen kabilesine mensuptur; ödev listesinde ayrı ayrı geçen "Mersed b. Abdillah" ile "Ebü'l-Hayr el-Yezenî" aynı kişidir. Sahâbî Ukbe b. Âmir'in yanından hiç ayrılmaz, onun rivayetlerini aktaranların başında gelirdi.
+
+  İskenderiye kadılığı yaptı. Yezîd b. Ebî Habîb ve Ca'fer b. Rebîa onun talebeleridir.
+hocalari:
+  - kisi: ukbe-b-amir
+    not: yanından hiç ayrılmazdı
+    kaynak: &sh { ad: "el-Mektebetü'ş-Şâmile, ravi kaydı", url: "https://shamela.ws/narrator/6046" }
+kaynaklar:
+  - *sh
+  - { ad: "TDV İslâm Ansiklopedisi, \"Yezîd b. Ebû Habîb\"", url: "https://islamansiklopedisi.org.tr/yezid-b-ebu-habib" }
+dogrulandi: true
